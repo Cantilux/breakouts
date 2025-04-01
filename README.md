@@ -1,7 +1,5 @@
 # ✨ Breakouts
 
-[![Build CSS Framework](https://github.com/Cantilux/breakouts/actions/workflows/build.yml/badge.svg)](https://github.com/Cantilux/breakouts/actions/workflows/build.yml)
-
 [![pages-build-deployment](https://github.com/Cantilux/breakouts/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Cantilux/breakouts/actions/workflows/pages/pages-build-deployment)
 
 [![Publish to npm](https://github.com/Cantilux/breakouts/actions/workflows/publish.yml/badge.svg)](https://github.com/Cantilux/breakouts/actions/workflows/publish.yml)
