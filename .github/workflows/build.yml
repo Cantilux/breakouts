@@ -26,8 +26,15 @@ jobs:
       - name: Build SCSS
         run: npm run build
 
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: css-dist
-          path: dist/
+      - name: Copy CSS to docs/
+        run: cp dist/breakouts.css docs/
+
+      - name: Commit and push updated CSS
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/breakouts.css
+          git diff --cached --quiet || git commit -m "ci: update breakouts.css in docs"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
