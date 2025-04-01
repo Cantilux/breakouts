@@ -1,9 +1,5 @@
 # ✨ Breakouts
 
-[![pages-build-deployment](https://github.com/Cantilux/breakouts/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Cantilux/breakouts/actions/workflows/pages/pages-build-deployment)
-
-[![Publish to npm](https://github.com/Cantilux/breakouts/actions/workflows/publish.yml/badge.svg)](https://github.com/Cantilux/breakouts/actions/workflows/publish.yml)
-
 **Breakouts** is a minimal and extensible SCSS/CSS utility framework for modern layout systems.
 
 It provides utilities for containers, full-bleed sections, breakout content, and grid layouts with named lines — built for flexibility and responsiveness, whether you're building a landing page, a blog, or a full-scale web app.
