@@ -1,90 +1,32 @@
 :root {
-  --color-primary: #2a6ef5;
-  --color-secondary: #f54291;
-  --color-background: #ffffff;
-  --color-surface: #f4f4f4;
-  --color-text: #111111;
-  --color-text-muted: #666666;
-  --color-border: #e0e0e0;
+  --color-background: #fff;
+  --color-text: #111;
+  --color-primary: #0055ff;
+  --color-secondary: #0033aa;
+}
+
+.light {
+  --color-background: #fff;
+  --color-text: #111;
+  --color-primary: #0055ff;
+  --color-secondary: #0033aa;
+}
+
+.dark {
+  --color-background: #111;
+  --color-text: #eee;
+  --color-primary: #88b0ff;
+  --color-secondary: #cdd9ff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-primary: #5c9dff;
-    --color-secondary: #ff70b5;
-    --color-background: #121212;
-    --color-surface: #1e1e1e;
-    --color-text: #f0f0f0;
-    --color-text-muted: #aaaaaa;
-    --color-border: #333333;
+    --color-background: #111;
+    --color-text: #eee;
+    --color-primary: #88b0ff;
+    --color-secondary: #cdd9ff;
   }
 }
-.dark {
-  --color-primary: #5c9dff;
-  --color-secondary: #ff70b5;
-  --color-background: #121212;
-  --color-surface: #1e1e1e;
-  --color-text: #f0f0f0;
-  --color-text-muted: #aaaaaa;
-  --color-border: #333333;
-}
-
-.text-primary {
-  color: var(--color-primary);
-}
-
-.text-secondary {
-  color: var(--color-secondary);
-}
-
-.text-background {
-  color: var(--color-background);
-}
-
-.text-surface {
-  color: var(--color-surface);
-}
-
-.text-text {
-  color: var(--color-text);
-}
-
-.text-text-muted {
-  color: var(--color-text-muted);
-}
-
-.text-border {
-  color: var(--color-border);
-}
-
-.bg-primary {
-  background-color: var(--color-primary);
-}
-
-.bg-secondary {
-  background-color: var(--color-secondary);
-}
-
-.bg-background {
-  background-color: var(--color-background);
-}
-
-.bg-surface {
-  background-color: var(--color-surface);
-}
-
-.bg-text {
-  background-color: var(--color-text);
-}
-
-.bg-text-muted {
-  background-color: var(--color-text-muted);
-}
-
-.bg-border {
-  background-color: var(--color-border);
-}
-
 /* Basic reset */
 *,
 *::before,
