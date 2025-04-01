@@ -1,0 +1,13 @@
+.grid {
+    display: grid;
+    grid-template-columns:
+        [full-start] minmax(1rem, 1fr) [main-start] minmax(0, 72rem) [main-end] minmax(1rem, 1fr) [full-end];
+}
+
+.grid>* {
+    grid-column: main;
+}
+
+.grid--full>* {
+    grid-column: full;
+}

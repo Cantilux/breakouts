@@ -1,0 +1,14 @@
+{
+    "name": "breakouts",
+    "version": "0.0.1",
+    "description": "A personal SCSS/CSS layout utility framework.",
+    "main": "dist/breakouts.css",
+    "scripts": {
+        "build": "sass src/_index.scss dist/breakouts.css --style=expanded"
+    },
+    "author": "Tuo Nome",
+    "license": "MIT",
+    "devDependencies": {
+        "sass": "^1.75.0"
+    }
+}
