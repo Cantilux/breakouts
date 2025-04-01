@@ -2,7 +2,7 @@ name: Build CSS Framework
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - 'src/**'
       - 'package.json'
