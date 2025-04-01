@@ -40,7 +40,6 @@
 </head>
 
 <body>
-
     <h1>Breakouts Framework Demo</h1>
 
     <h2>.container</h2>
@@ -96,6 +95,29 @@
     <div class="grid grid--full">
         <div>
             <section>This section spans the full width of the grid using <code>.grid--full</code>.</section>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>.breakouts-grid</h2>
+    <p class="description">
+        A full grid layout using named lines such as <code>content</code>, <code>popout</code>, <code>feature</code>,
+        and <code>full</code>.
+        Useful for building precise and responsive layouts.
+    </p>
+    <div class="breakouts-grid">
+        <div class="content">
+            <section>.content — Centered main content area</section>
+        </div>
+        <div class="popout">
+            <section>.popout — Slightly outside the content width</section>
+        </div>
+        <div class="feature">
+            <section>.feature — Wider area, great for visual emphasis</section>
+        </div>
+        <div class="full">
+            <section>.full — Full width across the viewport</section>
         </div>
     </div>
 

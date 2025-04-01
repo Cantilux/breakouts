@@ -25,6 +25,11 @@ Breakouts includes a small set of layout-focused utility classes to help you bui
 | `.breakout`    | Expands content outside the container’s padding without going full-bleed  |
 | `.grid`        | Defines a named-line CSS grid with `main` and `full` layout regions        |
 | `.grid--full`  | Forces children of `.grid` to span the entire width (`full` region)        |
+| `.breakouts-grid` | A more advanced named-line grid layout using CSS variables              |
+| `.content`     | Places content in the main centered column within `.breakouts-grid`       |
+| `.popout`      | Slightly outside the `.content` width for medium breakout                 |
+| `.feature`     | Wider area used for highlighting visual components                        |
+| `.full`        | Full-width layout spanning the entire grid                                |
 
 ## 🛠️ Development
 
