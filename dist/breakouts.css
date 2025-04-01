@@ -1,33 +1,70 @@
 :root {
-  --color-background: #fff;
-  --color-text: #111;
+  --color-background: #ffffff;
+  --color-surface: #f0f0f0;
+  --color-text: #111111;
+  --color-muted: #666666;
   --color-primary: #0055ff;
   --color-secondary: #0033aa;
 }
 
-.dark {
-  --color-background: #111;
-  --color-text: #eee;
+.dark,
+.dark :root {
+  --color-background: #111111;
+  --color-surface: #1a1a1a;
+  --color-text: #eeeeee;
+  --color-muted: #aaaaaa;
   --color-primary: #88b0ff;
   --color-secondary: #cdd9ff;
 }
 
 .light,
 .light :root {
-  --color-background: #fff;
-  --color-text: #111;
+  --color-background: #ffffff;
+  --color-surface: #f0f0f0;
+  --color-text: #111111;
+  --color-muted: #666666;
   --color-primary: #0055ff;
   --color-secondary: #0033aa;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not(.light):not(.dark) {
-    --color-background: #111;
-    --color-text: #eee;
+    --color-background: #111111;
+    --color-surface: #1a1a1a;
+    --color-text: #eeeeee;
+    --color-muted: #aaaaaa;
     --color-primary: #88b0ff;
     --color-secondary: #cdd9ff;
   }
 }
+.bg-background {
+  background-color: var(--color-background);
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.text-text {
+  color: var(--color-text);
+}
+
+.text-background {
+  color: var(--color-background);
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
 /* Basic reset */
 *,
 *::before,

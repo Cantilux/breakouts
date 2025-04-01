@@ -12,15 +12,16 @@
         }
 
         section {
-            background-color: #f0f0f0;
+            background-color: var(--color-surface);
+            color: var(--color-text);
             padding: 1.5rem;
-            border: 1px solid #ccc;
+            border: 1px solid var(--color-muted);
             margin-top: 1rem;
         }
 
         .description {
             font-size: 0.9rem;
-            color: #555;
+            color: var(--color-muted);
             margin-top: 0.5rem;
             margin-bottom: 1rem;
         }
@@ -141,12 +142,12 @@
     <h2>Visual Test: .grid vs .grid--full</h2>
     <div class="grid">
         <div>
-            <section style="background: #e0f7fa;">.grid (centered)</section>
+            <section>.grid (centered)</section>
         </div>
     </div>
     <div class="grid grid--full">
         <div>
-            <section style="background: #ffe0b2;">.grid--full (full-width)</section>
+            <section>.grid--full (full-width)</section>
         </div>
     </div>
 
@@ -154,16 +155,16 @@
     <h2>Visual Test: .breakouts-grid zones</h2>
     <div class="breakouts-grid">
         <div class="content">
-            <section style="background: #cce5ff;">.content zone</section>
+            <section>.content zone</section>
         </div>
         <div class="popout">
-            <section style="background: #d4edda;">.popout zone</section>
+            <section>.popout zone</section>
         </div>
         <div class="feature">
-            <section style="background: #fff3cd;">.feature zone</section>
+            <section>.feature zone</section>
         </div>
         <div class="full">
-            <section style="background: #f8d7da;">.full zone</section>
+            <section>.full zone</section>
         </div>
     </div>
 
@@ -171,10 +172,13 @@
     <h2>Visual Test: Theme Colors</h2>
     <div class="grid grid--full">
         <div>
+            <section class="bg-background text-text">Background / Text</section>
+            <section class="bg-surface text-text">Surface / Text</section>
             <section class="bg-primary text-background">Primary / Inverted Text</section>
-            <section class="bg-surface text-text">Surface / Normal Text</section>
-            <section class="bg-background text-muted">Background / Muted Text</section>
+            <section class="bg-secondary text-background">Secondary / Inverted Text</section>
+            <section class="bg-background text-muted">Muted Text on Background</section>
         </div>
+    </div>
     </div>
 
 </body>
