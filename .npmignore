@@ -1,5 +1,7 @@
-src/
-docs/
-*.html
-*.md
-.gitignore
+# ignore everything
+*
+
+# allow published files
+!breakouts.scss
+!src/
+!dist/

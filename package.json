@@ -4,8 +4,9 @@
     "description": "A personal SCSS/CSS layout utility framework.",
     "main": "dist/breakouts.css",
     "files": [
-        "dist/breakouts.css",
-        "dist/breakouts.min.css"
+        "breakouts.scss",
+        "src/",
+        "dist/"
     ],
     "scripts": {
         "build": "sass src/_index.scss dist/breakouts.css --style=expanded && sass src/_index.scss dist/breakouts.min.css --style=compressed && cp dist/breakouts.css docs/breakouts.css",
