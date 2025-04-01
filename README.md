@@ -105,6 +105,46 @@ By using the same design tokens, your custom elements stay visually aligned with
 
 This approach encourages consistency while giving you full creative freedom.
 
+## ✍️ Typography
+
+Breakouts includes base typographic styles to ensure clean, readable text with consistent rhythm and spacing.
+
+- Responsive font sizing and heading scale
+- Theme-based color integration
+- Styled links and paragraphs
+- Easily extendable via SCSS variables
+
+```scss
+body {
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  color: var(--color-text);
+}
+
+p {
+  margin: 1rem 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--color-secondary);
+  }
+}
+```
+
+You can override the heading scale, base sizes, and fonts by defining your own variables before importing Breakouts.
+
 ## 🌙 Dark Mode Support
 
 Breakouts includes built-in support for **dark mode**, using CSS variables and system preferences.

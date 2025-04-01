@@ -1,13 +1,12 @@
+// Theme and configurable variables
+@forward 'theme/colors';
+
 // Base styles
 @forward 'base/reset';
+@forward 'base/typography';
 
 // Layout utilities
 @forward 'layout/container';
 @forward 'layout/full-bleed';
 @forward 'layout/breakouts';
 @forward 'layout/grid';
-
-// Theme and configurable variables
-@forward 'theme/colors';
-
-// force build github actions
