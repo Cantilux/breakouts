@@ -1,20 +1,12 @@
+// Default (light)
 :root {
     --color-background: #fff;
     --color-text: #111;
     --color-primary: #0055ff;
     --color-secondary: #0033aa;
-    // ...
 }
 
-// Light mode (forced)
-.light {
-    --color-background: #fff;
-    --color-text: #111;
-    --color-primary: #0055ff;
-    --color-secondary: #0033aa;
-}
-
-// Dark mode (forced)
+// Forced dark mode
 .dark {
     --color-background: #111;
     --color-text: #eee;
@@ -22,9 +14,18 @@
     --color-secondary: #cdd9ff;
 }
 
-// Dark mode (automatic via media query)
+// Forced light mode (must override media query)
+.light,
+.light :root {
+    --color-background: #fff;
+    --color-text: #111;
+    --color-primary: #0055ff;
+    --color-secondary: #0033aa;
+}
+
+// Automatic dark mode (only if .dark or .light are not set)
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not(.light):not(.dark) {
         --color-background: #111;
         --color-text: #eee;
         --color-primary: #88b0ff;

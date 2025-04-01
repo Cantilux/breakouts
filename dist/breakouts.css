@@ -5,13 +5,6 @@
   --color-secondary: #0033aa;
 }
 
-.light {
-  --color-background: #fff;
-  --color-text: #111;
-  --color-primary: #0055ff;
-  --color-secondary: #0033aa;
-}
-
 .dark {
   --color-background: #111;
   --color-text: #eee;
@@ -19,8 +12,16 @@
   --color-secondary: #cdd9ff;
 }
 
+.light,
+.light :root {
+  --color-background: #fff;
+  --color-text: #111;
+  --color-primary: #0055ff;
+  --color-secondary: #0033aa;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light):not(.dark) {
     --color-background: #111;
     --color-text: #eee;
     --color-primary: #88b0ff;
