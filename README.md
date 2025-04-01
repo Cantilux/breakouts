@@ -14,6 +14,14 @@ It provides utilities for containers, full-bleed sections, breakout content, and
 npm install breakouts
 ```
 
+In your SCSS entry point:
+
+```scss
+@use 'breakouts' as *;
+```
+
+Note: breakouts automatically forwards all core modules from src/index.scss. You can also import individual modules as needed for tree-shaking.
+
 ## 📦 Framework Structure
 
 Breakouts includes a small set of layout-focused utility classes to help you build responsive and consistent page structures.
