@@ -6,16 +6,9 @@
     <title>Breakouts Framework Demo</title>
     <link rel="stylesheet" href="breakouts.css">
     <style>
-        html,
-        body {
-            font-family: system-ui, sans-serif;
-            line-height: 1.6;
-        }
-
         h1,
         h2 {
             margin-top: 3rem;
-            padding: 0 2rem;
         }
 
         section {
@@ -30,7 +23,6 @@
             color: #555;
             margin-top: 0.5rem;
             margin-bottom: 1rem;
-            padding: 2rem;
         }
 
         hr {
@@ -78,8 +70,7 @@
 
     <h2>.grid</h2>
     <p class="description">
-        A CSS grid with named lines: <code>main</code> and <code>full</code>.
-        Default children will stay within the main column.
+        A CSS grid with three columns. Content is centered in the middle column.
     </p>
     <div class="grid">
         <div>
@@ -116,14 +107,69 @@
             <section>.popout — Slightly outside the content width</section>
         </div>
         <div class="feature">
-            <section>.feature — Wider area, great for visual emphasis</section>
+            <section>.feature — Wider area used for highlighting visual components</section>
         </div>
         <div class="full">
-            <section>.full — Full width across the viewport</section>
+            <section>.full — Full-width layout spanning the entire grid</section>
         </div>
     </div>
-</body>
 
-<!-- force deploy githubpages -->
+    <hr>
+
+    <h2>Color Utilities & Dark Mode</h2>
+    <p class="description">
+        Color utility classes use CSS variables that automatically adapt to light or dark mode.
+        You can also manually enable dark mode using <code>.dark</code> on <code>&lt;html&gt;</code>.
+    </p>
+    <div class="container">
+        <section class="bg-surface text-text">
+            <p>This is a text block using <code>.bg-surface</code> and <code>.text-text</code></p>
+            <p class="text-muted">Muted text will also adapt based on the color mode.</p>
+            <p><strong>Try switching your system to dark mode or adding <code>.dark</code> to &lt;html&gt;.</strong></p>
+        </section>
+    </div>
+
+    <hr>
+    <h2>Visual Test: .grid vs .grid--full</h2>
+    <div class="grid">
+        <div>
+            <section style="background: #e0f7fa;">This box is centered inside a <code>.grid</code>.</section>
+        </div>
+    </div>
+    <div class="grid grid--full">
+        <div>
+            <section style="background: #ffe0b2;">This box spans the full width inside <code>.grid--full</code>.
+            </section>
+        </div>
+    </div>
+
+    <hr>
+    <h2>Visual Test: .breakouts-grid layout zones</h2>
+    <div class="breakouts-grid">
+        <div class="content">
+            <section style="background: #cce5ff;">.content — centered main content area</section>
+        </div>
+        <div class="popout">
+            <section style="background: #d4edda;">.popout — slightly wider than content</section>
+        </div>
+        <div class="feature">
+            <section style="background: #fff3cd;">.feature — great for emphasis</section>
+        </div>
+        <div class="full">
+            <section style="background: #f8d7da;">.full — full-width zone</section>
+        </div>
+    </div>
+
+    <hr>
+    <h2>Visual Test: Theme Colors & Dark Mode</h2>
+    <div class="grid grid--full">
+        <div>
+            <section class="bg-primary text-background">Primary / Inverted Text</section>
+            <section class="bg-surface text-text">Surface / Normal Text</section>
+            <section class="bg-background text-muted">Background / Muted Text</section>
+        </div>
+    </div>
+
+</body>
 
 </html>

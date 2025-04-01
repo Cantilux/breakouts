@@ -1,5 +1,11 @@
+// Base styles
 @forward 'base/reset';
+
+// Layout utilities
 @forward 'layout/container';
 @forward 'layout/full-bleed';
 @forward 'layout/breakouts';
 @forward 'layout/grid';
+
+// Theme and configurable variables
+@forward 'theme/colors';

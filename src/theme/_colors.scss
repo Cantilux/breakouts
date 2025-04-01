@@ -1,0 +1,73 @@
+// src/theme/_colors.scss
+
+// Allow user overrides before this file is loaded
+$colors: (primary: #2a6ef5,
+    secondary: #f54291,
+    background: #ffffff,
+    surface: #f4f4f4,
+    text: #111111,
+    text-muted: #666666,
+    border: #e0e0e0) !default;
+
+$colors-dark: (primary: #5c9dff,
+    secondary: #ff70b5,
+    background: #121212,
+    surface: #1e1e1e,
+    text: #f0f0f0,
+    text-muted: #aaaaaa,
+    border: #333333) !default;
+
+// Light mode
+:root {
+
+    @each $name,
+    $value in $colors {
+        --color-#{$name}: #{$value};
+    }
+}
+
+// Dark mode via prefers-color-scheme
+@media (prefers-color-scheme: dark) {
+    :root {
+
+        @each $name,
+        $value in $colors-dark {
+            --color-#{$name}: #{$value};
+        }
+    }
+}
+
+// Optional: manual dark mode override
+.dark {
+
+    @each $name,
+    $value in $colors-dark {
+        --color-#{$name}: #{$value};
+    }
+}
+
+// Utility generator mixins
+
+@mixin text-color-utilities {
+
+    @each $name,
+    $value in $colors {
+        .text-#{$name} {
+            color: var(--color-#{$name});
+        }
+    }
+}
+
+@mixin bg-color-utilities {
+
+    @each $name,
+    $value in $colors {
+        .bg-#{$name} {
+            background-color: var(--color-#{$name});
+        }
+    }
+}
+
+// Automatically generate utility classes
+@include text-color-utilities();
+@include bg-color-utilities();

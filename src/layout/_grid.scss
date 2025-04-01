@@ -6,6 +6,7 @@
     --content: min(50ch, 100% - var(--gap) * 2);
 }
 
+// Breakouts Grid (named lines)
 .breakouts-grid {
     display: grid;
     grid-template-columns:
@@ -27,4 +28,19 @@
 
 .full {
     grid-column: full;
+}
+
+// Standard Grid (for .grid and .grid--full compatibility)
+.grid {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, var(--container-max-width, 64rem)) 1fr;
+    gap: var(--gap);
+
+    >* {
+        grid-column: 2;
+    }
+}
+
+.grid--full>* {
+    grid-column: 1 / -1;
 }
