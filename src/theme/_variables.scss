@@ -1,8 +1,37 @@
-// src/theme/_variables.scss
-
 $color-background: #ffffff !default;
+$color-background-dark: #111111 !default;
+$color-background-light: #ffffff !default;
+
 $color-surface: #f0f0f0 !default;
+$color-surface-dark: #1a1a1a !default;
+$color-surface-light: #f8f8f8 !default;
+
 $color-text: #111111 !default;
+$color-text-dark: #eeeeee !default;
+$color-text-light: #222222 !default;
+
 $color-muted: #666666 !default;
+$color-muted-dark: #aaaaaa !default;
+$color-muted-light: #999999 !default;
+
 $color-primary: #0055ff !default;
+$color-primary-dark: #0033aa !default;
+$color-primary-light: #88b0ff !default;
+
 $color-secondary: #0033aa !default;
+$color-secondary-dark: #002277 !default;
+$color-secondary-light: #ccd9ff !default;
+
+$color-accent: #ff4081 !default;
+$color-accent-dark: #c60055 !default;
+$color-accent-light: #ff80ab !default;
+
+$color-neutral-100: #f8f9fa !default;
+$color-neutral-200: #e9ecef !default;
+$color-neutral-300: #dee2e6 !default;
+$color-neutral-400: #ced4da !default;
+$color-neutral-500: #adb5bd !default;
+$color-neutral-600: #6c757d !default;
+$color-neutral-700: #495057 !default;
+$color-neutral-800: #343a40 !default;
+$color-neutral-900: #212529 !default;

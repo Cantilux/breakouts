@@ -7,43 +7,53 @@
     --color-muted: #{$color-muted};
     --color-primary: #{$color-primary};
     --color-secondary: #{$color-secondary};
+    --color-accent: #{$color-accent};
+
+    --color-neutral-100: #{$color-neutral-100};
+    --color-neutral-200: #{$color-neutral-200};
+    --color-neutral-300: #{$color-neutral-300};
+    --color-neutral-400: #{$color-neutral-400};
+    --color-neutral-500: #{$color-neutral-500};
+    --color-neutral-600: #{$color-neutral-600};
+    --color-neutral-700: #{$color-neutral-700};
+    --color-neutral-800: #{$color-neutral-800};
+    --color-neutral-900: #{$color-neutral-900};
 }
 
-// Forced dark mode
 .dark,
 .dark :root {
-    --color-background: #111111;
-    --color-surface: #1a1a1a;
-    --color-text: #eeeeee;
-    --color-muted: #aaaaaa;
-    --color-primary: #88b0ff;
-    --color-secondary: #cdd9ff;
+    --color-background: #{$color-background-dark};
+    --color-surface: #{$color-surface-dark};
+    --color-text: #{$color-text-dark};
+    --color-muted: #{$color-muted-dark};
+    --color-primary: #{$color-primary-dark};
+    --color-secondary: #{$color-secondary-dark};
+    --color-accent: #{$color-accent-dark};
 }
 
-// Forced light mode
 .light,
 .light :root {
-    --color-background: #ffffff;
-    --color-surface: #f0f0f0;
-    --color-text: #111111;
-    --color-muted: #666666;
-    --color-primary: #0055ff;
-    --color-secondary: #0033aa;
+    --color-background: #{$color-background-light};
+    --color-surface: #{$color-surface-light};
+    --color-text: #{$color-text-light};
+    --color-muted: #{$color-muted-light};
+    --color-primary: #{$color-primary-light};
+    --color-secondary: #{$color-secondary-light};
+    --color-accent: #{$color-accent-light};
 }
 
-// Automatic dark mode (only if not forcing)
 @media (prefers-color-scheme: dark) {
     :root:not(.light):not(.dark) {
-        --color-background: #111111;
-        --color-surface: #1a1a1a;
-        --color-text: #eeeeee;
-        --color-muted: #aaaaaa;
-        --color-primary: #88b0ff;
-        --color-secondary: #cdd9ff;
+        --color-background: #{$color-background-dark};
+        --color-surface: #{$color-surface-dark};
+        --color-text: #{$color-text-dark};
+        --color-muted: #{$color-muted-dark};
+        --color-primary: #{$color-primary-dark};
+        --color-secondary: #{$color-secondary-dark};
+        --color-accent: #{$color-accent-dark};
     }
 }
 
-// Utility classes
 .bg-background {
     background-color: var(--color-background);
 }
@@ -58,6 +68,10 @@
 
 .bg-secondary {
     background-color: var(--color-secondary);
+}
+
+.bg-accent {
+    background-color: var(--color-accent);
 }
 
 .text-text {
