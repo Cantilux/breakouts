@@ -236,6 +236,44 @@ And will apply to utility classes like:
 
 You can also override any other color or spacing variable defined in the framework for full control.
 
+## 🎨 Custom Theme Setup
+
+If you're using a bundler like Vite or Webpack and encounter issues with `@use ... with`, the recommended approach is to recreate Breakouts' internal structure in your own project and apply theming from there.
+
+### ✅ Example: Create a custom `breakouts.scss`
+
+```scss
+// src/styles/breakouts.scss
+
+@forward 'breakouts/src/theme/variables' with (
+  $color-primary: #d1ff4a,
+  $color-primary-dark: darken(#d1ff4a, 15%),
+  $color-primary-light: lighten(#d1ff4a, 15%),
+
+  $color-accent: #8a2be2,
+  $color-accent-dark: darken(#8a2be2, 15%),
+  $color-accent-light: lighten(#8a2be2, 15%)
+);
+
+@use 'breakouts/src/theme/variables' as *;
+@forward 'breakouts/src/theme/colors';
+@forward 'breakouts/src/base/reset';
+@forward 'breakouts/src/base/typography';
+@forward 'breakouts/src/layout/container';
+@forward 'breakouts/src/layout/full-bleed';
+@forward 'breakouts/src/layout/breakouts';
+@forward 'breakouts/src/layout/grid';
+```
+
+💡 Use your custom theme
+In your app entry point or component:
+
+```scss
+@use '@/styles/breakouts' as *;
+```
+
+This gives you full control over the theme while keeping the rest of the framework intact.
+
 ## 🛠️ Development
 
 To build or modify Breakouts locally, follow these steps:
