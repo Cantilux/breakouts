@@ -1,6 +1,6 @@
 {
     "name": "breakouts",
-    "version": "0.0.13",
+    "version": "0.0.14",
     "description": "A personal SCSS/CSS layout utility framework.",
     "main": "dist/breakouts.css",
     "files": [
