@@ -202,6 +202,39 @@ You can keep writing markup the same way in both themes:
 </div>
 ```
 
+## 🎨 Theming with `@use`
+
+Breakouts supports full theming via SCSS variable overrides using `@use with`. You can customize any design token before the framework compiles.
+
+### 🧪 Example: Custom Primary and Accent Colors
+
+```scss
+@use 'breakouts' with (
+  $color-primary: #d1ff4a,
+  $color-primary-dark: darken(#d1ff4a, 15%),
+  $color-primary-light: lighten(#d1ff4a, 15%),
+
+  $color-accent: #8a2be2,
+  $color-accent-dark: darken(#8a2be2, 15%),
+  $color-accent-light: lighten(#8a2be2, 15%)
+);
+```
+
+This will automatically update the corresponding CSS custom properties:
+
+```scss
+--color-primary: #d1ff4a;
+--color-accent: #8a2be2;
+```
+
+And will apply to utility classes like:
+
+```html
+<section class="bg-primary text-background">Primary Background</section>
+<section class="bg-accent text-background">Accent Background</section>
+```
+
+You can also override any other color or spacing variable defined in the framework for full control.
 
 ## 🛠️ Development
 
