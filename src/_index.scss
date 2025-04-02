@@ -1,4 +1,6 @@
 // Theme and configurable variables
+@forward 'theme/variables';
+@use 'theme/variables' as *;
 @forward 'theme/colors';
 
 // Base styles
