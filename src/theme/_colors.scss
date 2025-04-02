@@ -1,13 +1,12 @@
-// src/theme/_colors.scss
+@use 'variables'as *;
 
-// Default (light mode)
 :root {
-    --color-background: #ffffff;
-    --color-surface: #f0f0f0;
-    --color-text: #111111;
-    --color-muted: #666666;
-    --color-primary: #0055ff;
-    --color-secondary: #0033aa;
+    --color-background: #{$color-background};
+    --color-surface: #{$color-surface};
+    --color-text: #{$color-text};
+    --color-muted: #{$color-muted};
+    --color-primary: #{$color-primary};
+    --color-secondary: #{$color-secondary};
 }
 
 // Forced dark mode
