@@ -2,15 +2,11 @@
 <html lang="en" class="light">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Breakouts Framework Demo</title>
-    <link rel="stylesheet" href="breakouts.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Breakouts Demo</title>
+    <link rel="stylesheet" href="./breakouts.css" />
     <style>
-        h1,
-        h2 {
-            margin-top: 3rem;
-        }
-
         section {
             background-color: var(--color-surface);
             color: var(--color-text);
@@ -25,150 +21,74 @@
             margin-top: 0.5rem;
             margin-bottom: 1rem;
         }
-
-        hr {
-            margin: 3rem 0;
-            border: none;
-            border-top: 1px solid #ccc;
-        }
     </style>
+    <script lang="javascript">
+        // Function to toggle between light and dark themes
+        // This function is called when the button is clicked
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButton = document.getElementById('theme-toggle');
+            toggleButton.addEventListener('click', function () {
+                toggleTheme();
+            });
+        });
+        // Function to toggle the theme
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+            }
+        }
+    </script>
 </head>
 
 <body>
-    <h1>Breakouts Framework Demo</h1>
+    <button id="theme-toggle" style="position: fixed; top: 10px; right: 10px; z-index: 1000;">
+        Toggle Theme
+    </button>
+    <h1>Breakouts Framework</h1>
 
-    <hr>
-    <h2>.container</h2>
-    <p class="description">
-        A centered content wrapper with a fixed max-width and responsive side padding.
-    </p>
+    <h2>Containers</h2>
     <div class="container">
-        <section>I'm inside a <code>.container</code>.</section>
+        <section>Container content</section>
     </div>
 
-    <hr>
-    <h2>.full-bleed</h2>
-    <p class="description">
-        Expands the element to the full width of the viewport, ignoring any container boundaries.
-    </p>
+    <h2>Full Bleed</h2>
     <div class="full-bleed">
-        <section>This is a <code>.full-bleed</code> section.</section>
+        <section>Full bleed content</section>
     </div>
 
-    <hr>
-    <h2>.breakout</h2>
-    <p class="description">
-        Breaks the element out of the container's padding but still keeps margins on both sides.
-    </p>
-    <div class="breakout">
-        <section>This is a <code>.breakout</code> section.</section>
+    <h2>Breakouts</h2>
+    <div class="breakouts">
+        <section>Breakout content</section>
     </div>
 
-    <hr>
-    <h2>.grid</h2>
-    <p class="description">
-        A CSS grid with three columns. Content is centered in the middle column.
-    </p>
-    <div class="grid">
-        <div>
-            <section>This section is in the <code>.grid</code>'s main area.</section>
-        </div>
-    </div>
-
-    <hr>
-    <h2>.grid.grid--full</h2>
-    <p class="description">
-        When used with <code>.grid--full</code>, children will expand to fill the entire grid width.
-    </p>
-    <div class="grid grid--full">
-        <div>
-            <section>This section spans the full width using <code>.grid--full</code>.</section>
-        </div>
-    </div>
-
-    <hr>
-    <h2>.breakouts-grid</h2>
-    <p class="description">
-        A grid layout using named lines like <code>content</code>, <code>popout</code>, <code>feature</code>,
-        <code>full</code>.
-    </p>
+    <h2>Breakouts Grid</h2>
     <div class="breakouts-grid">
-        <div class="content">
-            <section>.content — centered content</section>
-        </div>
-        <div class="popout">
-            <section>.popout — slightly wider</section>
-        </div>
-        <div class="feature">
-            <section>.feature — visual emphasis</section>
-        </div>
-        <div class="full">
-            <section>.full — full-width</section>
-        </div>
+        <section class="full">Full</section>
+        <section class="feature">Feature</section>
+        <section class="popout">Popout</section>
+        <section class="content">Content</section>
     </div>
 
-    <hr>
     <h2>Typography</h2>
-    <p class="description">
-        Typography demo with headings, text, and links.
-    </p>
-    <div class="container">
-        <section>
-            <h1>Heading 1</h1>
-            <h2>Heading 2</h2>
-            <h3>Heading 3</h3>
-            <h4>Heading 4</h4>
-            <h5>Heading 5</h5>
-            <h6>Heading 6</h6>
-            <p>This is a standard paragraph with default font size and line height.</p>
-            <p>Visit <a href="#">this link</a> to see theme-colored anchor text.</p>
-        </section>
-    </div>
+    <section>
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <p>Paragraph text with <a href="#">a link</a>.</p>
+    </section>
 
-    <hr>
-    <h2>Color Utilities & Dark Mode</h2>
-    <p class="description">
-        Color utilities adapt to light/dark mode. Use <code>.dark</code> on <code>&lt;html&gt;</code> to force dark
-        mode.
-    </p>
-    <div class="container">
-        <section class="bg-surface text-text">
-            <p>Text using <code>.bg-surface</code> and <code>.text-text</code></p>
-            <p class="text-muted">Muted text adapts automatically.</p>
-        </section>
-    </div>
+    <h2>Color Utilities</h2>
+    <section class="bg-primary text-background">Primary Background</section>
+    <section class="bg-secondary text-background">Secondary Background</section>
+    <section class="bg-accent text-background">Accent Background</section>
+    <section class="bg-surface text-text">Surface Background</section>
+    <section class="bg-background text-muted">Muted Text</section>
 
-    <hr>
-    <h2>Visual Test: .grid vs .grid--full</h2>
-    <div class="grid">
-        <div>
-            <section>.grid (centered)</section>
-        </div>
-    </div>
-    <div class="grid grid--full">
-        <div>
-            <section>.grid--full (full-width)</section>
-        </div>
-    </div>
-
-    <hr>
-    <h2>Visual Test: .breakouts-grid zones</h2>
-    <div class="breakouts-grid">
-        <div class="content">
-            <section>.content zone</section>
-        </div>
-        <div class="popout">
-            <section>.popout zone</section>
-        </div>
-        <div class="feature">
-            <section>.feature zone</section>
-        </div>
-        <div class="full">
-            <section>.full zone</section>
-        </div>
-    </div>
-
-    <hr>
     <h2>Visual Test: Theme Colors</h2>
     <div class="grid grid--full">
         <div>
@@ -176,11 +96,21 @@
             <section class="bg-surface text-text">Surface / Text</section>
             <section class="bg-primary text-background">Primary / Inverted Text</section>
             <section class="bg-secondary text-background">Secondary / Inverted Text</section>
+            <section class="bg-accent text-background">Accent / Inverted Text</section>
             <section class="bg-background text-muted">Muted Text on Background</section>
         </div>
     </div>
-    </div>
 
+    <h2>Neutral Scale</h2>
+    <section class="bg-neutral-100">Neutral 100</section>
+    <section class="bg-neutral-200">Neutral 200</section>
+    <section class="bg-neutral-300">Neutral 300</section>
+    <section class="bg-neutral-400">Neutral 400</section>
+    <section class="bg-neutral-500">Neutral 500</section>
+    <section class="bg-neutral-600 text-background">Neutral 600</section>
+    <section class="bg-neutral-700 text-background">Neutral 700</section>
+    <section class="bg-neutral-800 text-background">Neutral 800</section>
+    <section class="bg-neutral-900 text-background">Neutral 900</section>
 </body>
 
 </html>
