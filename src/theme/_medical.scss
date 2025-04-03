@@ -1,4 +1,8 @@
-// src/theme/medical.scss
+// This file is used to define the theme variables for the Medical theme.
+// It imports the base theme variables and overrides them with custom values.
+// It also imports the base styles for reset, typography, and layout.
+// The theme variables are used to customize the appearance of the Medical theme.
+// The theme variables are defined using the SCSS @use and @forward directives.
 
 $primary: #4682B4 !default;
 $secondary: #9DC183 !default;

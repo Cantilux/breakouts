@@ -1,3 +1,6 @@
+// This file contains the layout styles for the site, including grid and flexbox layouts.
+// It uses CSS custom properties for responsive design and theming.
+
 :root {
     --gap: clamp(1rem, 6vw, 3rem);
     --full: minmax(var(--gap), 1fr);
@@ -6,21 +9,47 @@
     --content: min(50ch, 100% - var(--gap) * 2);
 }
 
+// Breakout containers
 .container {
     margin-inline: auto;
     max-width: 72rem;
     padding-inline: 1rem;
 }
 
+// Breakout classes
 .full-bleed {
     width: 100vw;
     margin-left: 50%;
     transform: translateX(-50%);
 }
 
+.full-bleed--left {
+    width: 100vw;
+    margin-left: 0;
+    transform: translateX(0);
+}
+
+.full-bleed--right {
+    width: 100vw;
+    margin-left: calc(-1 * (100vw - 100%) / 2);
+    transform: translateX(calc(100% - 100vw));
+} 
+
 .breakout {
     width: 100vw;
     margin-left: calc(-1 * (100vw - 100%) / 2);
+}
+
+.breakout--left {
+    width: 100vw;
+    margin-left: 0;
+    transform: translateX(0);
+}
+
+.breakout--right {
+    width: 100vw;
+    margin-left: calc(-1 * (100vw - 100%) / 2);
+    transform: translateX(calc(100% - 100vw));
 }
 
 // Breakouts Grid (named lines)

@@ -1,4 +1,8 @@
-// src/theme/tootsie-pop.scss
+// This file is used to define the theme variables for the Tootsie Pop theme.
+// It imports the base theme variables and overrides them with custom values.
+// It also imports the base styles for reset, typography, and layout.
+// The theme variables are used to customize the appearance of the Tootsie Pop theme.
+// The theme variables are defined using the SCSS @use and @forward directives.
 
 $primary: #93329E !default;
 $secondary: #F2711C !default;

@@ -1,3 +1,7 @@
+// This file is the main entry point for the SCSS files.
+// It imports all the necessary files and modules for the project.
+// It is recommended to use @use instead of @import for better performance and maintainability.
+
 // Theme and configurable variables
 @forward 'base/variables';
 @use 'base/variables' as *;
