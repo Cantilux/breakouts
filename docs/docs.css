@@ -1,0 +1,213 @@
+:root {
+    --color-background-light: #ffffff;
+    --color-text-light: #111111;
+    --color-code-bg-light: #f4f4f4;
+    --color-code-text-light: #111111;
+    --color-box-bg-light: #fafafa;
+    --color-box-border-light: #ccc;
+
+    --color-background-dark: #111111;
+    --color-text-dark: #ffffff;
+    --color-code-bg-dark: #1e1e1e;
+    --color-code-text-dark: #f4f4f4;
+    --color-box-bg-dark: #1a1a1a;
+    --color-box-border-dark: #444;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    scroll-behavior: smooth;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body:has(#theme-toggle:checked) {
+    --color-background: var(--color-background-dark);
+    --color-text: var(--color-text-dark);
+    --color-code-bg: var(--color-code-bg-dark);
+    --color-code-text: var(--color-code-text-dark);
+    --color-box-bg: var(--color-box-bg-dark);
+    --color-box-border: var(--color-box-border-dark);
+}
+
+body:not(:has(#theme-toggle:checked)) {
+    --color-background: var(--color-background-light);
+    --color-text: var(--color-text-light);
+    --color-code-bg: var(--color-code-bg-light);
+    --color-code-text: var(--color-code-text-light);
+    --color-box-bg: var(--color-box-bg-light);
+    --color-box-border: var(--color-box-border-light);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(:has(#theme-toggle:checked)) {
+        --color-background: var(--color-background-dark);
+        --color-text: var(--color-text-dark);
+        --color-code-bg: var(--color-code-bg-dark);
+        --color-code-text: var(--color-code-text-dark);
+        --color-box-bg: var(--color-box-bg-dark);
+        --color-box-border: var(--color-box-border-dark);
+    }
+
+    body:has(#theme-toggle:checked) {
+        --color-background: var(--color-background-light);
+        --color-text: var(--color-text-light);
+        --color-code-bg: var(--color-code-bg-light);
+        --color-code-text: var(--color-code-text-light);
+        --color-box-bg: var(--color-box-bg-light);
+        --color-box-border: var(--color-box-border-light);
+    }
+}
+
+pre {
+    background-color: var(--color-code-bg);
+    color: var(--color-code-text);
+    padding: 1rem;
+    overflow-x: auto;
+    border: 1px solid var(--color-box-border);
+    margin-top: 1rem;
+    border-radius: 4px;
+}
+
+.example {
+    background-color: var(--color-box-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-box-border);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 4px;
+}
+
+.color-box {
+    background-color: var(--color-box-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-box-border);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 4px;
+}
+
+--color-link-light: #1a0dab;
+--color-link-dark: #82aaff;
+--color-link-hover-light: #c00;
+--color-link-hover-dark: #ff8080;
+}
+
+body:has(#theme-toggle:checked) {
+    --color-background: var(--color-background-dark);
+    --color-text: var(--color-text-dark);
+    --color-code-bg: var(--color-code-bg-dark);
+    --color-code-text: var(--color-code-text-dark);
+    --color-box-bg: var(--color-box-bg-dark);
+    --color-box-border: var(--color-box-border-dark);
+    --color-link: var(--color-link-dark);
+    --color-link-hover: var(--color-link-hover-dark);
+}
+
+body:not(:has(#theme-toggle:checked)) {
+    --color-background: var(--color-background-light);
+    --color-text: var(--color-text-light);
+    --color-code-bg: var(--color-code-bg-light);
+    --color-code-text: var(--color-code-text-light);
+    --color-box-bg: var(--color-box-bg-light);
+    --color-box-border: var(--color-box-border-light);
+    --color-link: var(--color-link-light);
+    --color-link-hover: var(--color-link-hover-light);
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not(:has(#theme-toggle:checked)) {
+        --color-background: var(--color-background-dark);
+        --color-text: var(--color-text-dark);
+        --color-code-bg: var(--color-code-bg-dark);
+        --color-code-text: var(--color-code-text-dark);
+        --color-box-bg: var(--color-box-bg-dark);
+        --color-box-border: var(--color-box-border-dark);
+        --color-link: var(--color-link-dark);
+        --color-link-hover: var(--color-link-hover-dark);
+    }
+
+    body:has(#theme-toggle:checked) {
+        --color-background: var(--color-background-light);
+        --color-text: var(--color-text-light);
+        --color-code-bg: var(--color-code-bg-light);
+        --color-code-text: var(--color-code-text-light);
+        --color-box-bg: var(--color-box-bg-light);
+        --color-box-border: var(--color-box-border-light);
+        --color-link: var(--color-link-light);
+        --color-link-hover: var(--color-link-hover-light);
+    }
+}
+
+a {
+    color: var(--color-link);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--color-link-hover);
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    backdrop-filter: blur(8px);
+    background-color: color-mix(in srgb, var(--color-background) 90%, transparent);
+    border-bottom: 1px solid var(--color-box-border);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+nav a {
+    color: var(--color-link);
+    text-decoration: underline;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+nav label {
+    margin-left: auto;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+main {
+    padding-top: 5rem;
+}
+
+nav a.active {
+    color: var(--color-link-hover);
+    border-bottom: 2px solid var(--color-link-hover);
+}
+
+nav a[href]:hover,
+nav a:focus {
+    color: var(--color-link-hover);
+}
+
+section:target~nav a[href='#intro'],
+section:target~nav a[href='#install'],
+section:target~nav a[href='#usage'],
+section:target~nav a[href='#features'],
+section:target~nav a[href='#themes'],
+section:target~nav a[href='#utilities'],
+section:target~nav a[href='#layout'],
+section:target~nav a[href='#typography'],
+section:target~nav a[href='#colors'],
+section:target~nav a[href='#darkmode'],
+section:target~nav a[href='#custom'],
+section:target~nav a[href='#extend'] {
+    color: var(--color-link-hover);
+    border-bottom: 2px solid var(--color-link-hover);
+}
