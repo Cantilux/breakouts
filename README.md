@@ -1,197 +1,88 @@
-# ✨ Breakouts
+# 📐 Breakouts – SCSS/CSS Layout Framework
 
-**Breakouts** is a minimal and extensible SCSS/CSS utility framework for modern layout systems.
-
-It provides utilities for containers, full-bleed sections, breakout content, and grid layouts with named lines — built for flexibility and responsiveness, whether you're building a landing page, a blog, or a full-scale web app.
+Breakouts is a minimal, modular layout framework for SCSS/CSS that gives you just the right amount of structure: full-bleed containers, responsive grids, spacing, theming, and a clean set of utilities.
 
 ---
 
 ## 🚀 Installation
 
-### via npm
+Using npm:
 
 ```bash
 npm install breakouts
 ```
 
-In your SCSS entry point:
+Using bun:
+
+```bash
+bun add breakouts
+```
+
+---
+
+## 🛠 Usage
+
+### SCSS with `@use`
 
 ```scss
 @use 'breakouts' as *;
 ```
 
-Note: breakouts automatically forwards all core modules from src/index.scss. You can also import individual modules as needed for tree-shaking.
+### Import CSS directly
 
-## 📦 Framework Structure
-
-Breakouts includes a small set of layout-focused utility classes to help you build responsive and consistent page structures.
-
-| Class          | Purpose                                                                  |
-|----------------|---------------------------------------------------------------------------|
-| `.container`   | Creates a centered layout wrapper with a max-width and responsive padding |
-| `.full-bleed`  | Stretches content edge-to-edge across the viewport                        |
-| `.breakout`    | Expands content outside the container’s padding without going full-bleed  |
-| `.grid`        | Defines a named-line CSS grid with `main` and `full` layout regions        |
-| `.grid--full`  | Forces children of `.grid` to span the entire width (`full` region)        |
-| `.breakouts-grid` | A more advanced named-line grid layout using CSS variables              |
-| `.content`     | Places content in the main centered column within `.breakouts-grid`       |
-| `.popout`      | Slightly outside the `.content` width for medium breakout                 |
-| `.feature`     | Wider area used for highlighting visual components                        |
-| `.full`        | Full-width layout spanning the entire grid                                |
-
-## 🧩 Extending the Framework
-
-Breakouts is fully configurable — you can override its core variables before importing it.
-
-### 🔁 Example: Override the color palette
-
-```scss
-$colors: (
-  primary: #ff6600,
-  secondary: #222222,
-  background: #fefefe,
-  text: #111
-);
-
-@use "breakouts";
+```html
+<link rel="stylesheet" href="/node_modules/breakouts/dist/breakouts.css" />
 ```
 
-This replaces the default color palette defined in the framework. You can override any variable marked with !default.
+---
 
-## 🔌 Use Only What You Need
+## 🧱 Features
 
-Breakouts is modular and each part of the framework can be imported individually.
+- ✅ Full-bleed layout with `.container`, `.full-bleed`, `.breakouts`
+- ✅ Breakouts Grid with named areas (`.full`, `.popout`, `.feature`, etc.)
+- ✅ Spacing utilities: `.m-1`, `.px-2`, etc.
+- ✅ Text utilities: alignment, transformation, weight
+- ✅ Responsive-friendly
+- ✅ Dark mode support and theme overrides
+- ✅ Prebuilt themes for fast prototyping
+- ✅ Minimal reset and clean typography
 
-### Import specific modules
+---
 
-If you only want color utilities, you can import them directly:
+## 🎨 Prebuilt Themes
 
-```scss
-@use "breakouts/theme/colors" as *;
+| Theme Name     | Description                                                    | Import Path                            |
+|----------------|----------------------------------------------------------------|----------------------------------------|
+| **Chupa Pop**  | Bold and colorful palette inspired by candy tones              | `@use 'breakouts/theme/chupa-pop'`     |
+| **Medical**    | Calm, healthcare-inspired palette with blues and greens        | `@use 'breakouts/theme/medical'`       |
+| **Tootsie Pop**| Retro and playful candy-themed palette                         | `@use 'breakouts/theme/tootsie-pop'`   |
 
-@include text-color-utilities();
-@include bg-color-utilities();
-```
-
-If you only need grid layout helpers:
-
-```scss
-@use "breakouts/layout/grid";
-```
-
-This gives you full control over what gets compiled into your CSS, keeping it lean and optimized for your project.
-
-## 🧱 Define Your Own Utilities on Top
-
-Breakouts exposes a consistent set of CSS variables (e.g. `--color-primary`, `--color-background`, etc.) that you can reuse to build your own custom components or utility classes.
-
-### Example: custom button style
-
-```scss
-.button {
-  background-color: var(--color-primary);
-  color: var(--color-background);
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.25rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: var(--color-secondary);
-}
-```
-
-By using the same design tokens, your custom elements stay visually aligned with the rest of the system.
-
-This approach encourages consistency while giving you full creative freedom.
-
-## ✍️ Typography
-
-Breakouts includes base typographic styles to ensure clean, readable text with consistent rhythm and spacing.
-
-- Responsive font sizing and heading scale
-- Theme-based color integration
-- Styled links and paragraphs
-- Easily extendable via SCSS variables
-
-```scss
-body {
-  font-family: system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--color-text);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2;
-  font-weight: 600;
-  margin: 2rem 0 1rem;
-  color: var(--color-text);
-}
-
-p {
-  margin: 1rem 0;
-}
-
-a {
-  color: var(--color-primary);
-  text-decoration: underline;
-
-  &:hover {
-    color: var(--color-secondary);
-  }
-}
-```
-
-You can override the heading scale, base sizes, and fonts by defining your own variables before importing Breakouts.
+---
 
 ## ✍️ Text Utilities
 
-Breakouts provides a set of utility classes for text alignment, transformation, weight, style, and line height.
+| Class             | Description              |
+|------------------|--------------------------|
+| `.text-left`      | Align text left          |
+| `.text-center`    | Align text center        |
+| `.text-right`     | Align text right         |
+| `.text-justify`   | Justify text             |
+| `.text-uppercase` | Uppercase text           |
+| `.text-lowercase` | Lowercase text           |
+| `.text-capitalize`| Capitalize text          |
+| `.font-bold`      | Bold text                |
+| `.font-normal`    | Normal weight text       |
+| `.italic`         | Italic text              |
+| `.not-italic`     | Not italic               |
+| `.leading-tight`  | Line height 1.25         |
+| `.leading-normal` | Line height 1.5          |
+| `.leading-loose`  | Line height 2            |
 
-### Alignment
-
-| Class            | Description         |
-|------------------|---------------------|
-| `.text-left`     | Align text to left  |
-| `.text-center`   | Align text to center |
-| `.text-right`    | Align text to right |
-| `.text-justify`  | Justified text      |
-
-### Transformation
-
-| Class               | Description               |
-|---------------------|---------------------------|
-| `.text-uppercase`   | Transform to uppercase    |
-| `.text-lowercase`   | Transform to lowercase    |
-| `.text-capitalize`  | Capitalize each word      |
-
-### Font Weight & Style
-
-| Class            | Description     |
-|------------------|-----------------|
-| `.font-bold`     | Bold text       |
-| `.font-normal`   | Normal weight   |
-| `.italic`        | Italic text     |
-| `.not-italic`    | Remove italic   |
-
-### Line Height
-
-| Class               | Description            |
-|---------------------|------------------------|
-| `.leading-tight`    | Line height: 1.25      |
-| `.leading-normal`   | Line height: 1.5       |
-| `.leading-loose`    | Line height: 2         |
-
-You can mix and match these utilities with other layout and color classes for quick styling.
+---
 
 ## 📏 Spacing Utilities
 
-Breakouts includes margin and padding utilities inspired by Tailwind's syntax.
-
-These classes are generated from a customizable scale:
+Available spacing classes are based on the `$space-scale` map:
 
 ```scss
 $space-scale: (
@@ -205,196 +96,77 @@ $space-scale: (
 );
 ```
 
-### Available prefixes
+| Type     | Prefixes                           |
+|----------|------------------------------------|
+| Margin   | `m`, `mt`, `mr`, `mb`, `ml`, `mx`, `my` |
+| Padding  | `p`, `pt`, `pr`, `pb`, `pl`, `px`, `py` |
 
-| Type    | Prefixes                             |
-|---------|--------------------------------------|
-| Margin  | `m`, `mt`, `mr`, `mb`, `ml`, `mx`, `my` |
-| Padding | `p`, `pt`, `pr`, `pb`, `pl`, `px`, `py` |
+---
 
-Examples:
+## 🌗 Dark Mode
 
-```html
-<div class="m-4">margin: 1rem</div>
-<div class="mt-2 mb-2">margin-top & margin-bottom: 0.5rem</div>
-<div class="px-3 py-1">padding-x: 0.75rem, padding-y: 0.25rem</div>
-```
-
-You can customize the $space-scale before importing the framework using @use ... with.
-
-## 🌙 Dark Mode Support
-
-Breakouts includes built-in support for **dark mode**, using CSS variables and system preferences.
-
-### 🌓 Automatic dark mode
-
-By default, the framework responds to the user's system setting using:
-
-```scss
-@media (prefers-color-scheme: dark) {
-  :root {
-    // Dark color variables
-  }
-}
-```
-
-This means all your color utility classes like .bg-primary, .text-muted, etc., automatically switch based on the user's device.
-
-### 🌘 Manual Override (Optional)
-
-If you want to control dark mode manually—rather than relying on the user's system preferences—you can use the `.dark` class.
-
-Apply it to the root HTML element:
+Breakouts supports dark mode automatically by toggling the `.dark` or `.light` class on the `<html>` tag.
 
 ```html
 <html class="dark">
+<!-- or -->
+<html class="light">
 ```
 
-When this class is present, Breakouts will use the dark color palette regardless of system settings.
+Use `prefers-color-scheme` if you want to auto-detect:
 
-This is ideal for implementing a light/dark theme toggle in your application via JavaScript or local storage.
-
-All color-based utility classes like .text-* and .bg-* will respond automatically, as they rely on CSS variables.
-
-### ✅ Compatible with All Color Utilities
-
-All utility classes that rely on colors—such as:
-
-- `.text-primary`
-- `.bg-surface`
-- `.text-muted`
-- `.bg-secondary`
-
-...are automatically compatible with dark mode.
-
-This is possible because Breakouts uses CSS custom properties (variables) for all colors. When the color mode changes (automatically or via `.dark` class), the variables are updated, and the utilities respond instantly without requiring any changes to your HTML.
-
-You can keep writing markup the same way in both themes:
-
-```html
-<div class="bg-background text-text">
-  <p class="text-muted">This works in both light and dark modes.</p>
-</div>
+```scss
+@media (prefers-color-scheme: dark) {
+  html { class: dark; }
+}
 ```
 
-## 🎨 Prebuilt Themes
+---
 
-Breakouts comes with a selection of ready-to-use themes. You can apply them by importing the corresponding file:
+## 🧪 Demo & Examples
 
-| Theme Name     | Description                                                    | Import Path                       |
-|----------------|----------------------------------------------------------------|-----------------------------------|
-| **Chupa Pop**  | A bold and colorful theme inspired by candy tones.             | `@use 'breakouts/theme/chupa-pop'`  |
-| **Medical**    | A calm and clean theme based on classical healthcare palettes. | `@use 'breakouts/theme/medical'`    |
-| **Tootsie Pop**| A playful retro theme with rich candy shades.                  | `@use 'breakouts/theme/tootsie-pop'` |
+View the live demo via GitHub Pages:
+👉 [https://cantilux.github.io/breakouts](https://cantilux.github.io/breakouts)
 
-> Each theme automatically configures the color system (`$color-primary`, `$color-accent`, etc.) and includes light/dark variants.
+---
 
-## 🎨 Theming with `@use`
+## 🧩 Customize with `@use`
 
-Breakouts supports full theming via SCSS variable overrides using `@use with`. You can customize any design token before the framework compiles.
-
-### 🧪 Example: Custom Primary and Accent Colors
+Override core variables before importing:
 
 ```scss
 @use 'breakouts' with (
   $color-primary: #d1ff4a,
-  $color-primary-dark: darken(#d1ff4a, 15%),
-  $color-primary-light: lighten(#d1ff4a, 15%),
-
-  $color-accent: #8a2be2,
-  $color-accent-dark: darken(#8a2be2, 15%),
-  $color-accent-light: lighten(#8a2be2, 15%)
+  $color-accent: #8a2be2
 );
 ```
 
-This will automatically update the corresponding CSS custom properties:
+Or create a custom theme:
 
 ```scss
---color-primary: #d1ff4a;
---color-accent: #8a2be2;
-```
-
-And will apply to utility classes like:
-
-```html
-<section class="bg-primary text-background">Primary Background</section>
-<section class="bg-accent text-background">Accent Background</section>
-```
-
-You can also override any other color or spacing variable defined in the framework for full control.
-
-## 🎨 Custom Theme Setup
-
-If you're using a bundler like Vite or Webpack and encounter issues with `@use ... with`, the recommended approach is to recreate Breakouts' internal structure in your own project and apply theming from there.
-
-### ✅ Example: Create a custom `breakouts.scss`
-
-```scss
-// src/styles/breakouts.scss
-
+// my-theme.scss
 @forward 'breakouts/src/theme/variables' with (
   $color-primary: #d1ff4a,
-  $color-primary-dark: darken(#d1ff4a, 15%),
-  $color-primary-light: lighten(#d1ff4a, 15%),
-
-  $color-accent: #8a2be2,
-  $color-accent-dark: darken(#8a2be2, 15%),
-  $color-accent-light: lighten(#8a2be2, 15%)
+  $color-accent: #8a2be2
 );
 
 @use 'breakouts/src/theme/variables' as *;
 @forward 'breakouts/src/theme/colors';
-@forward 'breakouts/src/base/reset';
-@forward 'breakouts/src/base/typography';
-@forward 'breakouts/src/layout/container';
-@forward 'breakouts/src/layout/full-bleed';
-@forward 'breakouts/src/layout/breakouts';
-@forward 'breakouts/src/layout/grid';
 ```
 
-💡 Use your custom theme
-In your app entry point or component:
+---
+
+## 💡 Extend Breakouts
+
+You can write your own mixins or import individual parts:
 
 ```scss
-@use '@/styles/breakouts' as *;
+@use 'breakouts/utilities/spacing';
+@use 'breakouts/base/typography';
 ```
 
-This gives you full control over the theme while keeping the rest of the framework intact.
+---
 
-## 🛠️ Development
+## 📦 License
 
-To build or modify Breakouts locally, follow these steps:
-
-1. Install dependencies:
-
-```bash
-npm install
-```
-
-2. Build the CSS files:
-
-```bash
-npm run build
-```
-
-This will generate two files in the dist/ folder:
-
-breakouts.css: the expanded, human-readable version (ideal for development)
-
-breakouts.min.css: the minified version (ideal for production)
-
-You can customize or extend the framework by editing the SCSS source files located in the src/ directory. The entry point is:
-
-```bash
-src/_index.scss
-```
-
-The build process uses Dart Sass under the hood.
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
-You are free to use, modify, distribute, and even sell this framework in personal or commercial projects — just include the original license and copyright.
-
-> © 2025 Cantilux
+MIT — [Cantilux](https://github.com/Cantilux)
