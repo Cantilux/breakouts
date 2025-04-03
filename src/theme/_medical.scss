@@ -1,10 +1,10 @@
 // src/theme/medical.scss
 
-$primary: #4682B4 !default; // Blu Acciaio
-$secondary: #9DC183 !default; // Verde Salvia
-$accent: #A9A9A9 !default; // Grigio scuro
-$muted: #D3D3D3 !default; // Grigio chiaro
-$background: #FFFFFF !default; // Bianco puro
+$primary: #4682B4 !default;
+$secondary: #9DC183 !default;
+$accent: #A9A9A9 !default;
+$muted: #D3D3D3 !default;
+$background: #FFFFFF !default;
 
 @forward 'breakouts/src/theme/variables'with ($color-primary: $primary,
     $color-primary-dark: darken($primary, 15%),
@@ -30,7 +30,4 @@ $background: #FFFFFF !default; // Bianco puro
 @forward 'breakouts/src/theme/colors';
 @forward 'breakouts/src/base/reset';
 @forward 'breakouts/src/base/typography';
-@forward 'breakouts/src/layout/container';
-@forward 'breakouts/src/layout/full-bleed';
-@forward 'breakouts/src/layout/breakouts';
-@forward 'breakouts/src/layout/grid';
+@forward 'breakouts/src/base/layout';

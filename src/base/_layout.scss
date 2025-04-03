@@ -6,6 +6,23 @@
     --content: min(50ch, 100% - var(--gap) * 2);
 }
 
+.container {
+    margin-inline: auto;
+    max-width: 72rem;
+    padding-inline: 1rem;
+}
+
+.full-bleed {
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.breakout {
+    width: 100vw;
+    margin-left: calc(-1 * (100vw - 100%) / 2);
+}
+
 // Breakouts Grid (named lines)
 .breakouts-grid {
     display: grid;

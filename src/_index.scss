@@ -7,9 +7,4 @@
 @forward 'base/reset';
 @forward 'base/spacing';
 @forward 'base/typography';
-
-// Layout utilities
-@forward 'layout/container';
-@forward 'layout/full-bleed';
-@forward 'layout/breakouts';
-@forward 'layout/grid';
+@forward 'base/layout';

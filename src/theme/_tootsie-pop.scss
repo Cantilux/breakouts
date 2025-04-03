@@ -1,10 +1,10 @@
 // src/theme/tootsie-pop.scss
 
-$primary: #93329E !default;     // Viola medio
-$secondary: #F2711C !default;   // Caramello
-$accent: #E94057 !default;      // Rosa lampone
-$muted: #FFE5B4 !default;       // Vaniglia chiara
-$background: #4F2F4C !default;  // Viola scuro (sfondo)
+$primary: #93329E !default;
+$secondary: #F2711C !default;
+$accent: #E94057 !default;
+$muted: #FFE5B4 !default;
+$background: #4F2F4C !default;
 
 @forward 'breakouts/src/theme/variables' with (
   $color-primary: $primary,
@@ -32,7 +32,4 @@ $background: #4F2F4C !default;  // Viola scuro (sfondo)
 @forward 'breakouts/src/theme/colors';
 @forward 'breakouts/src/base/reset';
 @forward 'breakouts/src/base/typography';
-@forward 'breakouts/src/layout/container';
-@forward 'breakouts/src/layout/full-bleed';
-@forward 'breakouts/src/layout/breakouts';
-@forward 'breakouts/src/layout/grid';
+@forward 'breakouts/src/base/layout';

@@ -1,8 +1,8 @@
 // src/theme/_chupa-pop.scss
 
-$color-primary: #ecb838 !default; // Giallo dorato
-$color-secondary: #ab4073 !default; // Rosa scuro
-$color-accent: #196484 !default; // Blu petrolio
+$color-primary: #ecb838 !default;
+$color-secondary: #ab4073 !default;
+$color-accent: #196484 !default;
 
 @forward 'breakouts/src/theme/variables' with (
   $color-primary: $primary,
@@ -22,7 +22,4 @@ $color-accent: #196484 !default; // Blu petrolio
 @forward 'breakouts/src/theme/colors';
 @forward 'breakouts/src/base/reset';
 @forward 'breakouts/src/base/typography';
-@forward 'breakouts/src/layout/container';
-@forward 'breakouts/src/layout/full-bleed';
-@forward 'breakouts/src/layout/breakouts';
-@forward 'breakouts/src/layout/grid';
+@forward 'breakouts/src/base/layout';

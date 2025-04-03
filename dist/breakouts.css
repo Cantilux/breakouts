@@ -50,7 +50,7 @@
     --color-accent: #c60055;
   }
 }
-.bg-background {
+.background {
   background-color: var(--color-background);
 }
 
