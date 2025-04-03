@@ -147,6 +147,46 @@ a {
 
 You can override the heading scale, base sizes, and fonts by defining your own variables before importing Breakouts.
 
+## ✍️ Text Utilities
+
+Breakouts provides a set of utility classes for text alignment, transformation, weight, style, and line height.
+
+### Alignment
+
+| Class            | Description         |
+|------------------|---------------------|
+| `.text-left`     | Align text to left  |
+| `.text-center`   | Align text to center |
+| `.text-right`    | Align text to right |
+| `.text-justify`  | Justified text      |
+
+### Transformation
+
+| Class               | Description               |
+|---------------------|---------------------------|
+| `.text-uppercase`   | Transform to uppercase    |
+| `.text-lowercase`   | Transform to lowercase    |
+| `.text-capitalize`  | Capitalize each word      |
+
+### Font Weight & Style
+
+| Class            | Description     |
+|------------------|-----------------|
+| `.font-bold`     | Bold text       |
+| `.font-normal`   | Normal weight   |
+| `.italic`        | Italic text     |
+| `.not-italic`    | Remove italic   |
+
+### Line Height
+
+| Class               | Description            |
+|---------------------|------------------------|
+| `.leading-tight`    | Line height: 1.25      |
+| `.leading-normal`   | Line height: 1.5       |
+| `.leading-loose`    | Line height: 2         |
+
+You can mix and match these utilities with other layout and color classes for quick styling.
+
 ## 📏 Spacing Utilities
 
 Breakouts includes margin and padding utilities inspired by Tailwind's syntax.
