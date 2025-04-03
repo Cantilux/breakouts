@@ -237,6 +237,18 @@ You can keep writing markup the same way in both themes:
 </div>
 ```
 
+## 🎨 Prebuilt Themes
+
+Breakouts comes with a selection of ready-to-use themes. You can apply them by importing the corresponding file:
+
+| Theme Name     | Description                                                    | Import Path                       |
+|----------------|----------------------------------------------------------------|-----------------------------------|
+| **Chupa Pop**  | A bold and colorful theme inspired by candy tones.             | `@use 'breakouts/theme/chupa-pop'`  |
+| **Medical**    | A calm and clean theme based on classical healthcare palettes. | `@use 'breakouts/theme/medical'`    |
+| **Tootsie Pop**| A playful retro theme with rich candy shades.                  | `@use 'breakouts/theme/tootsie-pop'` |
+
+> Each theme automatically configures the color system (`$color-primary`, `$color-accent`, etc.) and includes light/dark variants.
+
 ## 🎨 Theming with `@use`
 
 Breakouts supports full theming via SCSS variable overrides using `@use with`. You can customize any design token before the framework compiles.
