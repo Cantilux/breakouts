@@ -49,13 +49,22 @@ bun add breakouts
 
 ---
 
-## 🎨 Prebuilt Themes
+## 📦 Framework Structure
 
-| Theme Name     | Description                                                    | Import Path                            |
-|----------------|----------------------------------------------------------------|----------------------------------------|
-| **Chupa Pop**  | Bold and colorful palette inspired by candy tones              | `@use 'breakouts/theme/chupa-pop'`     |
-| **Medical**    | Calm, healthcare-inspired palette with blues and greens        | `@use 'breakouts/theme/medical'`       |
-| **Tootsie Pop**| Retro and playful candy-themed palette                         | `@use 'breakouts/theme/tootsie-pop'`   |
+Breakouts includes a small set of layout-focused utility classes to help you build responsive and consistent page structures.
+
+| Class          | Purpose                                                                  |
+|----------------|---------------------------------------------------------------------------|
+| `.container`   | Creates a centered layout wrapper with a max-width and responsive padding |
+| `.full-bleed`  | Stretches content edge-to-edge across the viewport                        |
+| `.breakout`    | Expands content outside the container’s padding without going full-bleed  |
+| `.grid`        | Defines a named-line CSS grid with `main` and `full` layout regions        |
+| `.grid--full`  | Forces children of `.grid` to span the entire width (`full` region)        |
+| `.breakouts-grid` | A more advanced named-line grid layout using CSS variables              |
+| `.content`     | Places content in the main centered column within `.breakouts-grid`       |
+| `.popout`      | Slightly outside the `.content` width for medium breakout                 |
+| `.feature`     | Wider area used for highlighting visual components                        |
+| `.full`        | Full-width layout spanning the entire grid                                |
 
 ---
 
@@ -153,6 +162,16 @@ Or create a custom theme:
 @use 'breakouts/src/theme/variables' as *;
 @forward 'breakouts/src/theme/colors';
 ```
+
+---
+
+## 🎨 Prebuilt Themes
+
+| Theme Name     | Description                                                    | Import Path                            |
+|----------------|----------------------------------------------------------------|----------------------------------------|
+| **Chupa Pop**  | Bold and colorful palette inspired by candy tones              | `@use 'breakouts/theme/chupa-pop'`     |
+| **Medical**    | Calm, healthcare-inspired palette with blues and greens        | `@use 'breakouts/theme/medical'`       |
+| **Tootsie Pop**| Retro and playful candy-themed palette                         | `@use 'breakouts/theme/tootsie-pop'`   |
 
 ---
 
