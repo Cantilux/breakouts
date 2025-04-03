@@ -1,0 +1,42 @@
+$space-scale: (0: 0,
+    1: 0.25rem,
+    2: 0.5rem,
+    3: 0.75rem,
+    4: 1rem,
+    5: 1.25rem,
+    6: 1.5rem) !default;
+
+$spacing-properties: (m: margin,
+    mt: margin-top,
+    mr: margin-right,
+    mb: margin-bottom,
+    ml: margin-left,
+    mx: (margin-left, margin-right),
+    my: (margin-top, margin-bottom),
+
+    p: padding,
+    pt: padding-top,
+    pr: padding-right,
+    pb: padding-bottom,
+    pl: padding-left,
+    px: (padding-left, padding-right),
+    py: (padding-top, padding-bottom));
+
+@each $name,
+$value in $space-scale {
+
+    @each $prefix,
+    $properties in $spacing-properties {
+        .#{$prefix}-#{$name} {
+            @if type-of($properties)=='list' {
+                @each $prop in $properties {
+                    #{$prop}: $value;
+                }
+            }
+
+            @else {
+                #{$properties}: $value;
+            }
+        }
+    }
+}

@@ -147,6 +147,41 @@ a {
 
 You can override the heading scale, base sizes, and fonts by defining your own variables before importing Breakouts.
 
+## 📏 Spacing Utilities
+
+Breakouts includes margin and padding utilities inspired by Tailwind's syntax.
+
+These classes are generated from a customizable scale:
+
+```scss
+$space-scale: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 0.75rem,
+  4: 1rem,
+  5: 1.25rem,
+  6: 1.5rem
+);
+```
+
+### Available prefixes
+
+| Type    | Prefixes                             |
+|---------|--------------------------------------|
+| Margin  | `m`, `mt`, `mr`, `mb`, `ml`, `mx`, `my` |
+| Padding | `p`, `pt`, `pr`, `pb`, `pl`, `px`, `py` |
+
+Examples:
+
+```html
+<div class="m-4">margin: 1rem</div>
+<div class="mt-2 mb-2">margin-top & margin-bottom: 0.5rem</div>
+<div class="px-3 py-1">padding-x: 0.75rem, padding-y: 0.25rem</div>
+```
+
+You can customize the $space-scale before importing the framework using @use ... with.
+
 ## 🌙 Dark Mode Support
 
 Breakouts includes built-in support for **dark mode**, using CSS variables and system preferences.

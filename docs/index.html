@@ -7,6 +7,14 @@
     <title>Breakouts Demo</title>
     <link rel="stylesheet" href="./breakouts.css" />
     <style>
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background-color: var(--color-background);
+            color: var(--color-text);
+        }
+
         section {
             background-color: var(--color-surface);
             color: var(--color-text);
@@ -22,16 +30,7 @@
             margin-bottom: 1rem;
         }
     </style>
-    <script lang="javascript">
-        // Function to toggle between light and dark themes
-        // This function is called when the button is clicked
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggleButton = document.getElementById('theme-toggle');
-            toggleButton.addEventListener('click', function () {
-                toggleTheme();
-            });
-        });
-        // Function to toggle the theme
+    <script>
         function toggleTheme() {
             const html = document.documentElement;
             if (html.classList.contains('dark')) {
@@ -46,9 +45,10 @@
 </head>
 
 <body>
-    <button id="theme-toggle" style="position: fixed; top: 10px; right: 10px; z-index: 1000;">
-        Toggle Theme
-    </button>
+    <button onclick="toggleTheme()"
+        style="position: fixed; top: 1rem; right: 1rem; z-index: 1000; padding: 0.5rem 1rem; font-size: 0.9rem;">Toggle
+        Theme</button>
+
     <h1>Breakouts Framework</h1>
 
     <h2>Containers</h2>
@@ -111,6 +111,12 @@
     <section class="bg-neutral-700 text-background">Neutral 700</section>
     <section class="bg-neutral-800 text-background">Neutral 800</section>
     <section class="bg-neutral-900 text-background">Neutral 900</section>
+
+    <h2>Spacing Utilities</h2>
+    <section class="m-4">.m-4</section>
+    <section class="p-4">.p-4</section>
+    <section class="mt-2 mb-2">.mt-2 .mb-2</section>
+    <section class="px-3 py-1">.px-3 .py-1</section>
 </body>
 
 </html>
