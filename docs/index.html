@@ -1,114 +1,124 @@
 <!DOCTYPE html>
 <html lang="en" class="light">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Breakouts Documentation</title>
     <link rel="stylesheet" href="./breakouts.css" />
     <style>
-        body {
-            font-family: system-ui, sans-serif;
-            margin: 0;
-            background-color: var(--color-background);
-            color: var(--color-text);
-            scroll-behavior: smooth;
-        }
+      :root {
+        --color-background-light: #ffffff;
+        --color-text-light: #111111;
+        --color-code-bg-light: #f4f4f4;
+        --color-code-text-light: #111111;
 
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--color-background);
-            padding: 1rem 2rem;
-            border-bottom: 1px solid var(--color-muted);
-            z-index: 1000;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 1rem;
-        }
+        --color-background-dark: #111111;
+        --color-text-dark: #ffffff;
+        --color-code-bg-dark: #1e1e1e;
+        --color-code-text-dark: #f4f4f4;
+      }
 
-        nav a {
-            color: inherit;
-            text-decoration: underline;
-            font-weight: bold;
-        }
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        scroll-behavior: smooth;
+        background-color: var(--color-background);
+        color: var(--color-text);
+      }
 
-        nav button {
-            margin-left: auto;
-        }
+      body:has(#theme-toggle:checked) {
+        --color-background: var(--color-background-dark);
+        --color-text: var(--color-text-dark);
+        --color-code-bg: var(--color-code-bg-dark);
+        --color-code-text: var(--color-code-text-dark);
+      }
 
-        main {
-            padding-top: 5rem;
-        }
+      body:not(:has(#theme-toggle:checked)) {
+        --color-background: var(--color-background-light);
+        --color-text: var(--color-text-light);
+        --color-code-bg: var(--color-code-bg-light);
+        --color-code-text: var(--color-code-text-light);
+      }
 
-        section {
-            padding: 2rem;
-            border-bottom: 1px solid var(--color-muted);
-        }
-
-        pre {
-            background: var(--color-surface);
-            padding: 1rem;
-            overflow-x: auto;
-            border: 1px solid var(--color-border);
-            margin-top: 1rem;
-        }
-
-        .example {
-            border: 1px solid var(--color-border);
-            background: var(--color-surface);
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-
-        .breakouts-grid>div {
-            padding: 1rem;
-            border: 1px solid var(--color-border);
-            background-color: var(--color-surface);
-            margin: 0.25rem 0;
-        }
-
-        .color-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 1rem;
-        }
-
-        .color-box {
-            padding: 1rem;
-            border-radius: 0.5rem;
-            color: var(--color-text);
-            border: 1px solid var(--color-border);
-            text-align: center;
-        }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: var(--color-background);
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #ccc;
+        z-index: 1000;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+      }
+      nav a {
+        color: inherit;
+        text-decoration: underline;
+        font-weight: bold;
+      }
+      nav button {
+        margin-left: auto;
+      }
+      main {
+        padding-top: 5rem;
+      }
+      section {
+        padding: 2rem;
+        border-bottom: 1px solid #ddd;
+      }
+      pre {
+        background: var(--color-code-bg);
+        color: var(--color-code-text);
+        padding: 1rem;
+        overflow-x: auto;
+        border: 1px solid #ccc;
+        margin-top: 1rem;
+      }
+      .example {
+        border: 1px solid #ccc;
+        background: #fafafa;
+        padding: 1rem;
+        margin-top: 1rem;
+      }
+      .breakouts-grid > div {
+        padding: 1rem;
+        border: 1px solid #ccc;
+        background-color: #f4f4f4;
+        margin: 0.25rem 0;
+      }
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1rem;
+      }
+      .color-box {
+        padding: 1rem;
+        border-radius: 0.5rem;
+        color: var(--color-text);
+        border: 1px solid #ccc;
+        text-align: center;
+      }
     </style>
-    <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            html.classList.toggle('dark');
-            html.classList.toggle('light');
-        }
-    </script>
-</head>
-
-<body>
+  </head>
+  <body>
+    <input type="checkbox" id="theme-toggle" hidden />
     <nav>
-        <a href="#intro">Intro</a>
-        <a href="#install">Install</a>
-        <a href="#usage">Usage</a>
-        <a href="#features">Features</a>
-        <a href="#themes">Themes</a>
-        <a href="#utilities">Utilities</a>
-        <a href="#layout">Layout</a>
-        <a href="#typography">Typography</a>
-        <a href="#colors">Colors</a>
-        <a href="#darkmode">Dark Mode</a>
-        <a href="#custom">Customize</a>
-        <a href="#extend">Extend</a>
-        <button onclick="toggleTheme()">🌓 Toggle Theme</button>
+      <a href="#intro">Intro</a>
+      <a href="#install">Install</a>
+      <a href="#usage">Usage</a>
+      <a href="#features">Features</a>
+      <a href="#themes">Themes</a>
+      <a href="#utilities">Utilities</a>
+      <a href="#layout">Layout</a>
+      <a href="#typography">Typography</a>
+      <a href="#colors">Colors</a>
+      <a href="#darkmode">Dark Mode</a>
+      <a href="#custom">Customize</a>
+      <a href="#extend">Extend</a>
+      <label for="theme-toggle" style="margin-left:auto; cursor:pointer">🌓 Toggle Theme</label>
     </nav>
 
     <main class="container">
