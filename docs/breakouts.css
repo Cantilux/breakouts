@@ -650,6 +650,14 @@ a:hover {
   line-height: 2;
 }
 
+:root {
+  --gap: clamp(1rem, 6vw, 3rem);
+  --full: minmax(var(--gap), 1fr);
+  --feature: minmax(0, 5rem);
+  --popout: minmax(0, 2rem);
+  --content: min(50ch, 100% - var(--gap) * 2);
+}
+
 .container {
   margin-inline: auto;
   max-width: 72rem;
@@ -665,14 +673,6 @@ a:hover {
 .breakout {
   width: 100vw;
   margin-left: calc(-1 * (100vw - 100%) / 2);
-}
-
-:root {
-  --gap: clamp(1rem, 6vw, 3rem);
-  --full: minmax(var(--gap), 1fr);
-  --feature: minmax(0, 5rem);
-  --popout: minmax(0, 2rem);
-  --content: min(50ch, 100% - var(--gap) * 2);
 }
 
 .breakouts-grid {
