@@ -4,142 +4,238 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Breakouts Demo</title>
+    <title>Breakouts Documentation</title>
     <link rel="stylesheet" href="./breakouts.css" />
     <style>
         body {
             font-family: system-ui, sans-serif;
             margin: 0;
-            padding: 2rem;
             background-color: var(--color-background);
             color: var(--color-text);
+            scroll-behavior: smooth;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--color-background);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--color-muted);
+            z-index: 1000;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: inherit;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        nav button {
+            margin-left: auto;
+        }
+
+        main {
+            padding-top: 5rem;
         }
 
         section {
-            background-color: var(--color-surface);
-            color: var(--color-text);
-            padding: 1.5rem;
-            border: 1px solid var(--color-muted);
+            padding: 2rem;
+            border-bottom: 1px solid var(--color-muted);
+        }
+
+        pre {
+            background: var(--color-surface);
+            padding: 1rem;
+            overflow-x: auto;
+            border: 1px solid var(--color-border);
             margin-top: 1rem;
         }
 
-        .description {
-            font-size: 0.9rem;
-            color: var(--color-muted);
-            margin-top: 0.5rem;
-            margin-bottom: 1rem;
+        .example {
+            border: 1px solid var(--color-border);
+            background: var(--color-surface);
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .breakouts-grid>div {
+            padding: 1rem;
+            border: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+            margin: 0.25rem 0;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+
+        .color-box {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            text-align: center;
         }
     </style>
     <script>
         function toggleTheme() {
             const html = document.documentElement;
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                html.classList.add('light');
-            } else {
-                html.classList.remove('light');
-                html.classList.add('dark');
-            }
+            html.classList.toggle('dark');
+            html.classList.toggle('light');
         }
     </script>
 </head>
 
 <body>
-    <button onclick="toggleTheme()"
-        style="position: fixed; top: 1rem; right: 1rem; z-index: 1000; padding: 0.5rem 1rem; font-size: 0.9rem;">Toggle
-        Theme</button>
+    <nav>
+        <a href="#intro">Intro</a>
+        <a href="#install">Install</a>
+        <a href="#usage">Usage</a>
+        <a href="#features">Features</a>
+        <a href="#themes">Themes</a>
+        <a href="#utilities">Utilities</a>
+        <a href="#layout">Layout</a>
+        <a href="#typography">Typography</a>
+        <a href="#colors">Colors</a>
+        <a href="#darkmode">Dark Mode</a>
+        <a href="#custom">Customize</a>
+        <a href="#extend">Extend</a>
+        <button onclick="toggleTheme()">🌓 Toggle Theme</button>
+    </nav>
 
-    <h1>Breakouts Framework</h1>
+    <main class="container">
+        <h1 id="intro">📐 Breakouts Framework</h1>
+        <p>A minimal, modular SCSS/CSS layout and utility framework built for clarity and rapid layout composition.</p>
 
-    <h2>Containers</h2>
-    <div class="container">
-        <section>Container content</section>
-    </div>
+        <section id="install">
+            <h2>🚀 Installation</h2>
+            <pre><code>npm install breakouts
+# or
+bun add breakouts</code></pre>
+        </section>
 
-    <h2>Full Bleed</h2>
-    <div class="full-bleed">
-        <section>Full bleed content</section>
-    </div>
+        <section id="usage">
+            <h2>🛠 Usage</h2>
+            <h3>SCSS with @use</h3>
+            <pre><code>@use 'breakouts' as *;</code></pre>
+            <h3>Import CSS</h3>
+            <pre><code>&lt;link rel="stylesheet" href="/node_modules/breakouts/dist/breakouts.css" /&gt;</code></pre>
+        </section>
 
-    <h2>Breakouts</h2>
-    <div class="breakouts">
-        <section>Breakout content</section>
-    </div>
+        <section id="features">
+            <h2>🧱 Features</h2>
+            <ul>
+                <li>Full-bleed layout with <code>.container</code>, <code>.full-bleed</code>, <code>.breakouts</code>
+                </li>
+                <li>Breakouts Grid with named columns</li>
+                <li>Spacing, typography & color utilities</li>
+                <li>Dark mode support</li>
+                <li>Theme system + prebuilt palettes</li>
+                <li>Extendable architecture with SCSS modules</li>
+            </ul>
+        </section>
 
-    <h2>Breakouts Grid</h2>
-    <div class="breakouts-grid">
-        <section class="full">Full</section>
-        <section class="feature">Feature</section>
-        <section class="popout">Popout</section>
-        <section class="content">Content</section>
-    </div>
+        <section id="themes">
+            <h2>🎨 Prebuilt Themes</h2>
+            <ul>
+                <li><strong>Chupa Pop</strong> — <code>@use 'breakouts/theme/chupa-pop'</code></li>
+                <li><strong>Medical</strong> — <code>@use 'breakouts/theme/medical'</code></li>
+                <li><strong>Tootsie Pop</strong> — <code>@use 'breakouts/theme/tootsie-pop'</code></li>
+            </ul>
+        </section>
 
-    <h2>Typography</h2>
-    <section>
-        <h1>Heading 1</h1>
-        <h2>Heading 2</h2>
-        <h3>Heading 3</h3>
-        <p>Paragraph text with <a href="#">a link</a>.</p>
-    </section>
+        <section id="utilities">
+            <h2>✍️ Utilities</h2>
 
+            <h3>Text</h3>
+            <div class="example">
+                <p class="text-left">Left aligned</p>
+                <p class="text-center">Center aligned</p>
+                <p class="text-right">Right aligned</p>
+                <p class="text-uppercase">Uppercase text</p>
+                <p class="font-bold">Bold text</p>
+            </div>
 
-    <h2>Text Utilities</h2>
-    <section>
-        <p class="text-left">This text is left aligned.</p>
-        <p class="text-center">This text is center aligned.</p>
-        <p class="text-right">This text is right aligned.</p>
-        <p class="text-justify">This paragraph is justified and should spread across the container evenly for
-            demonstration purposes.</p>
+            <h3>Spacing</h3>
+            <div class="example">
+                <div class="m-4 bg-accent text-background">Margin 4</div>
+                <div class="p-4 bg-secondary text-background">Padding 4</div>
+                <div class="mx-3 my-2 bg-muted">Margin X3 Y2</div>
+            </div>
+        </section>
 
-        <p class="text-uppercase">uppercase transformation</p>
-        <p class="text-lowercase">LOWERCASE TRANSFORMATION</p>
-        <p class="text-capitalize">capitalize each word</p>
+        <section id="layout">
+            <h2>📐 Layout</h2>
+            <div class="example container">
+                <p><code>.container</code> centers the content and limits its width.</p>
+            </div>
+            <div class="example full-bleed">
+                <p><code>.full-bleed</code> spans the entire viewport width.</p>
+            </div>
+            <div class="example breakouts-grid">
+                <div class="full">Full</div>
+                <div class="feature">Feature</div>
+                <div class="popout">Popout</div>
+                <div class="content">Content</div>
+            </div>
+        </section>
 
-        <p class="font-bold">Bold text</p>
-        <p class="font-normal">Normal weight text</p>
-        <p class="italic">Italic text</p>
-        <p class="not-italic">Not italic text</p>
+        <section id="typography">
+            <h2>🔤 Typography</h2>
+            <div class="example">
+                <h1>Heading 1</h1>
+                <h2>Heading 2</h2>
+                <h3>Heading 3</h3>
+                <p>Paragraph text with <a href="#">a link</a>.</p>
+            </div>
+        </section>
 
-        <p class="leading-tight">This is tight line height.<br />Second line.</p>
-        <p class="leading-normal">This is normal line height.<br />Second line.</p>
-        <p class="leading-loose">This is loose line height.<br />Second line.</p>
-    </section>
+        <section id="colors">
+            <h2>🎨 Color Utilities</h2>
+            <div class="color-grid">
+                <div class="color-box bg-primary text-background">bg-primary</div>
+                <div class="color-box bg-secondary text-background">bg-secondary</div>
+                <div class="color-box bg-accent text-background">bg-accent</div>
+                <div class="color-box bg-muted">bg-muted</div>
+                <div class="color-box bg-surface">bg-surface</div>
+                <div class="color-box bg-background">bg-background</div>
+            </div>
+        </section>
 
-    <h2>Color Utilities</h2>
-    <section class="bg-primary text-background">Primary Background</section>
-    <section class="bg-secondary text-background">Secondary Background</section>
-    <section class="bg-accent text-background">Accent Background</section>
-    <section class="bg-surface text-text">Surface Background</section>
-    <section class="bg-background text-muted">Muted Text</section>
+        <section id="darkmode">
+            <h2>🌗 Dark Mode</h2>
+            <p>You can use <code>&lt;html class="dark"&gt;</code> to enable dark mode. The toggle button above will also
+                switch themes live.</p>
+        </section>
 
-    <h2>Visual Test: Theme Colors</h2>
-    <div class="grid grid--full">
-        <div>
-            <section class="bg-background text-text">Background / Text</section>
-            <section class="bg-surface text-text">Surface / Text</section>
-            <section class="bg-primary text-background">Primary / Inverted Text</section>
-            <section class="bg-secondary text-background">Secondary / Inverted Text</section>
-            <section class="bg-accent text-background">Accent / Inverted Text</section>
-            <section class="bg-background text-muted">Muted Text on Background</section>
-        </div>
-    </div>
+        <section id="custom">
+            <h2>🧪 Customize</h2>
+            <p>Use <code>@use ... with (...)</code> to override default variables.</p>
+            <pre><code>@use 'breakouts' with (
+  $color-primary: #d1ff4a,
+  $color-accent: #8a2be2
+);</code></pre>
+        </section>
 
-    <h2>Neutral Scale</h2>
-    <section class="bg-neutral-100">Neutral 100</section>
-    <section class="bg-neutral-200">Neutral 200</section>
-    <section class="bg-neutral-300">Neutral 300</section>
-    <section class="bg-neutral-400">Neutral 400</section>
-    <section class="bg-neutral-500">Neutral 500</section>
-    <section class="bg-neutral-600 text-background">Neutral 600</section>
-    <section class="bg-neutral-700 text-background">Neutral 700</section>
-    <section class="bg-neutral-800 text-background">Neutral 800</section>
-    <section class="bg-neutral-900 text-background">Neutral 900</section>
+        <section id="extend">
+            <h2>💡 Extend</h2>
+            <p>Import only what you need or create custom modules.</p>
+            <pre><code>@use 'breakouts/base/typography';
+@use 'breakouts/utilities/spacing';</code></pre>
+        </section>
 
-    <h2>Spacing Utilities</h2>
-    <section class="m-4">.m-4</section>
-    <section class="p-4">.p-4</section>
-    <section class="mt-2 mb-2">.mt-2 .mb-2</section>
-    <section class="px-3 py-1">.px-3 .py-1</section>
+        <footer class="text-center" style="padding: 2rem; font-size: 0.875rem; color: var(--color-muted);">
+            MIT License — <a href="https://github.com/Cantilux/breakouts">github.com/Cantilux/breakouts</a>
+        </footer>
+    </main>
 </body>
 
 </html>
