@@ -1,6 +1,6 @@
 // This file contains the color variables and utility classes for the project.
 
-@use 'variables' as *;
+@use 'variables'as *;
 
 :root {
     --color-background: #{$color-background};
@@ -58,10 +58,6 @@
 
 // Utility classes for background and text colors
 
-.background {
-    background-color: var(--color-background);
-}
-
 .bg-surface {
     background-color: var(--color-surface);
 }
@@ -78,14 +74,58 @@
     background-color: var(--color-accent);
 }
 
-.text-text {
-    color: var(--color-text);
+.text-primary {
+    color: var(--color-primary);
 }
 
-.text-background {
-    color: var(--color-background);
+.text-accent {
+    color: var(--color-accent);
+}
+
+.text-secondary {
+    color: var(--color-secondary);
+}
+
+.text-surface {
+    color: var(--color-surface);
 }
 
 .text-muted {
     color: var(--color-muted);
+}
+
+.text-neutral-100 {
+    color: var(--color-neutral-100);
+}
+
+.text-neutral-200 {
+    color: var(--color-neutral-200);
+}
+
+.text-neutral-300 {
+    color: var(--color-neutral-300);
+}
+
+.text-neutral-400 {
+    color: var(--color-neutral-400);
+}
+
+.text-neutral-500 {
+    color: var(--color-neutral-500);
+}
+
+.text-neutral-600 {
+    color: var(--color-neutral-600);
+}
+
+.text-neutral-700 {
+    color: var(--color-neutral-700);
+}
+
+.text-neutral-800 {
+    color: var(--color-neutral-800);
+}
+
+.text-neutral-900 {
+    color: var(--color-neutral-900);
 }
