@@ -1,0 +1,17 @@
+// This file contains the base styles for positioning elements in a web application.
+
+$positions: static, relative, absolute, fixed, sticky;
+
+@each $position in $positions {
+    .position-#{$position} {
+        position: #{$position};
+    }
+}
+
+$z-indexes: 0, 1, 10, 100, 1000;
+
+@each $z in $z-indexes {
+    .z-index-#{$z} {
+        z-index: #{$z};
+    }
+}

@@ -112,6 +112,23 @@ $space-scale: (
 
 ---
 
+## 📍 Position Utilities
+
+| Class             | Description                          |
+|-------------------|--------------------------------------|
+| `.position-static` | Set `position: static;` (default)    |
+| `.position-relative` | Set `position: relative;`         |
+| `.position-absolute` | Set `position: absolute;`         |
+| `.position-fixed`  | Set `position: fixed;`              |
+| `.position-sticky` | Set `position: sticky;`             |
+| `.z-index-0`       | Set `z-index: 0;`                   |
+| `.z-index-1`       | Set `z-index: 1;`                   |
+| `.z-index-10`      | Set `z-index: 10;`                  |
+| `.z-index-100`     | Set `z-index: 100;`                 |
+| `.z-index-1000`    | Set `z-index: 1000;`                |
+
+---
+
 ## 🌗 Dark Mode
 
 Breakouts supports dark mode automatically by toggling the `.dark` or `.light` class on the `<html>` tag.
