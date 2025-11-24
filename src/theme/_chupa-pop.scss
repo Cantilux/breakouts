@@ -4,9 +4,9 @@
 // The theme variables are used to customize the appearance of the Chupa Pop theme.
 // The theme variables are defined using the SCSS @use and @forward directives.
 
-$color-primary: #ecb838 !default;
-$color-secondary: #ab4073 !default;
-$color-accent: #196484 !default;
+$primary: #ecb838 !default;
+$secondary: #ab4073 !default;
+$accent: #196484 !default;
 
 @forward 'breakouts/src/theme/variables' with (
   $color-primary: $primary,
