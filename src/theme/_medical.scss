@@ -10,7 +10,8 @@ $accent: #A9A9A9 !default;
 $muted: #D3D3D3 !default;
 $background: #FFFFFF !default;
 
-@forward 'breakouts/src/theme/variables'with ($color-primary: $primary,
+@forward 'breakouts/src/theme/variables' with (
+    $color-primary: $primary,
     $color-primary-dark: darken($primary, 15%),
     $color-primary-light: lighten($primary, 15%),
 
@@ -28,9 +29,10 @@ $background: #FFFFFF !default;
 
     $color-background: $background,
     $color-background-dark: darken($background, 5%),
-    $color-background-light: lighten($background, 5%));
+    $color-background-light: lighten($background, 5%)
+);
 
-@use 'breakouts/src/theme/variables'as *;
+@use 'breakouts/src/theme/variables' as *;
 @forward 'breakouts/src/theme/colors';
 @forward 'breakouts/src/base/reset';
 @forward 'breakouts/src/base/typography';
