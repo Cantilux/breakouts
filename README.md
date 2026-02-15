@@ -112,6 +112,73 @@ $space-scale: (
 
 ---
 
+## 🎨 Color Utilities
+
+Breakouts ships with a small base palette exposed as CSS variables and a few utility classes.
+
+### Base colors (CSS variables)
+
+The following tokens are always available:
+
+- `--color-background`
+- `--color-surface`
+- `--color-text`
+- `--color-muted`
+- `--color-primary`
+- `--color-secondary`
+- `--color-accent`
+- `--color-neutral-100`
+- `--color-neutral-200`
+- `--color-neutral-300`
+- `--color-neutral-400`
+- `--color-neutral-500`
+- `--color-neutral-600`
+- `--color-neutral-700`
+- `--color-neutral-800`
+- `--color-neutral-900`
+
+### Utility classes
+
+#### Background colors
+
+| Class           | Description                          |
+|----------------|--------------------------------------|
+| `.bg-surface`   | `background-color: var(--color-surface)`   |
+| `.bg-primary`   | `background-color: var(--color-primary)`   |
+| `.bg-secondary` | `background-color: var(--color-secondary)` |
+| `.bg-accent`    | `background-color: var(--color-accent)`    |
+
+#### Text colors
+
+| Class              | Description                               |
+|-------------------|-------------------------------------------|
+| `.text-primary`    | `color: var(--color-primary)`             |
+| `.text-secondary`  | `color: var(--color-secondary)`           |
+| `.text-accent`     | `color: var(--color-accent)`              |
+| `.text-surface`    | `color: var(--color-surface)`             |
+| `.text-muted`      | `color: var(--color-muted)`               |
+| `.text-neutral-100`| `color: var(--color-neutral-100)`         |
+| `.text-neutral-200`| `color: var(--color-neutral-200)`         |
+| `.text-neutral-300`| `color: var(--color-neutral-300)`         |
+| `.text-neutral-400`| `color: var(--color-neutral-400)`         |
+| `.text-neutral-500`| `color: var(--color-neutral-500)`         |
+| `.text-neutral-600`| `color: var(--color-neutral-600)`         |
+| `.text-neutral-700`| `color: var(--color-neutral-700)`         |
+| `.text-neutral-800`| `color: var(--color-neutral-800)`         |
+| `.text-neutral-900`| `color: var(--color-neutral-900)`         |
+
+Example:
+
+```html
+<div class="bg-surface p-4">
+  <h3 class="text-primary">Primary title</h3>
+  <p class="text-muted">Muted paragraph text</p>
+  <p class="text-neutral-700">Neutral text</p>
+</div>
+```
+
+---
+
 ## 📍 Position Utilities
 
 | Class             | Description                          |
