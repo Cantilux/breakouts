@@ -8,7 +8,7 @@ $primary: #ecb838 !default;
 $secondary: #ab4073 !default;
 $accent: #196484 !default;
 
-@forward 'breakouts/src/theme/variables' with (
+@forward '../base/variables' with (
   $color-primary: $primary,
   $color-primary-dark: darken($primary, 15%),
   $color-primary-light: lighten($primary, 15%),
@@ -22,8 +22,8 @@ $accent: #196484 !default;
   $color-accent-light: lighten($accent, 15%),
 );
 
-@use 'breakouts/src/theme/variables' as *;
-@forward 'breakouts/src/theme/colors';
-@forward 'breakouts/src/base/reset';
-@forward 'breakouts/src/base/typography';
-@forward 'breakouts/src/base/layout';
+@use '../base/variables' as *;
+@forward '../base/colors';
+@forward '../base/reset';
+@forward '../base/typography';
+@forward '../base/layout';
