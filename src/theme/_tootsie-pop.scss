@@ -4,29 +4,36 @@
 // The theme variables are used to customize the appearance of the Tootsie Pop theme.
 // The theme variables are defined using the SCSS @use and @forward directives.
 
-@forward '../base/variables' with (
-  $color-primary: #93329E,
-  $color-primary-dark: darken(#93329E, 15%),
-  $color-primary-light: lighten(#93329E, 15%),
+$primary: #93329E !default;
+$secondary: #F2711C !default;
+$accent: #E94057 !default;
+$muted: #FFE5B4 !default;
+$background: #4F2F4C !default;
+
+@forward 'breakouts/src/theme/variables' with (
+  $color-primary: $primary,
+  $color-primary-dark: darken($primary, 15%),
+  $color-primary-light: lighten($primary, 15%),
 
   $color-secondary: $secondary,
   $color-secondary-dark: darken($secondary, 15%),
   $color-secondary-light: lighten($secondary, 15%),
 
-  $color-accent: #E94057,
-  $color-accent-dark: darken(#E94057, 15%),
-  $color-accent-light: lighten(#E94057, 15%),
+  $color-accent: $accent,
+  $color-accent-dark: darken($accent, 15%),
+  $color-accent-light: lighten($accent, 15%),
 
-  $color-muted: #FFE5B4,
-  $color-muted-dark: darken(#FFE5B4, 15%),
-  $color-muted-light: lighten(#FFE5B4, 15%),
+  $color-muted: $muted,
+  $color-muted-dark: darken($muted, 15%),
+  $color-muted-light: lighten($muted, 15%),
 
-  $color-background: #4F2F4C,
-  $color-background-dark: darken(#4F2F4C, 5%),
-  $color-background-light: lighten(#4F2F4C, 5%)
+  $color-background: $background,
+  $color-background-dark: darken($background, 5%),
+  $color-background-light: lighten($background, 5%)
 );
 
-@forward '../base/colors';
-@forward '../base/reset';
-@forward '../base/typography';
-@forward '../base/layout';
+@use 'breakouts/src/theme/variables' as *;
+@forward 'breakouts/src/theme/colors';
+@forward 'breakouts/src/base/reset';
+@forward 'breakouts/src/base/typography';
+@forward 'breakouts/src/base/layout';

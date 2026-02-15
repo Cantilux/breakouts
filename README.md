@@ -190,6 +190,13 @@ Or create a custom theme:
 | **Medical**    | Calm, healthcare-inspired palette with blues and greens        | `@use 'breakouts/src/theme/medical'`       |
 | **Tootsie Pop**| Retro and playful candy-themed palette                         | `@use 'breakouts/src/theme/tootsie-pop'`   |
 
+Case of use
+
+```scss
+@use 'breakouts/src/theme/chupa-pop';
+@use 'breakouts' as *;
+```
+
 ---
 
 ## 💡 Extend Breakouts
