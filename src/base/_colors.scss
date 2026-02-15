@@ -10,6 +10,9 @@
     --color-primary: #{$color-primary};
     --color-secondary: #{$color-secondary};
     --color-accent: #{$color-accent};
+    --color-success: #{$color-success};
+    --color-error: #{$color-error};
+    --color-warning: #{$color-warning};
 
     --color-neutral-100: #{$color-neutral-100};
     --color-neutral-200: #{$color-neutral-200};
@@ -31,6 +34,9 @@
     --color-primary: #{$color-primary-dark};
     --color-secondary: #{$color-secondary-dark};
     --color-accent: #{$color-accent-dark};
+    --color-success: #{$color-success-dark};
+    --color-error: #{$color-error-dark};
+    --color-warning: #{$color-warning-dark};
 }
 
 .light,
@@ -42,6 +48,9 @@
     --color-primary: #{$color-primary-light};
     --color-secondary: #{$color-secondary-light};
     --color-accent: #{$color-accent-light};
+    --color-success: #{$color-success-light};
+    --color-error: #{$color-error-light};
+    --color-warning: #{$color-warning-light};
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,6 +62,9 @@
         --color-primary: #{$color-primary-dark};
         --color-secondary: #{$color-secondary-dark};
         --color-accent: #{$color-accent-dark};
+        --color-success: #{$color-success-dark};
+        --color-error: #{$color-error-dark};
+        --color-warning: #{$color-warning-dark};
     }
 }
 
@@ -74,6 +86,22 @@
     background-color: var(--color-accent);
 }
 
+.bg-muted {
+    background-color: var(--color-muted);
+}
+
+.bg-success {
+    background-color: var(--color-success);
+}
+
+.bg-error {
+    background-color: var(--color-error);
+}
+
+.bg-warning {
+    background-color: var(--color-warning);
+}
+
 .text-primary {
     color: var(--color-primary);
 }
@@ -92,6 +120,18 @@
 
 .text-muted {
     color: var(--color-muted);
+}
+
+.text-success {
+    color: var(--color-success);
+}
+
+.text-error {
+    color: var(--color-error);
+}
+
+.text-warning {
+    color: var(--color-warning);
 }
 
 .text-neutral-100 {

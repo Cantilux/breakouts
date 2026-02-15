@@ -6,6 +6,9 @@
   --color-primary: #0055ff;
   --color-secondary: #0033aa;
   --color-accent: #ff4081;
+  --color-success: #28a745;
+  --color-error: #dc3545;
+  --color-warning: #ffc107;
   --color-neutral-100: #f8f9fa;
   --color-neutral-200: #e9ecef;
   --color-neutral-300: #dee2e6;
@@ -26,6 +29,9 @@
   --color-primary: #0033aa;
   --color-secondary: #002277;
   --color-accent: #c60055;
+  --color-success: #1e7e34;
+  --color-error: #a71d2a;
+  --color-warning: #c79100;
 }
 
 .light,
@@ -37,6 +43,9 @@
   --color-primary: #88b0ff;
   --color-secondary: #ccd9ff;
   --color-accent: #ff80ab;
+  --color-success: #71dd8a;
+  --color-error: #ff6b6b;
+  --color-warning: #ffdb4d;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -48,6 +57,9 @@
     --color-primary: #0033aa;
     --color-secondary: #002277;
     --color-accent: #c60055;
+    --color-success: #1e7e34;
+    --color-error: #a71d2a;
+    --color-warning: #c79100;
   }
 }
 .bg-surface {
@@ -64,6 +76,22 @@
 
 .bg-accent {
   background-color: var(--color-accent);
+}
+
+.bg-muted {
+  background-color: var(--color-muted);
+}
+
+.bg-success {
+  background-color: var(--color-success);
+}
+
+.bg-error {
+  background-color: var(--color-error);
+}
+
+.bg-warning {
+  background-color: var(--color-warning);
 }
 
 .text-primary {
@@ -84,6 +112,18 @@
 
 .text-muted {
   color: var(--color-muted);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+.text-warning {
+  color: var(--color-warning);
 }
 
 .text-neutral-100 {
@@ -562,6 +602,66 @@ body {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+.mb-auto {
+  margin-bottom: auto;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.p-auto {
+  padding: auto;
+}
+
+.pt-auto {
+  padding-top: auto;
+}
+
+.pr-auto {
+  padding-right: auto;
+}
+
+.pb-auto {
+  padding-bottom: auto;
+}
+
+.pl-auto {
+  padding-left: auto;
+}
+
+.px-auto {
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.py-auto {
+  padding-top: auto;
+  padding-bottom: auto;
 }
 
 .position-static {
