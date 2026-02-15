@@ -4,7 +4,6 @@
     "description": "A personal SCSS/CSS layout utility framework.",
     "main": "dist/breakouts.css",
     "files": [
-        "breakouts.scss",
         "src/",
         "dist/"
     ],
@@ -18,5 +17,6 @@
     "license": "MIT",
     "devDependencies": {
         "sass": "^1.86.2"
-    }
+    },
+    "sass": "src/breakouts.scss"
 }

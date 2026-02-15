@@ -41,7 +41,7 @@ bun add breakouts</code></pre>
         <section id="usage">
             <h2>🛠 Usage</h2>
             <h3>SCSS with @use</h3>
-            <pre><code>@use 'breakouts' as *;</code></pre>
+            <pre><code>@use 'breakouts/src/breakouts' as *;</code></pre>
             <h3>Import CSS</h3>
             <pre><code>&lt;link rel="stylesheet" href="/node_modules/breakouts/dist/breakouts.css" /&gt;</code></pre>
         </section>
@@ -62,9 +62,9 @@ bun add breakouts</code></pre>
         <section id="themes">
             <h2>🎨 Prebuilt Themes</h2>
             <ul>
-                <li><strong>Chupa Pop</strong> — <code>@use 'breakouts/theme/chupa-pop'</code></li>
-                <li><strong>Medical</strong> — <code>@use 'breakouts/theme/medical'</code></li>
-                <li><strong>Tootsie Pop</strong> — <code>@use 'breakouts/theme/tootsie-pop'</code></li>
+                <li><strong>Chupa Pop</strong> — <code>@use 'breakouts/src/theme/chupa-pop'</code></li>
+                <li><strong>Medical</strong> — <code>@use 'breakouts/src/theme/medical'</code></li>
+                <li><strong>Tootsie Pop</strong> — <code>@use 'breakouts/src/theme/tootsie-pop'</code></li>
             </ul>
         </section>
 
@@ -135,7 +135,7 @@ bun add breakouts</code></pre>
         <section id="custom">
             <h2>🧪 Customize</h2>
             <p>Use <code>@use ... with (...)</code> to override default variables.</p>
-            <pre><code>@use 'breakouts' with (
+            <pre><code>@use 'breakouts/src/breakouts' with (
   $color-primary: #d1ff4a,
   $color-accent: #8a2be2
 );</code></pre>

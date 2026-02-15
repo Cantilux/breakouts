@@ -25,7 +25,7 @@ bun add breakouts
 ### SCSS with `@use`
 
 ```scss
-@use 'breakouts' as *;
+@use 'breakouts/src/breakouts' as *;
 ```
 
 ### Import CSS directly
@@ -161,7 +161,7 @@ View the live demo via GitHub Pages:
 Override core variables before importing:
 
 ```scss
-@use 'breakouts' with (
+@use 'breakouts/src/breakouts' with (
   $color-primary: #d1ff4a,
   $color-accent: #8a2be2
 );
@@ -186,9 +186,9 @@ Or create a custom theme:
 
 | Theme Name     | Description                                                    | Import Path                            |
 |----------------|----------------------------------------------------------------|----------------------------------------|
-| **Chupa Pop**  | Bold and colorful palette inspired by candy tones              | `@use 'breakouts/theme/chupa-pop'`     |
-| **Medical**    | Calm, healthcare-inspired palette with blues and greens        | `@use 'breakouts/theme/medical'`       |
-| **Tootsie Pop**| Retro and playful candy-themed palette                         | `@use 'breakouts/theme/tootsie-pop'`   |
+| **Chupa Pop**  | Bold and colorful palette inspired by candy tones              | `@use 'breakouts/src/theme/chupa-pop'`     |
+| **Medical**    | Calm, healthcare-inspired palette with blues and greens        | `@use 'breakouts/src/theme/medical'`       |
+| **Tootsie Pop**| Retro and playful candy-themed palette                         | `@use 'breakouts/src/theme/tootsie-pop'`   |
 
 ---
 
