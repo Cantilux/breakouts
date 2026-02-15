@@ -128,6 +128,9 @@ The following tokens are always available:
 - `--color-primary`
 - `--color-secondary`
 - `--color-accent`
+- `--color-success`
+- `--color-error`
+- `--color-warning`
 - `--color-neutral-100`
 - `--color-neutral-200`
 - `--color-neutral-300`
@@ -148,6 +151,9 @@ The following tokens are always available:
 | `.bg-primary`   | `background-color: var(--color-primary)`   |
 | `.bg-secondary` | `background-color: var(--color-secondary)` |
 | `.bg-accent`    | `background-color: var(--color-accent)`    |
+| `.bg-success`   | `background-color: var(--color-success)`   |
+| `.bg-error`     | `background-color: var(--color-error)`     |
+| `.bg-warning`   | `background-color: var(--color-warning)`   |
 
 #### Text colors
 
@@ -158,6 +164,9 @@ The following tokens are always available:
 | `.text-accent`     | `color: var(--color-accent)`              |
 | `.text-surface`    | `color: var(--color-surface)`             |
 | `.text-muted`      | `color: var(--color-muted)`               |
+| `.text-success`    | `color: var(--color-success)`             |
+| `.text-error`      | `color: var(--color-error)`               |
+| `.text-warning`    | `color: var(--color-warning)`             |
 | `.text-neutral-100`| `color: var(--color-neutral-100)`         |
 | `.text-neutral-200`| `color: var(--color-neutral-200)`         |
 | `.text-neutral-300`| `color: var(--color-neutral-300)`         |
