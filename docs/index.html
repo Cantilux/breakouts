@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    <input type="checkbox" id="theme-toggle" hidden />
     <nav>
         <a href="#intro">Intro</a>
         <a href="#install">Install</a>
@@ -24,7 +23,10 @@
         <a href="#darkmode">Dark Mode</a>
         <a href="#custom">Customize</a>
         <a href="#extend">Extend</a>
-        <label for="theme-toggle" style="margin-left:auto; cursor:pointer">🌓 Toggle Theme</label>
+
+        <button id="theme-toggle" type="button" style="margin-left:auto; cursor:pointer">
+            🌓 Toggle Theme
+        </button>
     </nav>
 
     <main class="container">
@@ -40,8 +42,16 @@ bun add breakouts</code></pre>
 
         <section id="usage">
             <h2>🛠 Usage</h2>
+
             <h3>SCSS with @use</h3>
-            <pre><code>@use 'breakouts/src/breakouts' as *;</code></pre>
+            <pre><code>@use 'breakouts' as *;</code></pre>
+
+            <h3>SCSS with a theme</h3>
+            <pre><code>@use 'breakouts/src/theme/chupa-pop';
+@use 'breakouts' as *;</code></pre>
+            <p><strong>Note:</strong> If a theme configures variables, it must be loaded <em>before</em> the main
+                Breakouts entrypoint.</p>
+
             <h3>Import CSS</h3>
             <pre><code>&lt;link rel="stylesheet" href="/node_modules/breakouts/dist/breakouts.css" /&gt;</code></pre>
         </section>
@@ -51,9 +61,9 @@ bun add breakouts</code></pre>
             <ul>
                 <li>Full-bleed layout with <code>.container</code>, <code>.full-bleed</code>, <code>.breakouts</code>
                 </li>
-                <li>Breakouts Grid with named columns</li>
-                <li>Spacing, typography & color utilities</li>
-                <li>Dark mode support</li>
+                <li>Breakouts grid with named columns</li>
+                <li>Spacing, typography &amp; color utilities</li>
+                <li>Dark mode support (system-aware)</li>
                 <li>Theme system + prebuilt palettes</li>
                 <li>Extendable architecture with SCSS modules</li>
             </ul>
@@ -128,17 +138,24 @@ bun add breakouts</code></pre>
 
         <section id="darkmode">
             <h2>🌗 Dark Mode</h2>
-            <p>You can use <code>&lt;html class="dark"&gt;</code> to enable dark mode. The toggle button above will also
-                switch themes live.</p>
+            <p>
+                Breakouts supports dark mode via <code>&lt;html class="dark"&gt;</code> (or <code>light</code>).
+                If neither is set, it can follow the system preference (<code>prefers-color-scheme</code>) depending on
+                your build.
+                The toggle button in this documentation page switches <code>html.dark</code>/<code>html.light</code> for
+                demo purposes.
+            </p>
         </section>
 
         <section id="custom">
             <h2>🧪 Customize</h2>
-            <p>Use <code>@use ... with (...)</code> to override default variables.</p>
-            <pre><code>@use 'breakouts/src/breakouts' with (
+            <p>Use <code>@use ... with (...)</code> to override default variables (compile-time).</p>
+            <pre><code>@use 'breakouts' with (
   $color-primary: #d1ff4a,
   $color-accent: #8a2be2
 );</code></pre>
+            <p><strong>Tip:</strong> A module can be configured only on first load. Don’t import <code>breakouts</code>
+                elsewhere before this.</p>
         </section>
 
         <section id="extend">
@@ -149,9 +166,34 @@ bun add breakouts</code></pre>
         </section>
 
         <footer class="text-center" style="padding: 2rem; font-size: 0.875rem; color: var(--color-muted);">
-            MIT License — <a href="https://github.com/Cantilux/breakouts">github.com/Cantilux/breakouts</a>
+            MIT License — <a href="https://github.com/Cantilux/breakouts"
+                rel="noopener noreferrer">github.com/Cantilux/breakouts</a>
         </footer>
     </main>
+
+    <script>
+        (function () {
+            const STORAGE_KEY = "breakouts:docs-theme"; // "light" | "dark"
+            const root = document.documentElement;
+            const btn = document.getElementById("theme-toggle");
+
+            const saved = localStorage.getItem(STORAGE_KEY);
+            const systemPrefersDark = window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+            const initial = saved || (systemPrefersDark ? "dark" : "light");
+
+            root.classList.remove("dark", "light");
+            root.classList.add(initial);
+
+            btn.addEventListener("click", () => {
+                const next = root.classList.contains("dark") ? "light" : "dark";
+                root.classList.remove("dark", "light");
+                root.classList.add(next);
+                localStorage.setItem(STORAGE_KEY, next);
+            });
+        })();
+    </script>
 </body>
 
 </html>
