@@ -171,13 +171,13 @@ Or create a custom theme:
 
 ```scss
 // my-theme.scss
-@forward 'breakouts/src/theme/variables' with (
+@forward 'breakouts/src/base/variables' with (
   $color-primary: #d1ff4a,
   $color-accent: #8a2be2
 );
 
-@use 'breakouts/src/theme/variables' as *;
-@forward 'breakouts/src/theme/colors';
+@use 'breakouts/src/base/variables' as *;
+@forward 'breakouts/src/base/colors';
 ```
 
 ---
@@ -197,8 +197,8 @@ Or create a custom theme:
 You can write your own mixins or import individual parts:
 
 ```scss
-@use 'breakouts/utilities/spacing';
-@use 'breakouts/base/typography';
+@use 'breakouts/src/base/spacing';
+@use 'breakouts/src/base/typography';
 ```
 
 ---

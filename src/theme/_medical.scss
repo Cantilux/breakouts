@@ -4,35 +4,28 @@
 // The theme variables are used to customize the appearance of the Medical theme.
 // The theme variables are defined using the SCSS @use and @forward directives.
 
-$primary: #4682B4 !default;
-$secondary: #9DC183 !default;
-$accent: #A9A9A9 !default;
-$muted: #D3D3D3 !default;
-$background: #FFFFFF !default;
-
 @forward '../base/variables' with (
-    $color-primary: $primary,
-    $color-primary-dark: darken($primary, 15%),
-    $color-primary-light: lighten($primary, 15%),
+    $color-primary: #4682B4,
+    $color-primary-dark: darken(#4682B4, 15%),
+    $color-primary-light: lighten(#4682B4, 15%),
 
-    $color-secondary: $secondary,
-    $color-secondary-dark: darken($secondary, 15%),
-    $color-secondary-light: lighten($secondary, 15%),
+    $color-secondary: #9DC183,
+    $color-secondary-dark: darken(#9DC183, 15%),
+    $color-secondary-light: lighten(#9DC183, 15%),
 
-    $color-accent: $accent,
-    $color-accent-dark: darken($accent, 15%),
-    $color-accent-light: lighten($accent, 15%),
+    $color-accent: #A9A9A9,
+    $color-accent-dark: darken(#A9A9A9, 15%),
+    $color-accent-light: lighten(#A9A9A9, 15%),
 
-    $color-muted: $muted,
-    $color-muted-dark: darken($muted, 15%),
-    $color-muted-light: lighten($muted, 15%),
+    $color-muted: #D3D3D3,
+    $color-muted-dark: darken(#D3D3D3, 15%),
+    $color-muted-light: lighten(#D3D3D3, 15%),
 
-    $color-background: $background,
-    $color-background-dark: darken($background, 5%),
-    $color-background-light: lighten($background, 5%)
+    $color-background: #FFFFFF,
+    $color-background-dark: darken(#FFFFFF, 5%),
+    $color-background-light: lighten(#FFFFFF, 5%)
 );
 
-@use '../base/variables' as *;
 @forward '../base/colors';
 @forward '../base/reset';
 @forward '../base/typography';
