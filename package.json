@@ -1,6 +1,6 @@
 {
     "name": "breakouts",
-    "version": "0.5.8",
+    "version": "0.6.0",
     "description": "A focused SCSS/CSS breakout layout toolkit inspired by the Mulligan named-grid pattern.",
     "main": "dist/breakouts.css",
     "files": [
