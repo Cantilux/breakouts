@@ -23,10 +23,12 @@
     --color-neutral-700: #{$color-neutral-700};
     --color-neutral-800: #{$color-neutral-800};
     --color-neutral-900: #{$color-neutral-900};
+    color-scheme: light;
 }
 
-.dark,
-.dark :root {
+html.dark,
+:root.dark,
+.dark {
     --color-background: #{$color-background-dark};
     --color-surface: #{$color-surface-dark};
     --color-text: #{$color-text-dark};
@@ -37,10 +39,12 @@
     --color-success: #{$color-success-dark};
     --color-error: #{$color-error-dark};
     --color-warning: #{$color-warning-dark};
+    color-scheme: dark;
 }
 
-.light,
-.light :root {
+html.light,
+:root.light,
+.light {
     --color-background: #{$color-background-light};
     --color-surface: #{$color-surface-light};
     --color-text: #{$color-text-light};
@@ -51,6 +55,7 @@
     --color-success: #{$color-success-light};
     --color-error: #{$color-error-light};
     --color-warning: #{$color-warning-light};
+    color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -65,10 +70,15 @@
         --color-success: #{$color-success-dark};
         --color-error: #{$color-error-dark};
         --color-warning: #{$color-warning-dark};
+        color-scheme: dark;
     }
 }
 
 // Utility classes for background and text colors
+
+.bg-background {
+    background-color: var(--color-background);
+}
 
 .bg-surface {
     background-color: var(--color-surface);
@@ -100,6 +110,14 @@
 
 .bg-warning {
     background-color: var(--color-warning);
+}
+
+.text-background {
+    color: var(--color-background);
+}
+
+.text-color {
+    color: var(--color-text);
 }
 
 .text-primary {

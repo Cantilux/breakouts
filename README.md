@@ -1,97 +1,78 @@
-# 📐 Breakouts – SCSS/CSS Layout Framework
+# Breakouts
 
 Breakouts is a minimal, modular layout framework for SCSS/CSS that gives you just the right amount of structure: full-bleed containers, responsive grids, spacing, theming, and a clean set of utilities.
 
----
-
-## 🚀 Installation
-
-Using npm:
+## Installation
 
 ```bash
 npm install breakouts
 ```
 
-Using bun:
-
 ```bash
 bun add breakouts
 ```
 
----
+## Usage
 
-## 🛠 Usage
-
-### SCSS with `@use`
+### SCSS
 
 ```scss
-@use 'breakouts/src/breakouts' as *;
+@use 'breakouts' as *;
 ```
 
-### Import CSS directly
+### CSS
 
 ```html
 <link rel="stylesheet" href="/node_modules/breakouts/dist/breakouts.css" />
 ```
 
----
+## Core Layout API
 
-## 🧱 Features
+The main abstraction is the `.breakouts` container. Every direct child defaults to the centered content column, and modifier classes let individual elements break outward.
 
-- ✅ Full-bleed layout with `.container`, `.full-bleed`, `.breakouts`
-- ✅ Breakouts Grid with named areas (`.full`, `.popout`, `.feature`, etc.)
-- ✅ Spacing utilities: `.m-1`, `.px-2`, etc.
-- ✅ Text utilities: alignment, transformation, weight
-- ✅ Responsive-friendly
-- ✅ Dark mode support and theme overrides
-- ✅ Prebuilt themes for fast prototyping
-- ✅ Minimal reset and clean typography
+```html
+<article class="breakouts">
+  <p>Default content width</p>
+  <figure class="popout">Slightly wider</figure>
+  <pre class="feature">Wider still</pre>
+  <img class="full" src="hero.jpg" alt="" />
+</article>
+```
 
----
+### Layout classes
 
-## 📦 Framework Structure
+| Class | Purpose |
+| --- | --- |
+| `.breakouts` | Main named-line breakout grid container |
+| `.content` | Explicitly place an item in the content column |
+| `.popout` | Slight breakout outside content |
+| `.feature` | Larger breakout for emphasis |
+| `.full` | Full-width breakout |
+| `.container` | Traditional centered wrapper |
+| `.full-bleed` | Viewport-wide utility outside the named-grid pattern |
+| `.breakout` | Simpler wide utility outside the named-grid pattern |
 
-Breakouts includes a small set of layout-focused utility classes to help you build responsive and consistent page structures.
+### Default sizing tokens
 
-| Class          | Purpose                                                                  |
-|----------------|---------------------------------------------------------------------------|
-| `.container`   | Creates a centered layout wrapper with a max-width and responsive padding |
-| `.full-bleed`  | Stretches content edge-to-edge across the viewport                        |
-| `.breakout`    | Expands content outside the container’s padding without going full-bleed  |
-| `.grid`        | Defines a named-line CSS grid with `main` and `full` layout regions        |
-| `.grid--full`  | Forces children of `.grid` to span the entire width (`full` region)        |
-| `.breakouts-grid` | A more advanced named-line grid layout using CSS variables              |
-| `.content`     | Places content in the main centered column within `.breakouts-grid`       |
-| `.popout`      | Slightly outside the `.content` width for medium breakout                 |
-| `.feature`     | Wider area used for highlighting visual components                        |
-| `.full`        | Full-width layout spanning the entire grid                                |
+These CSS custom properties drive the layout and can be overridden per scope:
 
----
+```css
+:root {
+  --gap: clamp(1rem, 6vw, 3rem);
+  --full: minmax(var(--gap), 1fr);
+  --feature: minmax(0, 5rem);
+  --popout: minmax(0, 2rem);
+  --content: min(50ch, 100% - var(--gap) * 2);
+}
+```
 
-## ✍️ Text Utilities
+## Utility Layer
 
-| Class             | Description              |
-|------------------|--------------------------|
-| `.text-left`      | Align text left          |
-| `.text-center`    | Align text center        |
-| `.text-right`     | Align text right         |
-| `.text-justify`   | Justify text             |
-| `.text-uppercase` | Uppercase text           |
-| `.text-lowercase` | Lowercase text           |
-| `.text-capitalize`| Capitalize text          |
-| `.font-bold`      | Bold text                |
-| `.font-normal`    | Normal weight text       |
-| `.italic`         | Italic text              |
-| `.not-italic`     | Not italic               |
-| `.leading-tight`  | Line height 1.25         |
-| `.leading-normal` | Line height 1.5          |
-| `.leading-loose`  | Line height 2            |
+Breakouts intentionally ships only a small utility surface around the breakout layout.
 
----
+### Spacing
 
-## 📏 Spacing Utilities
-
-Available spacing classes are based on the `$space-scale` map:
+Spacing classes are generated from this scale:
 
 ```scss
 $space-scale: (
@@ -106,20 +87,21 @@ $space-scale: (
 );
 ```
 
-| Type     | Prefixes                           |
-|----------|------------------------------------|
-| Margin   | `m`, `mt`, `mr`, `mb`, `ml`, `mx`, `my` |
-| Padding  | `p`, `pt`, `pr`, `pb`, `pl`, `px`, `py` |
+Available prefixes:
 
----
+- Margin: `m`, `mt`, `mr`, `mb`, `ml`, `mx`, `my`
+- Padding: `p`, `pt`, `pr`, `pb`, `pl`, `px`, `py`
 
-## 🎨 Color Utilities
+### Typography
 
-Breakouts ships with a small base palette exposed as CSS variables and a few utility classes.
+- Alignment: `text-left`, `text-center`, `text-right`, `text-justify`
+- Transform: `text-uppercase`, `text-lowercase`, `text-capitalize`
+- Weight/style: `font-bold`, `font-normal`, `italic`, `not-italic`
+- Leading: `leading-tight`, `leading-normal`, `leading-loose`
 
-### Base colors (CSS variables)
+### Colors
 
-The following tokens are always available:
+Base tokens exposed as CSS variables:
 
 - `--color-background`
 - `--color-surface`
@@ -131,162 +113,53 @@ The following tokens are always available:
 - `--color-success`
 - `--color-error`
 - `--color-warning`
-- `--color-neutral-100`
-- `--color-neutral-200`
-- `--color-neutral-300`
-- `--color-neutral-400`
-- `--color-neutral-500`
-- `--color-neutral-600`
-- `--color-neutral-700`
-- `--color-neutral-800`
-- `--color-neutral-900`
 
-### Utility classes
+Common utility classes:
 
-#### Background colors
+- Background: `bg-background`, `bg-surface`, `bg-primary`, `bg-secondary`, `bg-accent`, `bg-muted`
+- Text: `text-background`, `text-color`, `text-primary`, `text-secondary`, `text-accent`, `text-muted`
 
-| Class           | Description                          |
-|----------------|--------------------------------------|
-| `.bg-surface`   | `background-color: var(--color-surface)`   |
-| `.bg-primary`   | `background-color: var(--color-primary)`   |
-| `.bg-secondary` | `background-color: var(--color-secondary)` |
-| `.bg-accent`    | `background-color: var(--color-accent)`    |
-| `.bg-success`   | `background-color: var(--color-success)`   |
-| `.bg-error`     | `background-color: var(--color-error)`     |
-| `.bg-warning`   | `background-color: var(--color-warning)`   |
+## Themes And Color Modes
 
-#### Text colors
-
-| Class              | Description                               |
-|-------------------|-------------------------------------------|
-| `.text-primary`    | `color: var(--color-primary)`             |
-| `.text-secondary`  | `color: var(--color-secondary)`           |
-| `.text-accent`     | `color: var(--color-accent)`              |
-| `.text-surface`    | `color: var(--color-surface)`             |
-| `.text-muted`      | `color: var(--color-muted)`               |
-| `.text-success`    | `color: var(--color-success)`             |
-| `.text-error`      | `color: var(--color-error)`               |
-| `.text-warning`    | `color: var(--color-warning)`             |
-| `.text-neutral-100`| `color: var(--color-neutral-100)`         |
-| `.text-neutral-200`| `color: var(--color-neutral-200)`         |
-| `.text-neutral-300`| `color: var(--color-neutral-300)`         |
-| `.text-neutral-400`| `color: var(--color-neutral-400)`         |
-| `.text-neutral-500`| `color: var(--color-neutral-500)`         |
-| `.text-neutral-600`| `color: var(--color-neutral-600)`         |
-| `.text-neutral-700`| `color: var(--color-neutral-700)`         |
-| `.text-neutral-800`| `color: var(--color-neutral-800)`         |
-| `.text-neutral-900`| `color: var(--color-neutral-900)`         |
-
-Example:
-
-```html
-<div class="bg-surface p-4">
-  <h3 class="text-primary">Primary title</h3>
-  <p class="text-muted">Muted paragraph text</p>
-  <p class="text-neutral-700">Neutral text</p>
-</div>
-```
-
----
-
-## 📍 Position Utilities
-
-| Class             | Description                          |
-|-------------------|--------------------------------------|
-| `.position-static` | Set `position: static;` (default)    |
-| `.position-relative` | Set `position: relative;`         |
-| `.position-absolute` | Set `position: absolute;`         |
-| `.position-fixed`  | Set `position: fixed;`              |
-| `.position-sticky` | Set `position: sticky;`             |
-| `.z-index-0`       | Set `z-index: 0;`                   |
-| `.z-index-1`       | Set `z-index: 1;`                   |
-| `.z-index-10`      | Set `z-index: 10;`                  |
-| `.z-index-100`     | Set `z-index: 100;`                 |
-| `.z-index-1000`    | Set `z-index: 1000;`                |
-
----
-
-## 🌗 Dark Mode
-
-Breakouts supports dark mode automatically by toggling the `.dark` or `.light` class on the `<html>` tag.
+Breakouts supports explicit light/dark classes on `<html>` and also respects `prefers-color-scheme` when no explicit class is present.
 
 ```html
 <html class="dark">
-<!-- or -->
-<html class="light">
 ```
 
-Use `prefers-color-scheme` if you want to auto-detect:
+Prebuilt themes:
 
-```scss
-@media (prefers-color-scheme: dark) {
-  html { class: dark; }
-}
-```
+| Theme | Import |
+| --- | --- |
+| Chupa Pop | `@use 'breakouts/src/theme/chupa-pop';` |
+| Medical | `@use 'breakouts/src/theme/medical';` |
+| Tootsie Pop | `@use 'breakouts/src/theme/tootsie-pop';` |
 
----
-
-## 🧪 Demo & Examples
-
-View the live demo via GitHub Pages:
-👉 [https://cantilux.github.io/breakouts](https://cantilux.github.io/breakouts)
-
----
-
-## 🧩 Customize with `@use`
-
-Override core variables before importing:
-
-```scss
-@use 'breakouts/src/breakouts' with (
-  $color-primary: #d1ff4a,
-  $color-accent: #8a2be2
-);
-```
-
-Or create a custom theme:
-
-```scss
-// my-theme.scss
-@forward 'breakouts/src/base/variables' with (
-  $color-primary: #d1ff4a,
-  $color-accent: #8a2be2
-);
-
-@use 'breakouts/src/base/variables' as *;
-@forward 'breakouts/src/base/colors';
-```
-
----
-
-## 🎨 Prebuilt Themes
-
-| Theme Name     | Description                                                    | Import Path                            |
-|----------------|----------------------------------------------------------------|----------------------------------------|
-| **Chupa Pop**  | Bold and colorful palette inspired by candy tones              | `@use 'breakouts/src/theme/chupa-pop'`     |
-| **Medical**    | Calm, healthcare-inspired palette with blues and greens        | `@use 'breakouts/src/theme/medical'`       |
-| **Tootsie Pop**| Retro and playful candy-themed palette                         | `@use 'breakouts/src/theme/tootsie-pop'`   |
-
-Case of use
+If a theme overrides variables, load it before the main entrypoint:
 
 ```scss
 @use 'breakouts/src/theme/chupa-pop';
 @use 'breakouts' as *;
 ```
 
----
+## Customization
 
-## 💡 Extend Breakouts
-
-You can write your own mixins or import individual parts:
+Override variables on first load with `@use ... with (...)`:
 
 ```scss
-@use 'breakouts/src/base/spacing';
-@use 'breakouts/src/base/typography';
+@use 'breakouts' with (
+  $color-primary: #d1ff4a,
+  $color-accent: #8a2be2
+);
 ```
 
----
+Or import only the modules you need:
 
-## 📦 License
+```scss
+@use 'breakouts/src/base/layout';
+@use 'breakouts/src/base/spacing';
+```
 
-MIT — [Cantilux](https://github.com/Cantilux)
+## Demo
+
+GitHub Pages demo: [cantilux.github.io/breakouts](https://cantilux.github.io/breakouts)

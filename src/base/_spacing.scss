@@ -1,5 +1,7 @@
 // This file contains the spacing variables and utility classes for the project.
 
+@use 'sass:meta';
+
 $space-scale: (0: 0,
     1: 0.25rem,
     2: 0.5rem,
@@ -31,7 +33,7 @@ $value in $space-scale {
     @each $prefix,
     $properties in $spacing-properties {
         .#{$prefix}-#{$name} {
-            @if type-of($properties)=='list' {
+            @if meta.type-of($properties)=='list' {
                 @each $prop in $properties {
                     #{$prop}: $value;
                 }

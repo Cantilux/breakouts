@@ -13,167 +13,120 @@
     <nav>
         <a href="#intro">Intro</a>
         <a href="#install">Install</a>
-        <a href="#usage">Usage</a>
-        <a href="#features">Features</a>
-        <a href="#themes">Themes</a>
+        <a href="#core-layout">Core Layout</a>
         <a href="#utilities">Utilities</a>
-        <a href="#layout">Layout</a>
-        <a href="#typography">Typography</a>
         <a href="#colors">Colors</a>
-        <a href="#darkmode">Dark Mode</a>
+        <a href="#themes">Themes</a>
         <a href="#custom">Customize</a>
-        <a href="#extend">Extend</a>
 
         <button id="theme-toggle" type="button" style="margin-left:auto; cursor:pointer">
-            🌓 Toggle Theme
+            Toggle Theme
         </button>
     </nav>
 
     <main class="container">
-        <h1 id="intro">📐 Breakouts Framework</h1>
-        <p>A minimal, modular SCSS/CSS layout and utility framework built for clarity and rapid layout composition.</p>
+        <h1 id="intro">Breakouts</h1>
+        <p>A minimal utility-first CSS toolkit centered on the Mulligan breakout grid pattern.</p>
 
         <section id="install">
-            <h2>🚀 Installation</h2>
+            <h2>Installation</h2>
             <pre><code>npm install breakouts
 # or
 bun add breakouts</code></pre>
         </section>
 
-        <section id="usage">
-            <h2>🛠 Usage</h2>
+        <section id="core-layout">
+            <h2>Core Layout</h2>
+            <p>
+                <code>.breakouts</code> is the main API. Direct children land in the centered content column by
+                default. Add <code>.popout</code>, <code>.feature</code>, or <code>.full</code> to widen specific
+                elements.
+            </p>
 
-            <h3>SCSS with @use</h3>
-            <pre><code>@use 'breakouts' as *;</code></pre>
+            <pre><code>&lt;article class="breakouts"&gt;
+  &lt;p&gt;Default content width&lt;/p&gt;
+  &lt;figure class="popout"&gt;Slightly wider&lt;/figure&gt;
+  &lt;pre class="feature"&gt;Wider still&lt;/pre&gt;
+  &lt;img class="full" alt="" /&gt;
+&lt;/article&gt;</code></pre>
 
-            <h3>SCSS with a theme</h3>
-            <pre><code>@use 'breakouts/src/theme/chupa-pop';
-@use 'breakouts' as *;</code></pre>
-            <p><strong>Note:</strong> If a theme configures variables, it must be loaded <em>before</em> the main
-                Breakouts entrypoint.</p>
-
-            <h3>Import CSS</h3>
-            <pre><code>&lt;link rel="stylesheet" href="/node_modules/breakouts/dist/breakouts.css" /&gt;</code></pre>
-        </section>
-
-        <section id="features">
-            <h2>🧱 Features</h2>
-            <ul>
-                <li>Full-bleed layout with <code>.container</code>, <code>.full-bleed</code>, <code>.breakouts</code>
-                </li>
-                <li>Breakouts grid with named columns</li>
-                <li>Spacing, typography &amp; color utilities</li>
-                <li>Dark mode support (system-aware)</li>
-                <li>Theme system + prebuilt palettes</li>
-                <li>Extendable architecture with SCSS modules</li>
-            </ul>
-        </section>
-
-        <section id="themes">
-            <h2>🎨 Prebuilt Themes</h2>
-            <ul>
-                <li><strong>Chupa Pop</strong> — <code>@use 'breakouts/src/theme/chupa-pop'</code></li>
-                <li><strong>Medical</strong> — <code>@use 'breakouts/src/theme/medical'</code></li>
-                <li><strong>Tootsie Pop</strong> — <code>@use 'breakouts/src/theme/tootsie-pop'</code></li>
-            </ul>
+            <div class="example breakouts">
+                <div>Default content</div>
+                <div class="popout bg-surface p-4">Popout</div>
+                <div class="feature bg-secondary text-background p-4">Feature</div>
+                <div class="full bg-primary text-background p-4">Full</div>
+            </div>
         </section>
 
         <section id="utilities">
-            <h2>✍️ Utilities</h2>
-
-            <h3>Text</h3>
-            <div class="example">
-                <p class="text-left">Left aligned</p>
-                <p class="text-center">Center aligned</p>
-                <p class="text-right">Right aligned</p>
-                <p class="text-uppercase">Uppercase text</p>
-                <p class="font-bold">Bold text</p>
-            </div>
+            <h2>Utilities</h2>
 
             <h3>Spacing</h3>
-            <div class="example">
-                <div class="m-4 bg-accent text-background">Margin 4</div>
-                <div class="p-4 bg-secondary text-background">Padding 4</div>
-                <div class="mx-3 my-2 bg-muted">Margin X3 Y2</div>
+            <div class="example breakouts">
+                <div class="bg-accent text-background p-4">p-4</div>
+                <div class="popout bg-muted px-4 py-3">px-4 py-3</div>
+                <div class="feature bg-surface my-4 p-4">my-4 + p-4</div>
             </div>
-        </section>
 
-        <section id="layout">
-            <h2>📐 Layout</h2>
-            <div class="example container">
-                <p><code>.container</code> centers the content and limits its width.</p>
+            <h3>Typography</h3>
+            <div class="example breakouts">
+                <p class="text-left">Left aligned</p>
+                <p class="text-center">Center aligned</p>
+                <p class="text-uppercase font-bold">Uppercase bold</p>
+                <p class="feature leading-loose">Longer line-height utility on a feature-width block.</p>
             </div>
-            <div class="example full-bleed">
-                <p><code>.full-bleed</code> spans the entire viewport width.</p>
-            </div>
-            <div class="example breakouts-grid">
-                <div class="full">Full</div>
-                <div class="feature">Feature</div>
-                <div class="popout">Popout</div>
-                <div class="content">Content</div>
-            </div>
-        </section>
 
-        <section id="typography">
-            <h2>🔤 Typography</h2>
+            <h3>Fallback layout helpers</h3>
             <div class="example">
-                <h1>Heading 1</h1>
-                <h2>Heading 2</h2>
-                <h3>Heading 3</h3>
-                <p>Paragraph text with <a href="#">a link</a>.</p>
+                <p><code>.container</code> remains available as a classic centered wrapper.</p>
+            </div>
+            <div class="example full-bleed bg-surface p-4">
+                <p><code>.full-bleed</code> is still available for viewport-wide content outside the main grid API.</p>
             </div>
         </section>
 
         <section id="colors">
-            <h2>🎨 Color Utilities</h2>
+            <h2>Colors</h2>
             <div class="color-grid">
+                <div class="color-box bg-background">bg-background</div>
+                <div class="color-box bg-surface">bg-surface</div>
                 <div class="color-box bg-primary text-background">bg-primary</div>
                 <div class="color-box bg-secondary text-background">bg-secondary</div>
                 <div class="color-box bg-accent text-background">bg-accent</div>
                 <div class="color-box bg-muted">bg-muted</div>
-                <div class="color-box bg-surface">bg-surface</div>
-                <div class="color-box background">background</div>
             </div>
         </section>
 
-        <section id="darkmode">
-            <h2>🌗 Dark Mode</h2>
+        <section id="themes">
+            <h2>Themes And Color Modes</h2>
             <p>
-                Breakouts supports dark mode via <code>&lt;html class="dark"&gt;</code> (or <code>light</code>).
-                If neither is set, it can follow the system preference (<code>prefers-color-scheme</code>) depending on
-                your build.
-                The toggle button in this documentation page switches <code>html.dark</code>/<code>html.light</code> for
-                demo purposes.
+                Add <code>dark</code> or <code>light</code> to <code>html</code> for explicit color mode control.
+                Without an explicit class, Breakouts follows <code>prefers-color-scheme</code>.
             </p>
+            <pre><code>&lt;html class="dark"&gt;</code></pre>
+            <p>Prebuilt themes: <code>chupa-pop</code>, <code>medical</code>, <code>tootsie-pop</code>.</p>
         </section>
 
         <section id="custom">
-            <h2>🧪 Customize</h2>
-            <p>Use <code>@use ... with (...)</code> to override default variables (compile-time).</p>
+            <h2>Customize</h2>
             <pre><code>@use 'breakouts' with (
   $color-primary: #d1ff4a,
   $color-accent: #8a2be2
 );</code></pre>
-            <p><strong>Tip:</strong> A module can be configured only on first load. Don’t import <code>breakouts</code>
-                elsewhere before this.</p>
+
+            <pre><code>@use 'breakouts/src/theme/chupa-pop';
+@use 'breakouts' as *;</code></pre>
         </section>
 
-        <section id="extend">
-            <h2>💡 Extend</h2>
-            <p>Import only what you need or create custom modules.</p>
-            <pre><code>@use 'breakouts/src/base/typography';
-@use 'breakouts/src/base/spacing';</code></pre>
-        </section>
-
-        <footer class="text-center" style="padding: 2rem; font-size: 0.875rem; color: var(--color-muted);">
-            MIT License — <a href="https://github.com/Cantilux/breakouts"
-                rel="noopener noreferrer">github.com/Cantilux/breakouts</a>
+        <footer class="text-center" style="padding: 2rem 0; color: var(--color-muted);">
+            MIT License —
+            <a href="https://github.com/Cantilux/breakouts" rel="noopener noreferrer">github.com/Cantilux/breakouts</a>
         </footer>
     </main>
 
     <script>
         (function () {
-            const STORAGE_KEY = "breakouts:docs-theme"; // "light" | "dark"
+            const STORAGE_KEY = "breakouts:docs-theme";
             const root = document.documentElement;
             const btn = document.getElementById("theme-toggle");
 

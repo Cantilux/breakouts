@@ -53,11 +53,17 @@
 }
 
 // Breakouts Grid (named lines)
+.breakouts,
 .breakouts-grid {
     display: grid;
     grid-template-columns:
         [full-start] var(--full) [feature-start] var(--feature) [popout-start] var(--popout) [content-start] var(--content) [content-end] var(--popout) [popout-end] var(--feature) [feature-end] var(--full) [full-end];
     gap: var(--gap);
+}
+
+.breakouts > *,
+.breakouts-grid > * {
+    grid-column: content;
 }
 
 .content {

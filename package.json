@@ -1,7 +1,7 @@
 {
     "name": "breakouts",
     "version": "0.5.8",
-    "description": "A personal SCSS/CSS layout utility framework.",
+    "description": "A focused SCSS/CSS breakout layout toolkit inspired by the Mulligan named-grid pattern.",
     "main": "dist/breakouts.css",
     "files": [
         "src/",
@@ -13,7 +13,7 @@
         "release:minor": "npm run build && npm version minor --sign-git-tag && git push && git push --follow-tags && npm publish --access public",
         "release:major": "npm run build && npm version major --sign-git-tag && git push && git push --follow-tags && npm publish --access public"
     },
-    "author": "Tuo Nome",
+    "author": "Cantilux",
     "license": "MIT",
     "devDependencies": {
         "sass": "^1.86.2"
