@@ -1,5 +1,6 @@
 // This file contains the spacing variables and utility classes for the project.
 
+@use 'sass:map';
 @use 'sass:meta';
 
 $space-scale: (0: 0,
@@ -11,14 +12,15 @@ $space-scale: (0: 0,
     6: 1.5rem,
     auto: auto) !default;
 
-$spacing-properties: (m: margin,
+$margin-properties: (m: margin,
     mt: margin-top,
     mr: margin-right,
     mb: margin-bottom,
     ml: margin-left,
     mx: (margin-left, margin-right),
-    my: (margin-top, margin-bottom),
+    my: (margin-top, margin-bottom));
 
+$padding-properties: (
     p: padding,
     pt: padding-top,
     pr: padding-right,
@@ -27,11 +29,14 @@ $spacing-properties: (m: margin,
     px: (padding-left, padding-right),
     py: (padding-top, padding-bottom));
 
+$padding-space-scale: map.remove($space-scale, auto);
+
+@mixin generate-spacing-utilities($scale, $properties-map) {
 @each $name,
-$value in $space-scale {
+$value in $scale {
 
     @each $prefix,
-    $properties in $spacing-properties {
+    $properties in $properties-map {
         .#{$prefix}-#{$name} {
             @if meta.type-of($properties)=='list' {
                 @each $prop in $properties {
@@ -45,3 +50,7 @@ $value in $space-scale {
         }
     }
 }
+}
+
+@include generate-spacing-utilities($space-scale, $margin-properties);
+@include generate-spacing-utilities($padding-space-scale, $padding-properties);

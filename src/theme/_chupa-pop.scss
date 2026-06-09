@@ -4,22 +4,24 @@
 // The theme variables are used to customize the appearance of the Chupa Pop theme.
 // The theme variables are defined using the SCSS @use and @forward directives.
 
+@use 'sass:color';
+
 $primary: #ecb838 !default;
 $secondary: #ab4073 !default;
 $accent: #196484 !default;
 
 @forward '../base/variables' with (
   $color-primary: $primary,
-  $color-primary-dark: darken($primary, 15%),
-  $color-primary-light: lighten($primary, 15%),
+  $color-primary-dark: color.adjust($primary, $lightness: -15%),
+  $color-primary-light: color.adjust($primary, $lightness: 15%),
 
   $color-secondary: $secondary,
-  $color-secondary-dark: darken($secondary, 15%),
-  $color-secondary-light: lighten($secondary, 15%),
+  $color-secondary-dark: color.adjust($secondary, $lightness: -15%),
+  $color-secondary-light: color.adjust($secondary, $lightness: 15%),
 
   $color-accent: $accent,
-  $color-accent-dark: darken($accent, 15%),
-  $color-accent-light: lighten($accent, 15%),
+  $color-accent-dark: color.adjust($accent, $lightness: -15%),
+  $color-accent-light: color.adjust($accent, $lightness: 15%),
 );
 
 @use '../base/variables' as *;
