@@ -1,0 +1,75 @@
+// Color custom properties and color-mode selectors.
+
+@use 'variables' as *;
+
+:root {
+    --color-background: #{$color-background};
+    --color-surface: #{$color-surface};
+    --color-text: #{$color-text};
+    --color-muted: #{$color-muted};
+    --color-primary: #{$color-primary};
+    --color-secondary: #{$color-secondary};
+    --color-accent: #{$color-accent};
+    --color-success: #{$color-success};
+    --color-error: #{$color-error};
+    --color-warning: #{$color-warning};
+
+    --color-neutral-100: #{$color-neutral-100};
+    --color-neutral-200: #{$color-neutral-200};
+    --color-neutral-300: #{$color-neutral-300};
+    --color-neutral-400: #{$color-neutral-400};
+    --color-neutral-500: #{$color-neutral-500};
+    --color-neutral-600: #{$color-neutral-600};
+    --color-neutral-700: #{$color-neutral-700};
+    --color-neutral-800: #{$color-neutral-800};
+    --color-neutral-900: #{$color-neutral-900};
+    color-scheme: light;
+}
+
+html.dark,
+:root.dark,
+.dark {
+    --color-background: #{$color-background-dark};
+    --color-surface: #{$color-surface-dark};
+    --color-text: #{$color-text-dark};
+    --color-muted: #{$color-muted-dark};
+    --color-primary: #{$color-primary-dark};
+    --color-secondary: #{$color-secondary-dark};
+    --color-accent: #{$color-accent-dark};
+    --color-success: #{$color-success-dark};
+    --color-error: #{$color-error-dark};
+    --color-warning: #{$color-warning-dark};
+    color-scheme: dark;
+}
+
+html.light,
+:root.light,
+.light {
+    --color-background: #{$color-background-light};
+    --color-surface: #{$color-surface-light};
+    --color-text: #{$color-text-light};
+    --color-muted: #{$color-muted-light};
+    --color-primary: #{$color-primary-light};
+    --color-secondary: #{$color-secondary-light};
+    --color-accent: #{$color-accent-light};
+    --color-success: #{$color-success-light};
+    --color-error: #{$color-error-light};
+    --color-warning: #{$color-warning-light};
+    color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not(.light):not(.dark) {
+        --color-background: #{$color-background-dark};
+        --color-surface: #{$color-surface-dark};
+        --color-text: #{$color-text-dark};
+        --color-muted: #{$color-muted-dark};
+        --color-primary: #{$color-primary-dark};
+        --color-secondary: #{$color-secondary-dark};
+        --color-accent: #{$color-accent-dark};
+        --color-success: #{$color-success-dark};
+        --color-error: #{$color-error-dark};
+        --color-warning: #{$color-warning-dark};
+        color-scheme: dark;
+    }
+}

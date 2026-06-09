@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Breakouts Documentation</title>
-    <link rel="stylesheet" href="./breakouts.css" />
-    <link rel="stylesheet" href="./docs.css" />
+    <link rel="stylesheet" href="./breakouts.css?v=0.7.3" />
+    <link rel="stylesheet" href="./docs.css?v=0.7.3" />
 </head>
 
 <body>
@@ -17,6 +17,7 @@
         <a href="#utilities">Utilities</a>
         <a href="#colors">Colors</a>
         <a href="#themes">Themes</a>
+        <a href="#layers">Layers</a>
         <a href="#custom">Customize</a>
 
         <button id="theme-toggle" type="button" style="margin-left:auto; cursor:pointer">
@@ -105,6 +106,16 @@ bun add breakouts</code></pre>
             </p>
             <pre><code>&lt;html class="dark"&gt;</code></pre>
             <p>Prebuilt themes: <code>chupa-pop</code>, <code>medical</code>, <code>tootsie-pop</code>.</p>
+        </section>
+
+        <section id="layers">
+            <h2>Sass Layers</h2>
+            <p>
+                <code>@use 'breakouts'</code> imports the full bundle. Sass users can compose smaller builds with
+                <code>core</code>, <code>base</code>, <code>reset</code>, and <code>utilities</code>.
+            </p>
+            <pre><code>@use 'breakouts/src/core';
+@use 'breakouts/src/utilities';</code></pre>
         </section>
 
         <section id="custom">

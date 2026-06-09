@@ -20,11 +20,33 @@ bun add breakouts
 @use 'breakouts' as *;
 ```
 
+This imports the full bundle: color tokens, reset, base typography, layout, and utilities.
+
+For smaller Sass builds, import only the layer you need:
+
+```scss
+@use 'breakouts/src/core';
+@use 'breakouts/src/utilities';
+```
+
 ### CSS
 
 ```html
 <link rel="stylesheet" href="/node_modules/breakouts/dist/breakouts.css" />
 ```
+
+The distributed CSS file is the full bundle.
+
+## Sass Layers
+
+| Import | Includes |
+| --- | --- |
+| `@use 'breakouts'` | Full bundle |
+| `@use 'breakouts/src/core'` | Color tokens and layout primitives |
+| `@use 'breakouts/src/base'` | Core, reset, and base typography |
+| `@use 'breakouts/src/reset'` | Reset only |
+| `@use 'breakouts/src/utilities'` | Color, spacing, position, and typography utilities |
+| `@use 'breakouts/src/base/layout'` | Layout module only |
 
 ## Core Layout API
 
@@ -156,6 +178,7 @@ Override variables on first load with `@use ... with (...)`:
 Or import only the modules you need:
 
 ```scss
+@use 'breakouts/src/core';
 @use 'breakouts/src/base/layout';
 @use 'breakouts/src/base/spacing';
 ```
