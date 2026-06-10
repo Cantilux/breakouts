@@ -57,6 +57,7 @@ The main abstraction is the `.breakouts` container. Every direct child defaults 
   <p>Default content width</p>
   <figure class="popout">Slightly wider</figure>
   <pre class="feature">Wider still</pre>
+  <aside class="feature-start">Anchored to the inline start side</aside>
   <img class="full" src="hero.jpg" alt="" />
 </article>
 ```
@@ -68,11 +69,33 @@ The main abstraction is the `.breakouts` container. Every direct child defaults 
 | `.breakouts` | Main named-line breakout grid container |
 | `.content` | Explicitly place an item in the content column |
 | `.popout` | Slight breakout outside content |
+| `.popout-start`, `.popout-end` | One-sided popout breakout |
+| `.popout-left`, `.popout-right` | Physical aliases for one-sided popout breakout |
 | `.feature` | Larger breakout for emphasis |
+| `.feature-start`, `.feature-end` | One-sided feature breakout |
+| `.feature-left`, `.feature-right` | Physical aliases for one-sided feature breakout |
 | `.full` | Full-width breakout |
+| `.full-start`, `.full-end` | One-sided full breakout |
+| `.full-left`, `.full-right` | Physical aliases for one-sided full breakout |
 | `.container` | Traditional centered wrapper |
 | `.full-bleed` | Viewport-wide utility outside the named-grid pattern |
 | `.breakout` | Simpler wide utility outside the named-grid pattern |
+
+### Nested breakout grids
+
+Any `.breakouts` or `.breakouts-grid` item can also be placed with a breakout class and then reuse the same track system for its own children.
+
+```html
+<section class="breakouts">
+  <div class="full breakouts">
+    <p>Nested content column</p>
+    <figure class="feature">Nested feature width</figure>
+    <img class="full" src="wide.jpg" alt="" />
+  </div>
+</section>
+```
+
+The nested grid inherits the parent track definition, so child placement classes keep the same meaning inside wider regions.
 
 ### Default sizing tokens
 
@@ -113,6 +136,8 @@ Available prefixes:
 
 - Margin: `m`, `mt`, `mr`, `mb`, `ml`, `mx`, `my`
 - Padding: `p`, `pt`, `pr`, `pb`, `pl`, `px`, `py`
+
+`auto` is generated for margin utilities only. Padding utilities are generated from the numeric spacing values.
 
 ### Typography
 

@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Breakouts Documentation</title>
-    <link rel="stylesheet" href="./breakouts.css?v=0.7.3" />
-    <link rel="stylesheet" href="./docs.css?v=0.7.3" />
+    <link rel="stylesheet" href="./breakouts.css?v=layout-v08-2" />
+    <link rel="stylesheet" href="./docs.css?v=layout-v08-2" />
 </head>
 
 <body>
@@ -48,6 +48,7 @@ bun add breakouts</code></pre>
   &lt;p&gt;Default content width&lt;/p&gt;
   &lt;figure class="popout"&gt;Slightly wider&lt;/figure&gt;
   &lt;pre class="feature"&gt;Wider still&lt;/pre&gt;
+  &lt;aside class="feature-start"&gt;Start anchored&lt;/aside&gt;
   &lt;img class="full" alt="" /&gt;
 &lt;/article&gt;</code></pre>
 
@@ -56,6 +57,25 @@ bun add breakouts</code></pre>
                 <div class="popout bg-surface p-4">Popout</div>
                 <div class="feature bg-secondary text-background p-4">Feature</div>
                 <div class="full bg-primary text-background p-4">Full</div>
+            </div>
+
+            <h3>Side Anchored Breakouts</h3>
+            <div class="example breakouts">
+                <div class="popout-start bg-surface p-4">popout-start</div>
+                <div class="popout-end bg-surface p-4">popout-end</div>
+                <div class="feature-start bg-secondary text-background p-4">feature-start</div>
+                <div class="feature-end bg-secondary text-background p-4">feature-end</div>
+                <div class="full-start bg-primary text-background p-4">full-start</div>
+                <div class="full-end bg-primary text-background p-4">full-end</div>
+            </div>
+
+            <h3>Nested Breakout Grid</h3>
+            <div class="example breakouts">
+                <div class="full breakouts nested-demo">
+                    <div>Nested content</div>
+                    <div class="feature bg-secondary text-background p-4">Nested feature</div>
+                    <div class="full bg-primary text-background p-4">Nested full</div>
+                </div>
             </div>
         </section>
 

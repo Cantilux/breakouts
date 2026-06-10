@@ -58,7 +58,8 @@
     display: grid;
     grid-template-columns:
         [full-start] var(--full) [feature-start] var(--feature) [popout-start] var(--popout) [content-start] var(--content) [content-end] var(--popout) [popout-end] var(--feature) [feature-end] var(--full) [full-end];
-    gap: var(--gap);
+    row-gap: var(--gap);
+    column-gap: 0;
 }
 
 .breakouts > *,
@@ -74,12 +75,49 @@
     grid-column: popout;
 }
 
+.popout-start,
+.popout-left {
+    grid-column: popout-start / content-end;
+}
+
+.popout-end,
+.popout-right {
+    grid-column: content-start / popout-end;
+}
+
 .feature {
     grid-column: feature;
 }
 
+.feature-start,
+.feature-left {
+    grid-column: feature-start / content-end;
+}
+
+.feature-end,
+.feature-right {
+    grid-column: content-start / feature-end;
+}
+
 .full {
     grid-column: full;
+}
+
+.full-start,
+.full-left {
+    grid-column: full-start / content-end;
+}
+
+.full-end,
+.full-right {
+    grid-column: content-start / full-end;
+}
+
+.breakouts > .breakouts,
+.breakouts > .breakouts-grid,
+.breakouts-grid > .breakouts,
+.breakouts-grid > .breakouts-grid {
+    grid-template-columns: inherit;
 }
 
 // Standard Grid (for .grid and .grid--full compatibility)
