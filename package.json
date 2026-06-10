@@ -9,9 +9,9 @@
     ],
     "scripts": {
         "build": "sass src/_index.scss dist/breakouts.css --style=expanded && sass src/_index.scss dist/breakouts.min.css --style=compressed && cp dist/breakouts.css docs/breakouts.css",
-        "release:patch": "npm run build && npm version patch --sign-git-tag && git push && git push --follow-tags && npm publish --access public",
-        "release:minor": "npm run build && npm version minor --sign-git-tag && git push && git push --follow-tags && npm publish --access public",
-        "release:major": "npm run build && npm version major --sign-git-tag && git push && git push --follow-tags && npm publish --access public"
+        "release:patch": "npm run build && npm version patch --sign-git-tag && git push && git push --follow-tags && npm login --auth-type=web && npm publish --access public",
+        "release:minor": "npm run build && npm version minor --sign-git-tag && git push && git push --follow-tags && npm login --auth-type=web && npm publish --access public",
+        "release:major": "npm run build && npm version major --sign-git-tag && git push && git push --follow-tags && npm login --auth-type=web && npm publish --access public"
     },
     "author": "Cantilux",
     "license": "MIT",
