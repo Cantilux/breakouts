@@ -120,44 +120,9 @@ pre {
     text-align: center;
 }
 
-.example .bg-primary,
-.example .bg-secondary,
-.example .bg-accent,
-.color-box.bg-primary,
-.color-box.bg-secondary,
-.color-box.bg-accent {
-    color: #111111;
-}
-
-.example .bg-muted,
-.color-box.bg-muted {
-    color: #111111;
-}
-
 .color-box.bg-background,
 .color-box.bg-surface {
     color: var(--color-text);
-}
-
-html.dark .example .bg-primary,
-html.dark .example .bg-secondary,
-html.dark .example .bg-accent,
-html.dark .color-box.bg-primary,
-html.dark .color-box.bg-secondary,
-html.dark .color-box.bg-accent {
-    color: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-
-    html:not(.light):not(.dark) .example .bg-primary,
-    html:not(.light):not(.dark) .example .bg-secondary,
-    html:not(.light):not(.dark) .example .bg-accent,
-    html:not(.light):not(.dark) .color-box.bg-primary,
-    html:not(.light):not(.dark) .color-box.bg-secondary,
-    html:not(.light):not(.dark) .color-box.bg-accent {
-        color: #ffffff;
-    }
 }
 
 /* Nav */
