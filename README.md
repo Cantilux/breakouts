@@ -200,6 +200,8 @@ Override variables on first load with `@use ... with (...)`:
 );
 ```
 
+Every color has a `-dark` variant (used in dark mode) and a `-light` variant (used with `<html class="light">`). `-light` defaults to the base color; for brand and status colors `-dark` defaults to a lighter tint of the base color, so overriding `$color-primary` updates all three modes. Override a variant directly to pick it yourself, e.g. `$color-primary-dark: #9ab8ff`.
+
 Or import only the modules you need:
 
 ```scss

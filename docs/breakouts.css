@@ -28,12 +28,12 @@ html.dark,
   --color-surface: #1a1a1a;
   --color-text: #eeeeee;
   --color-muted: #aaaaaa;
-  --color-primary: #0033aa;
-  --color-secondary: #002277;
-  --color-accent: #c60055;
-  --color-success: #1e7e34;
-  --color-error: #a71d2a;
-  --color-warning: #c79100;
+  --color-primary: rgb(127.5, 170, 255);
+  --color-secondary: #5588ff;
+  --color-accent: rgb(255, 159.5, 192);
+  --color-success: rgb(132.7753623188, 225.7246376812, 154);
+  --color-error: rgb(237.5, 154, 162);
+  --color-warning: #ffe083;
   color-scheme: dark;
 }
 
@@ -41,15 +41,15 @@ html.light,
 :root.light,
 .light {
   --color-background: #ffffff;
-  --color-surface: #f8f8f8;
-  --color-text: #222222;
-  --color-muted: #999999;
-  --color-primary: #88b0ff;
-  --color-secondary: #ccd9ff;
-  --color-accent: #ff80ab;
-  --color-success: #71dd8a;
-  --color-error: #ff6b6b;
-  --color-warning: #ffdb4d;
+  --color-surface: #f0f0f0;
+  --color-text: #111111;
+  --color-muted: #666666;
+  --color-primary: #0055ff;
+  --color-secondary: #0033aa;
+  --color-accent: #ff4081;
+  --color-success: #28a745;
+  --color-error: #dc3545;
+  --color-warning: #ffc107;
   color-scheme: light;
 }
 
@@ -59,12 +59,12 @@ html.light,
     --color-surface: #1a1a1a;
     --color-text: #eeeeee;
     --color-muted: #aaaaaa;
-    --color-primary: #0033aa;
-    --color-secondary: #002277;
-    --color-accent: #c60055;
-    --color-success: #1e7e34;
-    --color-error: #a71d2a;
-    --color-warning: #c79100;
+    --color-primary: rgb(127.5, 170, 255);
+    --color-secondary: #5588ff;
+    --color-accent: rgb(255, 159.5, 192);
+    --color-success: rgb(132.7753623188, 225.7246376812, 154);
+    --color-error: rgb(237.5, 154, 162);
+    --color-warning: #ffe083;
     color-scheme: dark;
   }
 }
