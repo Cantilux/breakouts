@@ -96,7 +96,7 @@ Any `.breakouts` or `.breakouts-grid` item can also be placed with a breakout cl
 </section>
 ```
 
-The nested grid inherits the parent track definition, so child placement classes keep the same meaning inside wider regions.
+The nested grid is a `subgrid` of its parent, so its columns line up exactly with the outer ones. A child class that reaches past the nested area fills that area: `.full` inside a nested `.feature` is as wide as the `.feature`. Browsers without subgrid support fall back to a nested grid with its own tracks.
 
 ### Default sizing tokens
 

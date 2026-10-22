@@ -1,6 +1,9 @@
 // This file contains the layout styles for the site, including grid and flexbox layouts.
 // It uses CSS custom properties for responsive design and theming.
 
+@use 'sass:list';
+@use 'sass:string';
+
 :root {
     --gap: clamp(1rem, 6vw, 3rem);
     --full: minmax(var(--gap), 1fr);
@@ -99,11 +102,51 @@
     grid-column: content-start / full-end;
 }
 
-.breakouts > .breakouts,
-.breakouts > .breakouts-grid,
-.breakouts-grid > .breakouts,
-.breakouts-grid > .breakouts-grid {
-    grid-template-columns: inherit;
+// Nested grids reuse the parent's tracks (subgrid), so their columns line up with the parent's.
+// Outer lines the nested area does not span are named on its edges: .full inside a nested
+// .feature fills that .feature. Without subgrid support a nested grid keeps its own tracks.
+$-outer-lines: (popout, feature, full);
+
+// Placement classes -> (start, end) level: 0 content, 1 popout, 2 feature, 3 full.
+$-nested-areas: (
+    '*': (0, 0),
+    '.content': (0, 0),
+    '.popout': (1, 1),
+    '.popout-start, .popout-left': (1, 0),
+    '.popout-end, .popout-right': (0, 1),
+    '.feature': (2, 2),
+    '.feature-start, .feature-left': (2, 0),
+    '.feature-end, .feature-right': (0, 2),
+    '.full': (3, 3),
+    '.full-start, .full-left': (3, 0),
+    '.full-end, .full-right': (0, 3),
+);
+
+// Line names beyond $level on one side, e.g. (1, start) -> "[feature-start full-start]".
+@function -edge-names($level, $side) {
+    $names: ();
+    @each $line in $-outer-lines {
+        @if list.index($-outer-lines, $line) > $level {
+            $names: list.append($names, string.unquote('#{$line}-#{$side}'), space);
+        }
+    }
+    @if list.length($names) == 0 {
+        @return '[]';
+    }
+    @return '[#{$names}]';
+}
+
+@each $classes, $levels in $-nested-areas {
+    $start: list.nth($levels, 1);
+    $end: list.nth($levels, 2);
+    $lines: -edge-names($start, start);
+    @for $i from 0 to $start + $end {
+        $lines: $lines + ' []';
+    }
+
+    :is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(#{$classes}) {
+        grid-template-columns: subgrid #{$lines} #{-edge-names($end, end)};
+    }
 }
 
 // Standard Grid (for .grid and .grid--full compatibility)

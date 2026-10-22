@@ -904,11 +904,48 @@ a:hover {
   grid-column: content-start/full-end;
 }
 
-.breakouts > .breakouts,
-.breakouts > .breakouts-grid,
-.breakouts-grid > .breakouts,
-.breakouts-grid > .breakouts-grid {
-  grid-template-columns: inherit;
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(*) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.content) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.popout) {
+  grid-template-columns: subgrid [feature-start full-start] [] [] [feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.popout-start, .popout-left) {
+  grid-template-columns: subgrid [feature-start full-start] [] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.popout-end, .popout-right) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [] [feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.feature) {
+  grid-template-columns: subgrid [full-start] [] [] [] [] [full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.feature-start, .feature-left) {
+  grid-template-columns: subgrid [full-start] [] [] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.feature-end, .feature-right) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [] [] [full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.full) {
+  grid-template-columns: subgrid [] [] [] [] [] [] [] [];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.full-start, .full-left) {
+  grid-template-columns: subgrid [] [] [] [] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.full-end, .full-right) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [] [] [] [];
 }
 
 .grid {

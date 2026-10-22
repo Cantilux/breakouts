@@ -57,7 +57,9 @@ Defined in `src/base/_layout.scss`. Tracks, left to right:
   `-start`/`-end` (and physical `-left`/`-right` alias) variants override it. They have the
   **same specificity**, so the modifier rules must stay *after* the `> *` rule in the file.
 - `-start`/`-end` span from the outer line to the opposite `content` line (one-sided breakout).
-- Nesting: a `.breakouts` that is a direct child of another inherits `grid-template-columns`.
+- Nesting: a `.breakouts` that is a direct child of another is a `subgrid`. Outer line names
+  it does not span are added on its edges, generated from `$-nested-areas`: a new placement
+  class needs an entry there.
 - `.container`, `.full-bleed*`, `.breakout*` and `.grid` are older helpers outside the named
   grid. Keep them working, don't extend them.
 
