@@ -18,7 +18,6 @@ $background: #FFFFFF !default;
     $color-background: $background
 );
 
-@use '../base/variables' as *;
 @forward '../base/colors';
 @forward '../base/reset';
 @forward '../base/typography';

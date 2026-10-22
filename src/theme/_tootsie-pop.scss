@@ -25,7 +25,6 @@ $text: #FFF5E6 !default;
   $color-background-dark: color.adjust($background, $lightness: -5%),
 );
 
-@use '../base/variables' as *;
 @forward '../base/colors';
 @forward '../base/reset';
 @forward '../base/typography';
