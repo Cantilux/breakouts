@@ -12,15 +12,10 @@ Demo site: `docs/` (GitHub Pages, cantilux.github.io/breakouts).
 
 ```bash
 npm run build      # src/_index.scss -> dist/breakouts.css + .min.css, then copies to docs/
+npm test           # compiles every entry point and theme, imports the package like a consumer
 ```
 
-There are no tests or linters. To check a change, build and compile every entry point:
-
-```bash
-for f in src/{breakouts,core,base,reset,utilities}.scss src/theme/_*.scss; do npx sass --no-source-map "$f" >/dev/null && echo "ok $f"; done
-```
-
-Then open `docs/index.html` in a browser and look at the examples at narrow and wide widths.
+There is no linter. After a change, run `npm test`, then open `docs/index.html` in a browser and look at the examples at narrow and wide widths.
 
 `release:patch|minor|major` logs in to npm if needed, builds, bumps the version, **publishes to
 npm**, then pushes the commit and tag. Never run them unless explicitly asked.

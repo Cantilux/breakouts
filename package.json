@@ -9,6 +9,7 @@
         "dist/"
     ],
     "scripts": {
+        "test": "sh test/compile.sh",
         "build": "sass src/_index.scss dist/breakouts.css --style=expanded && sass src/_index.scss dist/breakouts.min.css --style=compressed && cp dist/breakouts.css docs/breakouts.css",
         "release:patch": "(npm whoami || npm login --auth-type=web) && npm run build && npm version patch --sign-git-tag && npm publish --access public && git push --follow-tags",
         "release:minor": "(npm whoami || npm login --auth-type=web) && npm run build && npm version minor --sign-git-tag && npm publish --access public && git push --follow-tags",
