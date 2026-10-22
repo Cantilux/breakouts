@@ -28,6 +28,7 @@ npm**. Never run them unless explicitly asked.
 ## Layout
 
 ```text
+_index.scss             package root: lets `@use 'breakouts'` resolve via load paths
 src/
   breakouts.scss        package "sass" entry -> forwards _index
   _index.scss           full bundle (what dist/ is built from)
