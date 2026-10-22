@@ -9,7 +9,7 @@
 $primary: #4682B4 !default;
 $secondary: #9DC183 !default;
 $accent: #A9A9A9 !default;
-$muted: #D3D3D3 !default;
+$muted: #6B7280 !default;
 $background: #FFFFFF !default;
 
 @forward '../base/variables' with (
@@ -26,12 +26,7 @@ $background: #FFFFFF !default;
     $color-accent-light: color.adjust($accent, $lightness: 15%),
 
     $color-muted: $muted,
-    $color-muted-dark: color.adjust($muted, $lightness: -15%),
-    $color-muted-light: color.adjust($muted, $lightness: 15%),
-
-    $color-background: $background,
-    $color-background-dark: color.adjust($background, $lightness: -5%),
-    $color-background-light: color.adjust($background, $lightness: 5%)
+    $color-background: $background
 );
 
 @use '../base/variables' as *;

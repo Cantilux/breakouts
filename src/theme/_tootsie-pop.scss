@@ -11,6 +11,8 @@ $secondary: #F2711C !default;
 $accent: #E94057 !default;
 $muted: #FFE5B4 !default;
 $background: #4F2F4C !default;
+// Dark background in every mode, so text stays light in every mode.
+$text: #FFF5E6 !default;
 
 @forward '../base/variables' with (
   $color-primary: $primary,
@@ -28,6 +30,10 @@ $background: #4F2F4C !default;
   $color-muted: $muted,
   $color-muted-dark: color.adjust($muted, $lightness: -15%),
   $color-muted-light: color.adjust($muted, $lightness: 15%),
+
+  $color-text: $text,
+  $color-text-dark: $text,
+  $color-text-light: $text,
 
   $color-background: $background,
   $color-background-dark: color.adjust($background, $lightness: -5%),
