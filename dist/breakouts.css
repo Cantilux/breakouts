@@ -104,28 +104,28 @@ html.light,
   background-color: var(--color-warning);
 }
 
+.text-color {
+  color: var(--color-text);
+}
+
 .text-background {
   color: var(--color-background);
 }
 
-.text-color {
-  color: var(--color-text);
+.text-surface {
+  color: var(--color-surface);
 }
 
 .text-primary {
   color: var(--color-primary);
 }
 
-.text-accent {
-  color: var(--color-accent);
-}
-
 .text-secondary {
   color: var(--color-secondary);
 }
 
-.text-surface {
-  color: var(--color-surface);
+.text-accent {
+  color: var(--color-accent);
 }
 
 .text-muted {
