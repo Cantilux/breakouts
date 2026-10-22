@@ -1,0 +1,6 @@
+# Vendored agent skills and generated output: not part of the library
+.claude/
+dist/
+docs/breakouts.css
+*.lock
+package-lock.json
