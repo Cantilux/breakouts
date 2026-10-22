@@ -1,7 +1,0 @@
-# ignore everything
-*
-
-# allow published files
-!breakouts.scss
-!src/
-!dist/
