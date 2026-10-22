@@ -86,8 +86,9 @@ Defined in `src/base/_layout.scss`. Tracks, left to right:
 
 ## Skills
 
-Project skills live in `.claude/skills/`. Which skill to use for what, where each comes from
-and how to add or update one: `.claude/skills/project-skills/SKILL.md`.
+Skills are installed locally in `.claude/skills/` and never committed. `SKILL.md` is the
+registry: which skill to use for what, where each comes from, and how to install, update, add
+or remove one. If a skill listed there is missing, install it from there.
 
 - Code changes to `src/`: **ponytail**.
 - Design work on `docs/` and the visual defaults: **impeccable**, **design-taste-frontend**.
