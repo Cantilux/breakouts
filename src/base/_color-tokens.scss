@@ -2,6 +2,21 @@
 
 @use 'variables' as *;
 
+// One definition for both dark-mode selectors, so they cannot drift apart.
+@mixin -dark-tokens {
+    --color-background: #{$color-background-dark};
+    --color-surface: #{$color-surface-dark};
+    --color-text: #{$color-text-dark};
+    --color-muted: #{$color-muted-dark};
+    --color-primary: #{$color-primary-dark};
+    --color-secondary: #{$color-secondary-dark};
+    --color-accent: #{$color-accent-dark};
+    --color-success: #{$color-success-dark};
+    --color-error: #{$color-error-dark};
+    --color-warning: #{$color-warning-dark};
+    color-scheme: dark;
+}
+
 :root {
     --color-background: #{$color-background};
     --color-surface: #{$color-surface};
@@ -29,17 +44,7 @@
 html.dark,
 :root.dark,
 .dark {
-    --color-background: #{$color-background-dark};
-    --color-surface: #{$color-surface-dark};
-    --color-text: #{$color-text-dark};
-    --color-muted: #{$color-muted-dark};
-    --color-primary: #{$color-primary-dark};
-    --color-secondary: #{$color-secondary-dark};
-    --color-accent: #{$color-accent-dark};
-    --color-success: #{$color-success-dark};
-    --color-error: #{$color-error-dark};
-    --color-warning: #{$color-warning-dark};
-    color-scheme: dark;
+    @include -dark-tokens;
 }
 
 html.light,
@@ -60,16 +65,6 @@ html.light,
 
 @media (prefers-color-scheme: dark) {
     :root:not(.light):not(.dark) {
-        --color-background: #{$color-background-dark};
-        --color-surface: #{$color-surface-dark};
-        --color-text: #{$color-text-dark};
-        --color-muted: #{$color-muted-dark};
-        --color-primary: #{$color-primary-dark};
-        --color-secondary: #{$color-secondary-dark};
-        --color-accent: #{$color-accent-dark};
-        --color-success: #{$color-success-dark};
-        --color-error: #{$color-error-dark};
-        --color-warning: #{$color-warning-dark};
-        color-scheme: dark;
+        @include -dark-tokens;
     }
 }

@@ -21,3 +21,10 @@ Thumbs.db
 # Optional: ignore environment or credentials
 .env
 .env.local
+
+# AI agents: per-machine settings and generated output
+.claude/
+graphify-out/
+.impeccable/
+.taste-skill/
+skills-lock.json

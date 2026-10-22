@@ -1,0 +1,3 @@
+// Lets `@use 'breakouts'` resolve through plain load paths (node_modules).
+
+@forward 'src/breakouts';

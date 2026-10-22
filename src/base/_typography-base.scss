@@ -44,3 +44,9 @@ a {
         color: var(--color-secondary);
     }
 }
+
+// Rows of a breakouts grid are already spaced by row-gap; flow margins would add to it.
+// Same specificity as the element rules above, so utilities like .my-4 still win.
+:where(.breakouts, .breakouts-grid) > :is(h1, h2, h3, h4, h5, h6, p) {
+    margin-block: 0;
+}

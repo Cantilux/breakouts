@@ -1,45 +1,49 @@
 // This file contains the default variables for the default theme.
+// `-dark` values apply in dark mode, `-light` values in explicit light mode.
+
+@use 'sass:color';
 
 // color variables
 $color-background: #ffffff !default;
 $color-background-dark: #111111 !default;
-$color-background-light: #ffffff !default;
+$color-background-light: $color-background !default;
 
 $color-surface: #f0f0f0 !default;
 $color-surface-dark: #1a1a1a !default;
-$color-surface-light: #f8f8f8 !default;
+$color-surface-light: $color-surface !default;
 
 $color-text: #111111 !default;
 $color-text-dark: #eeeeee !default;
-$color-text-light: #222222 !default;
+$color-text-light: $color-text !default;
 
 $color-muted: #666666 !default;
 $color-muted-dark: #aaaaaa !default;
-$color-muted-light: #999999 !default;
+$color-muted-light: $color-muted !default;
 
+// Brand and status colors: dark mode uses a lighter tint, so it stays readable on dark backgrounds.
 $color-primary: #0055ff !default;
-$color-primary-dark: #0033aa !default;
-$color-primary-light: #88b0ff !default;
+$color-primary-dark: color.scale($color-primary, $lightness: 50%) !default;
+$color-primary-light: $color-primary !default;
 
 $color-secondary: #0033aa !default;
-$color-secondary-dark: #002277 !default;
-$color-secondary-light: #ccd9ff !default;
+$color-secondary-dark: color.scale($color-secondary, $lightness: 50%) !default;
+$color-secondary-light: $color-secondary !default;
 
 $color-accent: #ff4081 !default;
-$color-accent-dark: #c60055 !default;
-$color-accent-light: #ff80ab !default;
+$color-accent-dark: color.scale($color-accent, $lightness: 50%) !default;
+$color-accent-light: $color-accent !default;
 
 $color-success: #28a745 !default;
-$color-success-dark: #1e7e34 !default;
-$color-success-light: #71dd8a !default;
+$color-success-dark: color.scale($color-success, $lightness: 50%) !default;
+$color-success-light: $color-success !default;
 
 $color-error: #dc3545 !default;
-$color-error-dark: #a71d2a !default;
-$color-error-light: #ff6b6b !default;
+$color-error-dark: color.scale($color-error, $lightness: 50%) !default;
+$color-error-light: $color-error !default;
 
 $color-warning: #ffc107 !default;
-$color-warning-dark: #c79100 !default;
-$color-warning-light: #ffdb4d !default;
+$color-warning-dark: color.scale($color-warning, $lightness: 50%) !default;
+$color-warning-light: $color-warning !default;
 
 $color-neutral-100: #f8f9fa !default;
 $color-neutral-200: #e9ecef !default;
@@ -50,4 +54,3 @@ $color-neutral-600: #6c757d !default;
 $color-neutral-700: #495057 !default;
 $color-neutral-800: #343a40 !default;
 $color-neutral-900: #212529 !default;
-

@@ -4,14 +4,16 @@
     "description": "A focused SCSS/CSS breakout layout toolkit inspired by the Mulligan named-grid pattern.",
     "main": "dist/breakouts.css",
     "files": [
+        "_index.scss",
         "src/",
         "dist/"
     ],
     "scripts": {
+        "test": "sh test/compile.sh",
         "build": "sass src/_index.scss dist/breakouts.css --style=expanded && sass src/_index.scss dist/breakouts.min.css --style=compressed && cp dist/breakouts.css docs/breakouts.css",
-        "release:patch": "npm run build && npm version patch --sign-git-tag && git push && git push --follow-tags && npm login --auth-type=web && npm publish --access public",
-        "release:minor": "npm run build && npm version minor --sign-git-tag && git push && git push --follow-tags && npm login --auth-type=web && npm publish --access public",
-        "release:major": "npm run build && npm version major --sign-git-tag && git push && git push --follow-tags && npm login --auth-type=web && npm publish --access public"
+        "release:patch": "(npm whoami || npm login --auth-type=web) && npm run build && npm version patch --sign-git-tag && npm publish --access public && git push --follow-tags",
+        "release:minor": "(npm whoami || npm login --auth-type=web) && npm run build && npm version minor --sign-git-tag && npm publish --access public && git push --follow-tags",
+        "release:major": "(npm whoami || npm login --auth-type=web) && npm run build && npm version major --sign-git-tag && npm publish --access public && git push --follow-tags"
     },
     "author": "Cantilux",
     "license": "MIT",

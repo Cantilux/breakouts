@@ -4,37 +4,20 @@
 // The theme variables are used to customize the appearance of the Medical theme.
 // The theme variables are defined using the SCSS @use and @forward directives.
 
-@use 'sass:color';
-
 $primary: #4682B4 !default;
 $secondary: #9DC183 !default;
 $accent: #A9A9A9 !default;
-$muted: #D3D3D3 !default;
+$muted: #6B7280 !default;
 $background: #FFFFFF !default;
 
 @forward '../base/variables' with (
     $color-primary: $primary,
-    $color-primary-dark: color.adjust($primary, $lightness: -15%),
-    $color-primary-light: color.adjust($primary, $lightness: 15%),
-
     $color-secondary: $secondary,
-    $color-secondary-dark: color.adjust($secondary, $lightness: -15%),
-    $color-secondary-light: color.adjust($secondary, $lightness: 15%),
-
     $color-accent: $accent,
-    $color-accent-dark: color.adjust($accent, $lightness: -15%),
-    $color-accent-light: color.adjust($accent, $lightness: 15%),
-
     $color-muted: $muted,
-    $color-muted-dark: color.adjust($muted, $lightness: -15%),
-    $color-muted-light: color.adjust($muted, $lightness: 15%),
-
-    $color-background: $background,
-    $color-background-dark: color.adjust($background, $lightness: -5%),
-    $color-background-light: color.adjust($background, $lightness: 5%)
+    $color-background: $background
 );
 
-@use '../base/variables' as *;
 @forward '../base/colors';
 @forward '../base/reset';
 @forward '../base/typography';

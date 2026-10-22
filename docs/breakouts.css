@@ -28,12 +28,12 @@ html.dark,
   --color-surface: #1a1a1a;
   --color-text: #eeeeee;
   --color-muted: #aaaaaa;
-  --color-primary: #0033aa;
-  --color-secondary: #002277;
-  --color-accent: #c60055;
-  --color-success: #1e7e34;
-  --color-error: #a71d2a;
-  --color-warning: #c79100;
+  --color-primary: rgb(127.5, 170, 255);
+  --color-secondary: #5588ff;
+  --color-accent: rgb(255, 159.5, 192);
+  --color-success: rgb(132.7753623188, 225.7246376812, 154);
+  --color-error: rgb(237.5, 154, 162);
+  --color-warning: #ffe083;
   color-scheme: dark;
 }
 
@@ -41,15 +41,15 @@ html.light,
 :root.light,
 .light {
   --color-background: #ffffff;
-  --color-surface: #f8f8f8;
-  --color-text: #222222;
-  --color-muted: #999999;
-  --color-primary: #88b0ff;
-  --color-secondary: #ccd9ff;
-  --color-accent: #ff80ab;
-  --color-success: #71dd8a;
-  --color-error: #ff6b6b;
-  --color-warning: #ffdb4d;
+  --color-surface: #f0f0f0;
+  --color-text: #111111;
+  --color-muted: #666666;
+  --color-primary: #0055ff;
+  --color-secondary: #0033aa;
+  --color-accent: #ff4081;
+  --color-success: #28a745;
+  --color-error: #dc3545;
+  --color-warning: #ffc107;
   color-scheme: light;
 }
 
@@ -59,12 +59,12 @@ html.light,
     --color-surface: #1a1a1a;
     --color-text: #eeeeee;
     --color-muted: #aaaaaa;
-    --color-primary: #0033aa;
-    --color-secondary: #002277;
-    --color-accent: #c60055;
-    --color-success: #1e7e34;
-    --color-error: #a71d2a;
-    --color-warning: #c79100;
+    --color-primary: rgb(127.5, 170, 255);
+    --color-secondary: #5588ff;
+    --color-accent: rgb(255, 159.5, 192);
+    --color-success: rgb(132.7753623188, 225.7246376812, 154);
+    --color-error: rgb(237.5, 154, 162);
+    --color-warning: #ffe083;
     color-scheme: dark;
   }
 }
@@ -104,28 +104,28 @@ html.light,
   background-color: var(--color-warning);
 }
 
+.text-color {
+  color: var(--color-text);
+}
+
 .text-background {
   color: var(--color-background);
 }
 
-.text-color {
-  color: var(--color-text);
+.text-surface {
+  color: var(--color-surface);
 }
 
 .text-primary {
   color: var(--color-primary);
 }
 
-.text-accent {
-  color: var(--color-accent);
-}
-
 .text-secondary {
   color: var(--color-secondary);
 }
 
-.text-surface {
-  color: var(--color-surface);
+.text-accent {
+  color: var(--color-accent);
 }
 
 .text-muted {
@@ -754,6 +754,10 @@ a:hover {
   color: var(--color-secondary);
 }
 
+:where(.breakouts, .breakouts-grid) > :is(h1, h2, h3, h4, h5, h6, p) {
+  margin-block: 0;
+}
+
 .text-left {
   text-align: left;
 }
@@ -824,39 +828,21 @@ a:hover {
   padding-inline: 1rem;
 }
 
-.full-bleed {
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
-.full-bleed--left {
-  width: 100vw;
-  margin-left: 0;
-  transform: translateX(0);
-}
-
-.full-bleed--right {
-  width: 100vw;
-  margin-left: calc(-1 * (100vw - 100%) / 2);
-  transform: translateX(calc(100% - 100vw));
-}
-
+.full-bleed,
 .breakout {
   width: 100vw;
-  margin-left: calc(-1 * (100vw - 100%) / 2);
+  margin-left: calc(50% - 50vw);
 }
 
+.full-bleed--left,
 .breakout--left {
-  width: 100vw;
-  margin-left: 0;
-  transform: translateX(0);
+  width: calc(50% + 50vw);
+  margin-left: calc(50% - 50vw);
 }
 
+.full-bleed--right,
 .breakout--right {
-  width: 100vw;
-  margin-left: calc(-1 * (100vw - 100%) / 2);
-  transform: translateX(calc(100% - 100vw));
+  width: calc(50% + 50vw);
 }
 
 .breakouts,
@@ -918,11 +904,48 @@ a:hover {
   grid-column: content-start/full-end;
 }
 
-.breakouts > .breakouts,
-.breakouts > .breakouts-grid,
-.breakouts-grid > .breakouts,
-.breakouts-grid > .breakouts-grid {
-  grid-template-columns: inherit;
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(*) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.content) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.popout) {
+  grid-template-columns: subgrid [feature-start full-start] [] [] [feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.popout-start, .popout-left) {
+  grid-template-columns: subgrid [feature-start full-start] [] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.popout-end, .popout-right) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [] [feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.feature) {
+  grid-template-columns: subgrid [full-start] [] [] [] [] [full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.feature-start, .feature-left) {
+  grid-template-columns: subgrid [full-start] [] [] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.feature-end, .feature-right) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [] [] [full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.full) {
+  grid-template-columns: subgrid [] [] [] [] [] [] [] [];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.full-start, .full-left) {
+  grid-template-columns: subgrid [] [] [] [] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.full-end, .full-right) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [] [] [] [];
 }
 
 .grid {

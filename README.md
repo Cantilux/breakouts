@@ -78,8 +78,9 @@ The main abstraction is the `.breakouts` container. Every direct child defaults 
 | `.full-start`, `.full-end` | One-sided full breakout |
 | `.full-left`, `.full-right` | Physical aliases for one-sided full breakout |
 | `.container` | Traditional centered wrapper |
-| `.full-bleed` | Viewport-wide utility outside the named-grid pattern |
-| `.breakout` | Simpler wide utility outside the named-grid pattern |
+| `.full-bleed` | Viewport-wide utility outside the named-grid pattern (parent must be centered) |
+| `.full-bleed--left`, `.full-bleed--right` | From one viewport edge to the parent's opposite edge |
+| `.breakout`, `.breakout--left`, `.breakout--right` | Deprecated aliases of the `.full-bleed` classes, removed in the next major |
 
 ### Nested breakout grids
 
@@ -95,7 +96,7 @@ Any `.breakouts` or `.breakouts-grid` item can also be placed with a breakout cl
 </section>
 ```
 
-The nested grid inherits the parent track definition, so child placement classes keep the same meaning inside wider regions.
+The nested grid is a `subgrid` of its parent, so its columns line up exactly with the outer ones. A child class that reaches past the nested area fills that area: `.full` inside a nested `.feature` is as wide as the `.feature`. Browsers without subgrid support fall back to a nested grid with its own tracks.
 
 ### Default sizing tokens
 
@@ -199,6 +200,8 @@ Override variables on first load with `@use ... with (...)`:
   $color-accent: #8a2be2
 );
 ```
+
+Every color has a `-dark` variant (used in dark mode) and a `-light` variant (used with `<html class="light">`). `-light` defaults to the base color; for brand and status colors `-dark` defaults to a lighter tint of the base color, so overriding `$color-primary` updates all three modes. Override a variant directly to pick it yourself, e.g. `$color-primary-dark: #9ab8ff`.
 
 Or import only the modules you need:
 
