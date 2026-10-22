@@ -22,8 +22,8 @@ for f in src/{breakouts,core,base,reset,utilities}.scss src/theme/_*.scss; do np
 
 Then open `docs/index.html` in a browser and look at the examples at narrow and wide widths.
 
-`release:patch|minor|major` builds, bumps the version, pushes tags, logs in and **publishes to
-npm**. Never run them unless explicitly asked.
+`release:patch|minor|major` logs in to npm if needed, builds, bumps the version, **publishes to
+npm**, then pushes the commit and tag. Never run them unless explicitly asked.
 
 ## Layout
 
