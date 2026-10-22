@@ -828,39 +828,21 @@ a:hover {
   padding-inline: 1rem;
 }
 
-.full-bleed {
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
-.full-bleed--left {
-  width: 100vw;
-  margin-left: 0;
-  transform: translateX(0);
-}
-
-.full-bleed--right {
-  width: 100vw;
-  margin-left: calc(-1 * (100vw - 100%) / 2);
-  transform: translateX(calc(100% - 100vw));
-}
-
+.full-bleed,
 .breakout {
   width: 100vw;
-  margin-left: calc(-1 * (100vw - 100%) / 2);
+  margin-left: calc(50% - 50vw);
 }
 
+.full-bleed--left,
 .breakout--left {
-  width: 100vw;
-  margin-left: 0;
-  transform: translateX(0);
+  width: calc(50% + 50vw);
+  margin-left: calc(50% - 50vw);
 }
 
+.full-bleed--right,
 .breakout--right {
-  width: 100vw;
-  margin-left: calc(-1 * (100vw - 100%) / 2);
-  transform: translateX(calc(100% - 100vw));
+  width: calc(50% + 50vw);
 }
 
 .breakouts,

@@ -16,40 +16,26 @@
     padding-inline: 1rem;
 }
 
-// Breakout classes
-.full-bleed {
-    width: 100vw;
-    margin-left: 50%;
-    transform: translateX(-50%);
-}
-
-.full-bleed--left {
-    width: 100vw;
-    margin-left: 0;
-    transform: translateX(0);
-}
-
-.full-bleed--right {
-    width: 100vw;
-    margin-left: calc(-1 * (100vw - 100%) / 2);
-    transform: translateX(calc(100% - 100vw));
-} 
-
+// Viewport-wide helpers outside the named grid, for a parent centered in the viewport.
+// 100vw includes a classic scrollbar: pages using them may need `overflow-x: clip` on body.
+// .breakout* are deprecated aliases of .full-bleed*, to be removed in the next major.
+.full-bleed,
 .breakout {
     width: 100vw;
-    margin-left: calc(-1 * (100vw - 100%) / 2);
+    margin-left: calc(50% - 50vw);
 }
 
+// Viewport's left edge to the parent's right edge.
+.full-bleed--left,
 .breakout--left {
-    width: 100vw;
-    margin-left: 0;
-    transform: translateX(0);
+    width: calc(50% + 50vw);
+    margin-left: calc(50% - 50vw);
 }
 
+// Parent's left edge to the viewport's right edge.
+.full-bleed--right,
 .breakout--right {
-    width: 100vw;
-    margin-left: calc(-1 * (100vw - 100%) / 2);
-    transform: translateX(calc(100% - 100vw));
+    width: calc(50% + 50vw);
 }
 
 // Breakouts Grid (named lines)

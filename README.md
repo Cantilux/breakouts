@@ -78,8 +78,9 @@ The main abstraction is the `.breakouts` container. Every direct child defaults 
 | `.full-start`, `.full-end` | One-sided full breakout |
 | `.full-left`, `.full-right` | Physical aliases for one-sided full breakout |
 | `.container` | Traditional centered wrapper |
-| `.full-bleed` | Viewport-wide utility outside the named-grid pattern |
-| `.breakout` | Simpler wide utility outside the named-grid pattern |
+| `.full-bleed` | Viewport-wide utility outside the named-grid pattern (parent must be centered) |
+| `.full-bleed--left`, `.full-bleed--right` | From one viewport edge to the parent's opposite edge |
+| `.breakout`, `.breakout--left`, `.breakout--right` | Deprecated aliases of the `.full-bleed` classes, removed in the next major |
 
 ### Nested breakout grids
 
