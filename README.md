@@ -116,6 +116,10 @@ These CSS custom properties drive the layout and can be overridden per scope:
 
 Breakouts intentionally ships only a small utility surface around the breakout layout.
 
+The CSS follows ITCSS order: settings and tokens, reset, base typography, layout, then
+utilities last. A utility always wins over a layout class of equal specificity, so
+`class="container px-0"` removes the container padding.
+
 ### Spacing
 
 Spacing classes are generated from this scale:

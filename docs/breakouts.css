@@ -68,6 +68,241 @@ html.light,
     color-scheme: dark;
   }
 }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+h2 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+h4 {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+h5 {
+  font-size: 1.125rem;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+h6 {
+  font-size: 1rem;
+  line-height: 1.2;
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+p {
+  margin: 1rem 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+a:hover {
+  color: var(--color-secondary);
+}
+
+:where(.breakouts, .breakouts-grid) > :is(h1, h2, h3, h4, h5, h6, p) {
+  margin-block: 0;
+}
+
+:root {
+  --gap: clamp(1rem, 6vw, 3rem);
+  --full: minmax(var(--gap), 1fr);
+  --feature: minmax(0, 5rem);
+  --popout: minmax(0, 2rem);
+  --content: min(50ch, 100% - var(--gap) * 2);
+}
+
+.container {
+  margin-inline: auto;
+  max-width: 72rem;
+  padding-inline: 1rem;
+}
+
+.full-bleed,
+.breakout {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.full-bleed--left,
+.breakout--left {
+  width: calc(50% + 50vw);
+  margin-left: calc(50% - 50vw);
+}
+
+.full-bleed--right,
+.breakout--right {
+  width: calc(50% + 50vw);
+}
+
+.breakouts,
+.breakouts-grid {
+  display: grid;
+  grid-template-columns: [full-start] var(--full) [feature-start] var(--feature) [popout-start] var(--popout) [content-start] var(--content) [content-end] var(--popout) [popout-end] var(--feature) [feature-end] var(--full) [full-end];
+  row-gap: var(--gap);
+  column-gap: 0;
+}
+
+.breakouts > *,
+.breakouts-grid > * {
+  grid-column: content;
+}
+
+.content {
+  grid-column: content;
+}
+
+.popout {
+  grid-column: popout;
+}
+
+.popout-start,
+.popout-left {
+  grid-column: popout-start/content-end;
+}
+
+.popout-end,
+.popout-right {
+  grid-column: content-start/popout-end;
+}
+
+.feature {
+  grid-column: feature;
+}
+
+.feature-start,
+.feature-left {
+  grid-column: feature-start/content-end;
+}
+
+.feature-end,
+.feature-right {
+  grid-column: content-start/feature-end;
+}
+
+.full {
+  grid-column: full;
+}
+
+.full-start,
+.full-left {
+  grid-column: full-start/content-end;
+}
+
+.full-end,
+.full-right {
+  grid-column: content-start/full-end;
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(*) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.content) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.popout) {
+  grid-template-columns: subgrid [feature-start full-start] [] [] [feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.popout-start, .popout-left) {
+  grid-template-columns: subgrid [feature-start full-start] [] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.popout-end, .popout-right) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [] [feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.feature) {
+  grid-template-columns: subgrid [full-start] [] [] [] [] [full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.feature-start, .feature-left) {
+  grid-template-columns: subgrid [full-start] [] [] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.feature-end, .feature-right) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [] [] [full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.full) {
+  grid-template-columns: subgrid [] [] [] [] [] [] [] [];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.full-start, .full-left) {
+  grid-template-columns: subgrid [] [] [] [] [popout-end feature-end full-end];
+}
+
+:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.full-end, .full-right) {
+  grid-template-columns: subgrid [popout-start feature-start full-start] [] [] [] [];
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, var(--container-max-width, 64rem)) 1fr;
+  gap: var(--gap);
+}
+.grid > * {
+  grid-column: 2;
+}
+
+.grid--full > * {
+  grid-column: 1/-1;
+}
+
 .bg-background {
   background-color: var(--color-background);
 }
@@ -178,21 +413,6 @@ html.light,
 
 .text-neutral-900 {
   color: var(--color-neutral-900);
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
 }
 
 .m-0 {
@@ -685,79 +905,6 @@ body {
   z-index: 1000;
 }
 
-body {
-  font-family: system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--color-text);
-  background-color: var(--color-background);
-  margin: 0;
-}
-
-h1 {
-  font-size: 2.25rem;
-  line-height: 1.2;
-  margin: 2rem 0 1rem;
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-h2 {
-  font-size: 1.75rem;
-  line-height: 1.2;
-  margin: 2rem 0 1rem;
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-h3 {
-  font-size: 1.5rem;
-  line-height: 1.2;
-  margin: 2rem 0 1rem;
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-h4 {
-  font-size: 1.25rem;
-  line-height: 1.2;
-  margin: 2rem 0 1rem;
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-h5 {
-  font-size: 1.125rem;
-  line-height: 1.2;
-  margin: 2rem 0 1rem;
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-h6 {
-  font-size: 1rem;
-  line-height: 1.2;
-  margin: 2rem 0 1rem;
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-p {
-  margin: 1rem 0;
-}
-
-a {
-  color: var(--color-primary);
-  text-decoration: underline;
-}
-a:hover {
-  color: var(--color-secondary);
-}
-
-:where(.breakouts, .breakouts-grid) > :is(h1, h2, h3, h4, h5, h6, p) {
-  margin-block: 0;
-}
-
 .text-left {
   text-align: left;
 }
@@ -812,153 +959,6 @@ a:hover {
 
 .leading-loose {
   line-height: 2;
-}
-
-:root {
-  --gap: clamp(1rem, 6vw, 3rem);
-  --full: minmax(var(--gap), 1fr);
-  --feature: minmax(0, 5rem);
-  --popout: minmax(0, 2rem);
-  --content: min(50ch, 100% - var(--gap) * 2);
-}
-
-.container {
-  margin-inline: auto;
-  max-width: 72rem;
-  padding-inline: 1rem;
-}
-
-.full-bleed,
-.breakout {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-}
-
-.full-bleed--left,
-.breakout--left {
-  width: calc(50% + 50vw);
-  margin-left: calc(50% - 50vw);
-}
-
-.full-bleed--right,
-.breakout--right {
-  width: calc(50% + 50vw);
-}
-
-.breakouts,
-.breakouts-grid {
-  display: grid;
-  grid-template-columns: [full-start] var(--full) [feature-start] var(--feature) [popout-start] var(--popout) [content-start] var(--content) [content-end] var(--popout) [popout-end] var(--feature) [feature-end] var(--full) [full-end];
-  row-gap: var(--gap);
-  column-gap: 0;
-}
-
-.breakouts > *,
-.breakouts-grid > * {
-  grid-column: content;
-}
-
-.content {
-  grid-column: content;
-}
-
-.popout {
-  grid-column: popout;
-}
-
-.popout-start,
-.popout-left {
-  grid-column: popout-start/content-end;
-}
-
-.popout-end,
-.popout-right {
-  grid-column: content-start/popout-end;
-}
-
-.feature {
-  grid-column: feature;
-}
-
-.feature-start,
-.feature-left {
-  grid-column: feature-start/content-end;
-}
-
-.feature-end,
-.feature-right {
-  grid-column: content-start/feature-end;
-}
-
-.full {
-  grid-column: full;
-}
-
-.full-start,
-.full-left {
-  grid-column: full-start/content-end;
-}
-
-.full-end,
-.full-right {
-  grid-column: content-start/full-end;
-}
-
-:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(*) {
-  grid-template-columns: subgrid [popout-start feature-start full-start] [popout-end feature-end full-end];
-}
-
-:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.content) {
-  grid-template-columns: subgrid [popout-start feature-start full-start] [popout-end feature-end full-end];
-}
-
-:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.popout) {
-  grid-template-columns: subgrid [feature-start full-start] [] [] [feature-end full-end];
-}
-
-:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.popout-start, .popout-left) {
-  grid-template-columns: subgrid [feature-start full-start] [] [popout-end feature-end full-end];
-}
-
-:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.popout-end, .popout-right) {
-  grid-template-columns: subgrid [popout-start feature-start full-start] [] [feature-end full-end];
-}
-
-:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.feature) {
-  grid-template-columns: subgrid [full-start] [] [] [] [] [full-end];
-}
-
-:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.feature-start, .feature-left) {
-  grid-template-columns: subgrid [full-start] [] [] [popout-end feature-end full-end];
-}
-
-:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.feature-end, .feature-right) {
-  grid-template-columns: subgrid [popout-start feature-start full-start] [] [] [full-end];
-}
-
-:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.full) {
-  grid-template-columns: subgrid [] [] [] [] [] [] [] [];
-}
-
-:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.full-start, .full-left) {
-  grid-template-columns: subgrid [] [] [] [] [popout-end feature-end full-end];
-}
-
-:is(.breakouts, .breakouts-grid) > :is(.breakouts, .breakouts-grid):is(.full-end, .full-right) {
-  grid-template-columns: subgrid [popout-start feature-start full-start] [] [] [] [];
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr minmax(0, var(--container-max-width, 64rem)) 1fr;
-  gap: var(--gap);
-}
-.grid > * {
-  grid-column: 2;
-}
-
-.grid--full > * {
-  grid-column: 1/-1;
 }
 
 /*# sourceMappingURL=breakouts.css.map */

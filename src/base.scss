@@ -1,5 +1,7 @@
-// Optional base element styles, without utility classes.
+// Optional base element styles, without utility classes: settings, generic, elements, objects.
 
-@forward 'core';
+@forward 'base/variables';
+@forward 'base/color-tokens';
 @forward 'base/reset';
 @forward 'base/typography-base';
+@forward 'base/layout';

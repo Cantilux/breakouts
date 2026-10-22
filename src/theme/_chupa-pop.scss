@@ -14,7 +14,9 @@ $accent: #196484 !default;
   $color-accent: $accent,
 );
 
-@forward '../base/colors';
+@forward '../base/color-tokens';
 @forward '../base/reset';
-@forward '../base/typography';
+@forward '../base/typography-base';
 @forward '../base/layout';
+@forward '../base/color-utilities';
+@forward '../base/typography-utilities';

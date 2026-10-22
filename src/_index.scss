@@ -1,13 +1,5 @@
-// Full bundle entry point. Use src/core, src/base, src/reset, or
-// src/utilities when you need a smaller Sass surface.
+// Full bundle entry point: base layers, then utilities last (ITCSS order, see AGENTS.md).
+// Use src/core, src/base, src/reset, or src/utilities when you need a smaller Sass surface.
 
-// Theme and configurable variables
-@forward 'base/variables';
-@forward 'base/colors';
-
-// Base styles
-@forward 'base/reset';
-@forward 'base/spacing';
-@forward 'base/positions';
-@forward 'base/typography';
-@forward 'base/layout';
+@forward 'base';
+@forward 'utilities';

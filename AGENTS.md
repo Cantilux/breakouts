@@ -40,6 +40,29 @@ docs/                   demo page; docs/breakouts.css is a copy of dist — neve
 `base/_colors.scss` and `base/_typography.scss` are compatibility modules that just forward
 their `-tokens`/`-utilities` (or `-base`/`-utilities`) halves. New code goes in the halves.
 
+## Architecture: ITCSS
+
+The CSS is organised as ITCSS layers, from generic to specific. Every entry point and theme
+emits them in this order, so on equal specificity the later layer wins:
+
+| Layer      | Modules                                                                           |
+| ---------- | --------------------------------------------------------------------------------- |
+| Settings   | `base/_variables`, `base/_color-tokens`                                           |
+| Tools      | Sass mixins and functions (no output)                                             |
+| Generic    | `base/_reset`                                                                     |
+| Elements   | `base/_typography-base`                                                           |
+| Objects    | `base/_layout` (the grid and the older helpers)                                   |
+| Components | none: Breakouts ships no components                                               |
+| Utilities  | `base/_color-utilities`, `_spacing`, `_positions`, `_typography-utilities`        |
+
+- Each module belongs to exactly one layer. A module that would mix layers gets split, as
+  colours and typography were.
+- Utilities are always last, so `class="container px-0"` works. Fix an override by putting the
+  rule in the right layer, never by raising specificity.
+- Entry points and themes forward the single-layer halves, never the compatibility modules
+  `base/_colors` and `base/_typography` (they span two layers).
+- The library is not utility-first: utilities stay a small, optional last layer around the grid.
+
 ## The grid
 
 Defined in `src/base/_layout.scss`. Tracks, left to right:
