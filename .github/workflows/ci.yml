@@ -1,0 +1,30 @@
+# Tests and builds every pull request and every push to master, and checks dist/ is up to date.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Test, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Check the committed build is up to date
+        run: git diff --exit-code -- dist docs || (echo "Run npm run build and commit dist/ and docs/." && exit 1)
+      - run: npm pack --dry-run

@@ -218,3 +218,12 @@ Or import only the modules you need:
 ## Demo
 
 GitHub Pages demo: [cantilux.github.io/breakouts](https://cantilux.github.io/breakouts)
+
+## Releasing
+
+Releases are cut from a pull request, never from a laptop.
+
+1. Each change that users will notice comes with a changeset: `npm run changeset`.
+2. On a `chore/release-x.y.z` branch, run `npm run release:version`. Changesets turns the pending changesets into the new version and the `CHANGELOG.md` entry.
+3. Open the PR and merge it once CI is green.
+4. The **Release** workflow sees a version npm does not have yet, tests and builds it, publishes it with npm trusted publishing (with provenance) and tags it `vX.Y.Z`.

@@ -11,14 +11,25 @@ Demo site: `docs/` (GitHub Pages, cantilux.github.io/breakouts).
 ## Commands
 
 ```bash
-npm run build      # src/_index.scss -> dist/breakouts.css + .min.css, then copies to docs/
-npm test           # compiles every entry point and theme, imports the package like a consumer
+npm run build            # src/_index.scss -> dist/breakouts.css + .min.css, then copies to docs/
+npm test                 # compiles every entry point and theme, imports the package like a consumer
+npm run changeset        # records a pending change (patch/minor/major + one line for the changelog)
+npm run release:version  # turns pending changesets into the new version and CHANGELOG.md entry
 ```
 
 There is no linter. After a change, run `npm test`, then open `docs/index.html` in a browser and look at the examples at narrow and wide widths.
 
-`release:patch|minor|major` logs in to npm if needed, builds, bumps the version, **publishes to
-npm**, then pushes the commit and tag. Never run them unless explicitly asked.
+## Releasing
+
+Releases go through GitHub Actions, never from a laptop: nobody runs `npm publish` or `npm version`.
+
+- Every user-facing change gets a changeset (`npm run changeset`) committed with it.
+- `master` is protected: changes land through a pull request once the **CI** check
+  (`Test, build`) is green. CI also fails if `dist/` or `docs/breakouts.css` are not up to date.
+- To release, on a `chore/release-x.y.z` branch run `npm run release:version`, then open and
+  merge the PR. The **Release** workflow sees a version npm does not have yet, tests, builds,
+  publishes it with npm trusted publishing (OIDC, with provenance) and tags it `vX.Y.Z`.
+  Only cut a release when explicitly asked.
 
 ## Layout
 
