@@ -1,183 +1,399 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Breakouts Documentation</title>
-    <link rel="stylesheet" href="./breakouts.css?v=layout-v08-2" />
-    <link rel="stylesheet" href="./docs.css?v=layout-v08-2" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Breakouts · a CSS grid where any child breaks out with one class</title>
+    <meta name="description" content="Breakouts is a small SCSS/CSS layout library: a named-line grid where every child sits in a reading column and one class widens it to popout, feature or full width.">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@400,500&amp;display=swap">
+    <link rel="stylesheet" href="breakouts.css">
+    <link rel="stylesheet" href="docs.css">
+    <script>document.documentElement.classList.add('js')</script>
+    <script src="docs.js" type="module"></script>
 </head>
-
 <body>
-    <nav>
-        <a href="#intro">Intro</a>
-        <a href="#install">Install</a>
-        <a href="#core-layout">Core Layout</a>
-        <a href="#utilities">Utilities</a>
-        <a href="#colors">Colors</a>
-        <a href="#themes">Themes</a>
-        <a href="#layers">Layers</a>
-        <a href="#custom">Customize</a>
+    <a class="skip" href="#main">Skip to content</a>
 
-        <button id="theme-toggle" type="button" style="margin-left:auto; cursor:pointer">
-            Toggle Theme
-        </button>
-    </nav>
+    <header class="bar">
+        <a class="bar__mark" href="#top">Breakouts</a>
+        <nav class="bar__nav" aria-label="Sections">
+            <a href="#try">Try it</a>
+            <a href="#how">How it works</a>
+            <a href="#classes">Classes</a>
+            <a href="#reference">Reference</a>
+        </nav>
+        <a class="button" href="#install">Install</a>
+    </header>
 
-    <main class="container">
-        <h1 id="intro">Breakouts</h1>
-        <p>A minimal utility-first CSS toolkit centered on the Mulligan breakout grid pattern.</p>
+    <main id="main">
 
-        <section id="install">
-            <h2>Installation</h2>
-            <pre><code>npm install breakouts
-# or
-bun add breakouts</code></pre>
+        <!-- The first screen is itself a breakouts grid: each band sits in the track it names. -->
+        <section id="top" class="breakouts hero" aria-labelledby="title">
+            <h1 id="title">Breakouts</h1>
+            <p class="lead">A CSS grid for long reads: every child sits in the text column, and one class lets it break out.</p>
+            <div class="band content"><span class="band__name">.content</span> <span class="band__size" data-measure>up to 50ch</span></div>
+            <div class="band band--popout popout"><span class="band__name">.popout</span> <span class="band__size" data-measure>content + 2 × 2rem</span></div>
+            <div class="band band--feature feature"><span class="band__name">.feature</span> <span class="band__size" data-measure>popout + 2 × 5rem</span></div>
+            <div class="band band--full full"><span class="band__name">.full</span> <span class="band__size" data-measure>edge to edge</span></div>
+            <div class="install-line popout">
+                <code id="install-cmd">npm install breakouts</code>
+                <button class="button" type="button" data-copy="#install-cmd">Copy</button>
+                <a href="https://github.com/Cantilux/breakouts">GitHub</a>
+                <a href="https://www.npmjs.com/package/breakouts">npm</a>
+            </div>
+            <p class="hero__note">These four bands are the page's own grid: resize the window and watch the numbers. On a phone, popout and feature fold back into the text without a media query.</p>
         </section>
 
-        <section id="core-layout">
-            <h2>Core Layout</h2>
-            <p>
-                <code>.breakouts</code> is the main API. Direct children land in the centered content column by
-                default. Add <code>.popout</code>, <code>.feature</code>, or <code>.full</code> to widen specific
-                elements.
-            </p>
-
-            <pre><code>&lt;article class="breakouts"&gt;
-  &lt;p&gt;Default content width&lt;/p&gt;
-  &lt;figure class="popout"&gt;Slightly wider&lt;/figure&gt;
-  &lt;pre class="feature"&gt;Wider still&lt;/pre&gt;
-  &lt;aside class="feature-start"&gt;Start anchored&lt;/aside&gt;
-  &lt;img class="full" alt="" /&gt;
+        <!-- Live trial: markup on the dark field, a real Breakouts page on the light one. -->
+        <section id="try" class="try" aria-labelledby="try-title">
+            <h2 id="try-title" class="try__title"><span class="try__title-a">Try a class</span> <span class="try__title-b">at any width</span></h2>
+            <div class="try__input">
+                <p>Pick the class of the highlighted picture. The page beside it is a real Breakouts page; give it a phone's width to see the wide areas fold.</p>
+<pre class="try__code"><code>&lt;article class="breakouts"&gt;
+  &lt;h1&gt;Tomorrow's paper&lt;/h1&gt;
+  &lt;p&gt;Copy reached the composing room…&lt;/p&gt;
+  &lt;figure class="<select id="try-class" aria-label="Class of the highlighted picture">
+    <option>content</option>
+    <option>popout</option>
+    <option selected>feature</option>
+    <option>full</option>
+    <option>popout-start</option>
+    <option>popout-end</option>
+    <option>feature-start</option>
+    <option>feature-end</option>
+    <option>full-start</option>
+    <option>full-end</option>
+  </select>"&gt;
+    &lt;img src="linotype-room.jpg" alt="…"&gt;
+  &lt;/figure&gt;
+  &lt;p&gt;The line-casting machine…&lt;/p&gt;
 &lt;/article&gt;</code></pre>
+            </div>
+            <div class="try__output">
+                <div class="try__controls" role="group" aria-label="Width of the demo page">
+                    <button type="button" data-width="375">Phone</button>
+                    <button type="button" data-width="768">Tablet</button>
+                    <button type="button" data-width="1280" aria-pressed="true">Laptop</button>
+                    <label class="try__range">
+                        <span>Width</span>
+                        <input id="try-width" type="range" min="320" max="1440" step="1" value="1280">
+                        <output for="try-width" id="try-width-out">1280 px</output>
+                    </label>
+                </div>
+                <div class="try__frame" id="try-frame">
+                    <iframe id="try-page" src="article.html" title="Demo article laid out with Breakouts" width="1280" height="900" loading="lazy"></iframe>
+                </div>
+                <p class="try__readout" id="try-readout" aria-live="polite">The highlighted picture is <code>.feature</code>.</p>
+                <p class="try__open"><a href="article.html">Open the article on its own</a></p>
+            </div>
+        </section>
 
-            <div class="example breakouts">
-                <div>Default content</div>
-                <div class="popout bg-surface p-4">Popout</div>
-                <div class="feature bg-secondary text-background p-4">Feature</div>
-                <div class="full bg-primary text-background p-4">Full</div>
+        <!-- How it works: one picture held on screen while the text below it scrolls. -->
+        <section id="how" class="breakouts how" aria-labelledby="how-title">
+            <h2 id="how-title">Four widths, one class each</h2>
+            <p>The grid is Ryan Mulligan's <a href="https://ryanmulligan.dev/blog/layout-breakouts/">named-line pattern</a>: seven column tracks between eight named lines, centred on a reading column. Scroll, and one picture moves through them at this page's real width.</p>
+
+            <div class="story full breakouts">
+                <div class="story__stage full breakouts">
+                    <figure class="story__figure content" id="story-figure">
+                        <img src="img/rotary-press.jpg" width="1600" height="1172" alt="A large rotary printing press of several units, with gantries and a ladder" loading="lazy">
+                    </figure>
+                    <div class="story__texts">
+                        <p class="story__text" data-class="content"><strong>Every child starts in the text.</strong> <code>.breakouts &gt; *</code> places each direct child in <code>content</code>, at most 50 characters wide.</p>
+                        <p class="story__text" data-class="popout"><strong><code>.popout</code> steps out a little.</strong> The content column plus the <code>--popout</code> track on each side, 2rem at most.</p>
+                        <p class="story__text" data-class="feature"><strong><code>.feature</code> steps out further.</strong> Popout plus the <code>--feature</code> track on each side, 5rem at most.</p>
+                        <p class="story__text" data-class="full"><strong><code>.full</code> runs edge to edge.</strong> The whole container. Everything else keeps at least <code>--gap</code> from its edges.</p>
+                    </div>
+                    <p class="story__caption" id="story-caption" aria-live="polite"><code>.content</code>, the reading column</p>
+                </div>
+                <div class="story__steps" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
             </div>
 
-            <h3>Side Anchored Breakouts</h3>
-            <div class="example breakouts">
-                <div class="popout-start bg-surface p-4">popout-start</div>
-                <div class="popout-end bg-surface p-4">popout-end</div>
-                <div class="feature-start bg-secondary text-background p-4">feature-start</div>
-                <div class="feature-end bg-secondary text-background p-4">feature-end</div>
-                <div class="full-start bg-primary text-background p-4">full-start</div>
-                <div class="full-end bg-primary text-background p-4">full-end</div>
+            <h3>The tracks</h3>
+            <p>Each track is a custom property on <code>:root</code>, so any element can resize the grid for its own subtree. <code>popout</code> and <code>feature</code> can shrink to nothing; <code>full</code> never drops below <code>--gap</code>, which is what keeps text off the edge of a phone.</p>
+<pre class="popout"><code>.breakouts {
+  display: grid;
+  grid-template-columns:
+    [full-start] var(--full)
+    [feature-start] var(--feature)
+    [popout-start] var(--popout)
+    [content-start] var(--content) [content-end]
+    var(--popout) [popout-end]
+    var(--feature) [feature-end]
+    var(--full) [full-end];
+  row-gap: var(--gap);
+}
+
+:root {
+  /* the row gap, and the smallest outer gutter */
+  --gap: clamp(1rem, 6vw, 3rem);
+  /* whatever is left, never less than --gap */
+  --full: minmax(var(--gap), 1fr);
+  --feature: minmax(0, 5rem);
+  --popout: minmax(0, 2rem);
+  --content: min(50ch, 100% - var(--gap) * 2);
+}</code></pre>
+            <p>Measured in Chromium with the default <code>system-ui</code> font at 16px. Below about 573px popout and feature are as wide as the text; from about 824px every area has its full size. <code>50ch</code> is measured in the grid's own font, so another font moves these numbers.</p>
+            <div class="table-wrap feature">
+                <table>
+                    <caption>Width of each area by viewport</caption>
+                    <thead><tr><th scope="col">Viewport</th><th scope="col"><code>--gap</code></th><th scope="col">content</th><th scope="col">popout</th><th scope="col">feature</th><th scope="col">full</th></tr></thead>
+                    <tbody>
+                        <tr><th scope="row">375px</th><td>22.5px</td><td>330px</td><td>330px</td><td>330px</td><td>375px</td></tr>
+                        <tr><th scope="row">768px</th><td>46px</td><td>504px</td><td>568px</td><td>676px</td><td>768px</td></tr>
+                        <tr><th scope="row">1440px</th><td>48px</td><td>504px</td><td>568px</td><td>728px</td><td>1440px</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <figure class="photo full">
+                <img src="img/composing-room.jpg" width="1200" height="1149" alt="A long composing room in 1927, with a row of typesetting machines and their operators under hanging lamps" loading="lazy">
+                <figcaption><code>.full</code> The composing room of Hufvudstadsbladet, Helsinki, 1927.</figcaption>
+            </figure>
+        </section>
+
+        <!-- Variants: statement and fragment rows on a 5/7 split. -->
+        <section id="variants" class="breakouts field field--light variants" aria-labelledby="variants-title">
+            <h2 id="variants-title">One side, nested, or resized</h2>
+
+            <div class="row full">
+                <div class="row__text">
+                    <h3>One side only</h3>
+                    <p><code>-start</code> and <code>-end</code> break out on one side and keep the other edge on the text. <code>-left</code> and <code>-right</code> are their physical aliases.</p>
+<pre><code>&lt;figure class="feature-start"&gt;…&lt;/figure&gt;</code></pre>
+                </div>
+                <div class="row__demo"><div class="fragment breakouts light">
+                    <p>A compositor picked each letter from the case and set it in a stick, line by line.</p>
+                    <figure class="feature-start"><img src="img/type-case.jpg" width="1600" height="1063" alt="Metal letters in the compartments of a type case" loading="lazy"></figure>
+                    <p>The picture reaches the feature line on the start side only; its end edge stays on the text.</p>
+                </div>
+                </div>
             </div>
 
-            <h3>Nested Breakout Grid</h3>
-            <div class="example breakouts">
-                <div class="full breakouts nested-demo">
-                    <div>Nested content</div>
-                    <div class="feature bg-secondary text-background p-4">Nested feature</div>
-                    <div class="full bg-primary text-background p-4">Nested full</div>
+            <div class="row full">
+                <div class="row__text">
+                    <h3>Nested, and still aligned</h3>
+                    <p>A <code>.breakouts</code> inside another becomes its <code>subgrid</code>: nested text lines up with the outer text, and a nested <code>.full</code> fills the nested area.</p>
+<pre><code>&lt;div class="feature breakouts"&gt;
+  &lt;p&gt;…&lt;/p&gt;
+  &lt;img class="full" …&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                <div class="row__demo"><div class="fragment breakouts light">
+                    <p>Outer text, in the outer content column.</p>
+                    <div class="feature breakouts fragment__nest">
+                        <p>Nested text, on the same edges.</p>
+                        <img class="full" src="img/linotype-1903.jpg" width="1600" height="1283" alt="An early typesetting machine and its operator" loading="lazy">
+                    </div>
+                    <p>A browser without subgrid gives the nested grid its own tracks instead.</p>
+                </div>
+                </div>
+            </div>
+
+            <div class="row full">
+                <div class="row__text">
+                    <h3>Your proportions</h3>
+                    <p>Override a track on any element, not only <code>:root</code>. Keep the gutter term in <code>--content</code> so text still clears the edge.</p>
+<pre><code>.longform {
+  --content: min(36ch, 100% - var(--gap) * 2);
+  --feature: minmax(0, 8rem);
+}</code></pre>
+                </div>
+                <div class="row__demo"><div class="fragment breakouts light" style="--content: min(36ch, 100% - var(--gap) * 2); --feature: minmax(0, 8rem);">
+                    <p>A narrower measure for this block alone, and a wider feature track around it.</p>
+                    <figure class="feature"><img src="img/linotype-room.jpg" width="1600" height="921" alt="Two operators at typesetting machines" loading="lazy"></figure>
+                    <p>The rest of the page keeps the defaults.</p>
+                </div>
                 </div>
             </div>
         </section>
 
-        <section id="utilities">
-            <h2>Utilities</h2>
-
-            <h3>Spacing</h3>
-            <div class="example breakouts">
-                <div class="bg-accent text-background p-4">p-4</div>
-                <div class="popout bg-muted text-background px-4 py-3">px-4 py-3</div>
-                <div class="feature bg-surface my-4 p-4">my-4 + p-4</div>
-            </div>
-
-            <h3>Typography</h3>
-            <div class="example breakouts">
-                <p class="text-left">Left aligned</p>
-                <p class="text-center">Center aligned</p>
-                <p class="text-uppercase font-bold">Uppercase bold</p>
-                <p class="feature leading-loose">Longer line-height utility on a feature-width block.</p>
-            </div>
-
-            <h3>Fallback layout helpers</h3>
-            <div class="example">
-                <p><code>.container</code> remains available as a classic centered wrapper.</p>
-            </div>
-            <div class="example full-bleed bg-surface p-4">
-                <p><code>.full-bleed</code> is still available for viewport-wide content outside the main grid API.</p>
-            </div>
-        </section>
-
-        <section id="colors">
-            <h2>Colors</h2>
-            <div class="color-grid">
-                <div class="color-box bg-background">bg-background</div>
-                <div class="color-box bg-surface">bg-surface</div>
-                <div class="color-box bg-primary text-background">bg-primary</div>
-                <div class="color-box bg-secondary text-background">bg-secondary</div>
-                <div class="color-box bg-accent text-background">bg-accent</div>
-                <div class="color-box bg-muted text-background">bg-muted</div>
+        <!-- Class index: the API as a searchable menu. -->
+        <section id="classes" class="breakouts field field--dark classes" aria-labelledby="classes-title">
+            <div class="cmd feature">
+                <h2 id="classes-title" class="cmd__title"><label for="cmd-q">Find a class</label></h2>
+                <input id="cmd-q" class="cmd__input" type="search" placeholder="popout, full-end, container…" autocomplete="off" spellcheck="false" aria-controls="cmd-list">
+                <ul id="cmd-list" class="cmd__list" role="listbox" aria-label="Classes">
+                    <li role="option" data-keys="breakouts grid container"><span class="cmd__name">.breakouts</span><p>The container. Every direct child goes into the content column; nested in another <code>.breakouts</code>, it becomes a subgrid.</p></li>
+                    <li role="option" data-keys="content column default"><span class="cmd__name">.content</span><p>Spans <code>content</code>. The reading column, at most 50ch. The default for every child; the class places one explicitly.</p></li>
+                    <li role="option" data-keys="popout"><span class="cmd__name">.popout</span><p>Spans <code>popout</code>. Content plus <code>--popout</code> (up to 2rem) on each side.</p></li>
+                    <li role="option" data-keys="feature"><span class="cmd__name">.feature</span><p>Spans <code>feature</code>. Popout plus <code>--feature</code> (up to 5rem) on each side.</p></li>
+                    <li role="option" data-keys="full bleed edge"><span class="cmd__name">.full</span><p>Spans <code>full</code>. Edge to edge of the container.</p></li>
+                    <li role="option" data-keys="popout-start popout-left one side"><span class="cmd__name">.popout-start</span><p>Spans <code>popout-start</code> to <code>content-end</code>. Out to the popout line on the start side only. <code>.popout-left</code> is its physical alias.</p></li>
+                    <li role="option" data-keys="popout-end popout-right one side"><span class="cmd__name">.popout-end</span><p>Spans <code>content-start</code> to <code>popout-end</code>. Out to the popout line on the end side only. <code>.popout-right</code> is its physical alias.</p></li>
+                    <li role="option" data-keys="feature-start feature-left one side"><span class="cmd__name">.feature-start</span><p>Spans <code>feature-start</code> to <code>content-end</code>. Out to the feature line on the start side only. <code>.feature-left</code> is its physical alias.</p></li>
+                    <li role="option" data-keys="feature-end feature-right one side"><span class="cmd__name">.feature-end</span><p>Spans <code>content-start</code> to <code>feature-end</code>. Out to the feature line on the end side only. <code>.feature-right</code> is its physical alias.</p></li>
+                    <li role="option" data-keys="full-start full-left one side"><span class="cmd__name">.full-start</span><p>Spans <code>full-start</code> to <code>content-end</code>. To the container's start edge, ending on the text. <code>.full-left</code> is its physical alias.</p></li>
+                    <li role="option" data-keys="full-end full-right one side"><span class="cmd__name">.full-end</span><p>Spans <code>content-start</code> to <code>full-end</code>. From the text to the container's end edge. <code>.full-right</code> is its physical alias.</p></li>
+                    <li role="option" data-keys="breakouts-grid alias"><span class="cmd__name">.breakouts-grid</span><p>The same grid as <code>.breakouts</code>, kept for older markup.</p></li>
+                    <li role="option" data-keys="container wrapper older"><span class="cmd__name">.container</span><p>Older helper. A centred wrapper: <code>max-width: 72rem</code>, <code>padding-inline: 1rem</code>.</p></li>
+                    <li role="option" data-keys="grid grid--full older"><span class="cmd__name">.grid</span><p>Older helper. Three columns with the children in the middle one, <code>minmax(0, var(--container-max-width, 64rem))</code> wide. <code>.grid--full</code> spans all three.</p></li>
+                    <li role="option" data-keys="full-bleed 100vw viewport older"><span class="cmd__name">.full-bleed</span><p>Older helper. <code>100vw</code> wide from a parent centred in the viewport; <code>--left</code> and <code>--right</code> reach one viewport edge. Inside a <code>.breakouts</code>, prefer <code>.full</code>.</p></li>
+                    <li role="option" data-keys="breakout deprecated"><span class="cmd__name">.breakout</span><p>Deprecated. Aliases of <code>.full-bleed*</code>, removed in the next major version.</p></li>
+                </ul>
+                <p class="cmd__empty" id="cmd-empty" hidden>No class matches. Try <code>popout</code>, <code>start</code> or <code>grid</code>.</p>
             </div>
         </section>
 
-        <section id="themes">
-            <h2>Themes And Color Modes</h2>
-            <p>
-                Add <code>dark</code> or <code>light</code> to <code>html</code> for explicit color mode control.
-                Without an explicit class, Breakouts follows <code>prefers-color-scheme</code>.
-            </p>
-            <pre><code>&lt;html class="dark"&gt;</code></pre>
-            <p>Prebuilt themes: <code>chupa-pop</code>, <code>medical</code>, <code>tootsie-pop</code>.</p>
+        <!-- Install: the reading column, code at popout, the entry points at feature. -->
+        <section id="install" class="breakouts install" aria-labelledby="install-title">
+            <h2 id="install-title">Install</h2>
+<pre class="popout"><code>npm install breakouts
+# or: pnpm add breakouts · yarn add breakouts · bun add breakouts</code></pre>
+            <figure class="photo feature-end">
+                <div class="photo__clip"><video id="clip" muted loop playsinline preload="metadata" poster="img/linotype-operators-poster.jpg" width="720" height="480" aria-label="Linotype operators at their keyboards, 1919, silent film"><source src="img/linotype-operators.webm" type="video/webm"></video></div>
+                <figcaption><code>.feature-end</code> Linotype operators setting the Detroit News, 1919.</figcaption>
+            </figure>
+            <h3>With Sass</h3>
+            <p>The sources use the module system, so they need Dart Sass. The <code>pkg:</code> URL needs its Node package importer (Dart Sass 1.71 or newer): <code>--pkg-importer=node</code> on the command line, or <code>new sass.NodePackageImporter()</code> in JavaScript. Without it, add <code>node_modules</code> to the load paths and write <code>@use 'breakouts'</code>.</p>
+<pre class="popout"><code>@use 'pkg:breakouts';   // tokens, reset, typography, grid, utilities</code></pre>
+            <h3>Plain CSS</h3>
+            <p>The full bundle, built with the default settings, readable or minified.</p>
+<pre class="popout"><code>&lt;link rel="stylesheet" href="node_modules/breakouts/dist/breakouts.css"&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/breakouts@0.8/dist/breakouts.min.css"&gt;</code></pre>
+            <h3>Entry points</h3>
+            <p>Each emits its layers in the same order, utilities last, so you can stop at the size you need.</p>
+            <div class="table-wrap feature">
+                <table>
+                    <thead><tr><th scope="col"><code>@use</code></th><th scope="col">Emits</th></tr></thead>
+                    <tbody>
+                        <tr><th scope="row"><code>'pkg:breakouts'</code></th><td>Colour tokens, reset, typography, grid, then the utilities</td></tr>
+                        <tr><th scope="row"><code>'pkg:breakouts/src/base'</code></th><td>Colour tokens, reset, typography, grid</td></tr>
+                        <tr><th scope="row"><code>'pkg:breakouts/src/core'</code></th><td>Colour tokens and grid</td></tr>
+                        <tr><th scope="row"><code>'pkg:breakouts/src/base/layout'</code></th><td>The grid and its custom properties only</td></tr>
+                        <tr><th scope="row"><code>'pkg:breakouts/src/reset'</code></th><td>The reset only</td></tr>
+                        <tr><th scope="row"><code>'pkg:breakouts/src/utilities'</code></th><td>Colour, spacing, position and typography utilities; load <code>core</code> or <code>base</code> too, the colour utilities read the <code>--color-*</code> tokens</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
-        <section id="layers">
-            <h2>Sass Layers</h2>
-            <p>
-                <code>@use 'breakouts'</code> imports the full bundle. Sass users can compose smaller builds with
-                <code>core</code>, <code>base</code>, <code>reset</code>, and <code>utilities</code>.
-            </p>
-            <pre><code>@use 'breakouts/src/core';
-@use 'breakouts/src/utilities';</code></pre>
-        </section>
+        <!-- Reference: tabs on the left, banded rows on the right. -->
+        <section id="reference" class="breakouts field field--light reference" aria-labelledby="reference-title">
+            <h2 id="reference-title" class="reference__title"><span class="soft">Around the grid,</span> a thin, optional layer</h2>
+            <div class="ref full">
+                <div class="ref__tabs" role="tablist" aria-label="Reference" hidden>
+                    <button role="tab" type="button" aria-controls="ref-tokens" id="tab-tokens">Colour tokens</button>
+                    <button role="tab" type="button" aria-controls="ref-modes" id="tab-modes">Colour modes</button>
+                    <button role="tab" type="button" aria-controls="ref-utilities" id="tab-utilities">Utilities</button>
+                    <button role="tab" type="button" aria-controls="ref-themes" id="tab-themes">Themes</button>
+                    <button role="tab" type="button" aria-controls="ref-sass" id="tab-sass">Sass variables</button>
+                    <button role="tab" type="button" aria-controls="ref-base" id="tab-base">Base styles</button>
+                </div>
 
-        <section id="custom">
-            <h2>Customize</h2>
-            <pre><code>@use 'breakouts' with (
-  $color-primary: #d1ff4a,
-  $color-accent: #8a2be2
+                <div class="ref__panel" id="ref-tokens" role="tabpanel" aria-labelledby="tab-tokens">
+                    <h3>Colour tokens</h3>
+                    <p>Every colour is a custom property. Brand and status colours get a dark value 50% lighter (<code>color.scale($lightness: 50%)</code>), so changing a light value changes its dark one too.</p>
+                    <ul class="bands">
+                        <li><span class="swatch" style="--sw:#ffffff; --sw-d:#111111"></span><code>--color-background</code><span>#ffffff</span><span>dark #111111</span></li>
+                        <li><span class="swatch" style="--sw:#f0f0f0; --sw-d:#1a1a1a"></span><code>--color-surface</code><span>#f0f0f0</span><span>dark #1a1a1a</span></li>
+                        <li><span class="swatch" style="--sw:#111111; --sw-d:#eeeeee"></span><code>--color-text</code><span>#111111</span><span>dark #eeeeee</span></li>
+                        <li><span class="swatch" style="--sw:#666666; --sw-d:#aaaaaa"></span><code>--color-muted</code><span>#666666</span><span>dark #aaaaaa</span></li>
+                        <li><span class="swatch" style="--sw:#0055ff; --sw-d:rgb(127.5 170 255)"></span><code>--color-primary</code><span>#0055ff</span><span>dark 50% lighter</span></li>
+                        <li><span class="swatch" style="--sw:#0033aa; --sw-d:rgb(127.5 153 212.5)"></span><code>--color-secondary</code><span>#0033aa</span><span>dark 50% lighter</span></li>
+                        <li><span class="swatch" style="--sw:#ff4081"></span><code>--color-accent</code><span>#ff4081</span><span>dark 50% lighter</span></li>
+                        <li><span class="swatch" style="--sw:#28a745"></span><code>--color-success</code><span>#28a745</span><span>dark 50% lighter</span></li>
+                        <li><span class="swatch" style="--sw:#dc3545"></span><code>--color-error</code><span>#dc3545</span><span>dark 50% lighter</span></li>
+                        <li><span class="swatch" style="--sw:#ffc107"></span><code>--color-warning</code><span>#ffc107</span><span>dark 50% lighter</span></li>
+                        <li><span class="swatch swatch--ramp"><i style="background:#f8f9fa"></i><i style="background:#e9ecef"></i><i style="background:#dee2e6"></i><i style="background:#ced4da"></i><i style="background:#adb5bd"></i><i style="background:#6c757d"></i><i style="background:#495057"></i><i style="background:#343a40"></i><i style="background:#212529"></i></span><code>--color-neutral-100…900</code><span>#f8f9fa … #212529</span><span>same in every mode</span></li>
+                    </ul>
+                </div>
+
+                <div class="ref__panel" id="ref-modes" role="tabpanel" aria-labelledby="tab-modes">
+                    <h3>Colour modes</h3>
+                    <p>No class follows the system. A class on <code>&lt;html&gt;</code> forces a mode, and each mode sets <code>color-scheme</code> so form controls and scrollbars match.</p>
+                    <ul class="bands">
+                        <li><code>&lt;html&gt;</code><span>Dark when <code>prefers-color-scheme: dark</code>, light otherwise</span></li>
+                        <li><code>&lt;html class="dark"&gt;</code><span>Always dark</span></li>
+                        <li><code>&lt;html class="light"&gt;</code><span>Always light, even on a dark system</span></li>
+                    </ul>
+                    <p><code>.dark</code> and <code>.light</code> work on any element: they redefine the tokens for that subtree. Text that inherits its colour from <code>body</code> keeps the page's colour, so give the element its own:</p>
+<pre><code>&lt;section class="dark bg-background text-color"&gt;…&lt;/section&gt;</code></pre>
+                    <div class="mode-demo" data-ui>
+                        <div class="mode-demo__pick" role="group" aria-label="Mode of the sample">
+                            <button type="button" data-mode="light" aria-pressed="true"><code>.light</code></button>
+                            <button type="button" data-mode="dark"><code>.dark</code></button>
+                        </div>
+                        <div class="mode-demo__sample light bg-background text-color p-4" id="mode-sample">
+                            <p><span class="text-primary font-bold">Primary text</span> and <span class="text-muted">muted text</span> on the background.</p>
+                            <p class="mode-demo__chips bg-surface p-2"><span><i class="bg-primary"></i>primary</span><span><i class="bg-secondary"></i>secondary</span><span><i class="bg-accent"></i>accent</span><span><i class="bg-success"></i>success</span><span><i class="bg-error"></i>error</span><span><i class="bg-warning"></i>warning</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ref__panel" id="ref-utilities" role="tabpanel" aria-labelledby="tab-utilities">
+                    <h3>Utilities</h3>
+                    <p>Optional and always emitted last, so on equal specificity a utility beats the grid: <code>class="container px-0"</code> removes the container's padding.</p>
+                    <ul class="bands bands--wide">
+                        <li><span>Background</span><span><code>bg-</code> + background, surface, primary, secondary, accent, muted, success, error, warning</span></li>
+                        <li><span>Text colour</span><span><code>text-color</code>, <code>text-</code> + the same nine names, <code>text-neutral-100</code> … <code>-900</code></span></li>
+                        <li><span>Margin</span><span><code>m-* mt-* mr-* mb-* ml-* mx-* my-*</code></span></li>
+                        <li><span>Padding</span><span><code>p-* pt-* pr-* pb-* pl-* px-* py-*</code></span></li>
+                        <li><span>Spacing steps</span><span><code>0</code> 0 · <code>1</code> 0.25rem · <code>2</code> 0.5rem · <code>3</code> 0.75rem · <code>4</code> 1rem · <code>5</code> 1.25rem · <code>6</code> 1.5rem · <code>auto</code>, margins only</span></li>
+                        <li><span>Position</span><span><code>position-static</code>, <code>-relative</code>, <code>-absolute</code>, <code>-fixed</code>, <code>-sticky</code></span></li>
+                        <li><span>Stacking</span><span><code>z-index-0</code>, <code>-1</code>, <code>-10</code>, <code>-100</code>, <code>-1000</code></span></li>
+                        <li><span>Text</span><span><code>text-left</code>, <code>-center</code>, <code>-right</code>, <code>-justify</code>; <code>text-uppercase</code>, <code>-lowercase</code>, <code>-capitalize</code></span></li>
+                        <li><span>Font</span><span><code>font-bold</code>, <code>font-normal</code>, <code>italic</code>, <code>not-italic</code>; <code>leading-tight</code> 1.25, <code>-normal</code> 1.5, <code>-loose</code> 2</span></li>
+                    </ul>
+                    <p>The spacing utilities use physical sides: <code>ml-*</code> is the left side in every writing direction (<a href="https://github.com/Cantilux/breakouts/issues/13">issue #13</a>).</p>
+                </div>
+
+                <div class="ref__panel" id="ref-themes" role="tabpanel" aria-labelledby="tab-themes">
+                    <h3>Themes</h3>
+                    <p>A theme is a set of colours plus the modules that use them. Load it before the main entry point: on its own, a theme does not emit the spacing and position utilities (<a href="https://github.com/Cantilux/breakouts/issues/10">issue #10</a>).</p>
+<pre><code>@use 'pkg:breakouts/src/theme/chupa-pop' with ($accent: #0f766e);
+@use 'pkg:breakouts';</code></pre>
+                    <ul class="bands bands--themes">
+                        <li><span class="theme-name">Chupa Pop</span><span class="chips"><span class="swatch" style="--sw:#ecb838" title="primary #ecb838"></span><span class="swatch" style="--sw:#ab4073" title="secondary #ab4073"></span><span class="swatch" style="--sw:#196484" title="accent #196484"></span></span><span>primary #ecb838, secondary #ab4073, accent #196484</span><code>src/theme/chupa-pop</code></li>
+                        <li><span class="theme-name">Medical</span><span class="chips"><span class="swatch" style="--sw:#4682b4" title="primary #4682b4"></span><span class="swatch" style="--sw:#9dc183" title="secondary #9dc183"></span><span class="swatch" style="--sw:#a9a9a9" title="accent #a9a9a9"></span></span><span>primary #4682b4, secondary #9dc183, accent #a9a9a9, muted #6b7280, background #ffffff</span><code>src/theme/medical</code></li>
+                        <li><span class="theme-name">Tootsie Pop</span><span class="chips"><span class="swatch" style="--sw:#93329e" title="primary #93329e"></span><span class="swatch" style="--sw:#f2711c" title="secondary #f2711c"></span><span class="swatch" style="--sw:#e94057" title="accent #e94057"></span></span><span>primary #93329e, secondary #f2711c, accent #e94057, muted #ffe5b4; text #fff5e6 on #4f2f4c in every mode</span><code>src/theme/tootsie-pop</code></li>
+                    </ul>
+                    <p>Each theme takes its own variables: <code>$primary</code>, <code>$secondary</code>, <code>$accent</code>; Medical and Tootsie Pop also <code>$muted</code> and <code>$background</code>; Tootsie Pop also <code>$text</code>. After a theme, <code>@use 'pkg:breakouts' with (…)</code> is a compile error: configure the theme instead.</p>
+                </div>
+
+                <div class="ref__panel" id="ref-sass" role="tabpanel" aria-labelledby="tab-sass">
+                    <h3>Sass variables</h3>
+                    <p>Every one is <code>!default</code>, set with <code>@use … with (…)</code> on first load. A list value needs parentheses there.</p>
+<pre><code>@use 'pkg:breakouts' with (
+  $color-primary: #0f766e,
+  $font-family-base: ('Inter', system-ui, sans-serif),
 );</code></pre>
+                    <ul class="bands bands--wide">
+                        <li><code>$color-{name}</code><span>background, surface, text, muted, primary, secondary, accent, success, error, warning: the light values above</span></li>
+                        <li><code>$color-{name}-dark</code><span>The dark values</span></li>
+                        <li><code>$color-{name}-light</code><span>Defaults to <code>$color-{name}</code>: what <code>.light</code> applies</span></li>
+                        <li><code>$color-neutral-100…900</code><span>#f8f9fa … #212529</span></li>
+                        <li><code>$font-family-base</code><span>system-ui, sans-serif; with <code>$font-size-base</code> 1rem and <code>$line-height-base</code> 1.6</span></li>
+                        <li><code>$headings</code><span>(h1: 2.25rem, h2: 1.75rem, h3: 1.5rem, h4: 1.25rem, h5: 1.125rem, h6: 1rem)</span></li>
+                        <li><code>$space-scale</code><span>(0: 0, 1: 0.25rem, 2: 0.5rem, 3: 0.75rem, 4: 1rem, 5: 1.25rem, 6: 1.5rem, auto: auto)</span></li>
+                    </ul>
+                    <p><code>$headings</code> and <code>$space-scale</code> replace the default map, so list every level you want (<a href="https://github.com/Cantilux/breakouts/issues/11">issue #11</a>). At runtime, the colour modes set the tokens with selectors more specific than <code>:root</code>: override each mode's selector, or prefer the Sass variables.</p>
+                </div>
 
-            <pre><code>@use 'breakouts/src/theme/chupa-pop';
-@use 'breakouts' as *;</code></pre>
+                <div class="ref__panel" id="ref-base" role="tabpanel" aria-labelledby="tab-base">
+                    <h3>Base styles</h3>
+                    <p>In the full bundle and in <code>src/base</code>, not in <code>src/core</code>.</p>
+                    <ul class="bands bands--wide">
+                        <li><span>Reset</span><span><code>box-sizing: border-box</code> everywhere and every margin and padding set to 0, lists included; <code>html</code> and <code>body</code> get <code>width: 100%</code></span></li>
+                        <li><span>Body</span><span>system-ui, sans-serif, 1rem, line height 1.6, <code>--color-text</code> on <code>--color-background</code></span></li>
+                        <li><span>Headings</span><span>Weight 600, line height 1.2, <code>margin: 2rem 0 1rem</code>; h1 2.25rem down to h6 1rem</span></li>
+                        <li><span>Paragraphs, links</span><span><code>margin: 1rem 0</code>; links in <code>--color-primary</code>, underlined, <code>--color-secondary</code> on hover</span></li>
+                        <li><span>Inside the grid</span><span>Headings and paragraphs that are direct children of <code>.breakouts</code> lose their block margins: the row gap spaces them</span></li>
+                    </ul>
+                    <p>Browser support: every current browser. Nesting relies on <code>subgrid</code> (Chrome and Edge 117, Firefox 71, Safari 16); older browsers give a nested grid its own tracks.</p>
+                </div>
+            </div>
         </section>
-
-        <footer class="text-center" style="padding: 2rem 0; color: var(--color-muted);">
-            MIT License —
-            <a href="https://github.com/Cantilux/breakouts" rel="noopener noreferrer">github.com/Cantilux/breakouts</a>
-        </footer>
     </main>
 
-    <script>
-        (function () {
-            const STORAGE_KEY = "breakouts:docs-theme";
-            const root = document.documentElement;
-            const btn = document.getElementById("theme-toggle");
-
-            const saved = localStorage.getItem(STORAGE_KEY);
-            const systemPrefersDark = window.matchMedia &&
-                window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-            const initial = saved || (systemPrefersDark ? "dark" : "light");
-
-            root.classList.remove("dark", "light");
-            root.classList.add(initial);
-
-            btn.addEventListener("click", () => {
-                const next = root.classList.contains("dark") ? "light" : "dark";
-                root.classList.remove("dark", "light");
-                root.classList.add(next);
-                localStorage.setItem(STORAGE_KEY, next);
-            });
-        })();
-    </script>
+    <footer class="breakouts foot" id="credits">
+        <p class="foot__credits">Pattern by <a href="https://ryanmulligan.dev/blog/layout-breakouts/">Ryan Mulligan</a>. Photographs, shown in greyscale: rotary press and composing room (cropped) of Hufvudstadsbladet, Helsinki 1927, Finnish Heritage Agency, JOKA press photo archive, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> (<a href="https://commons.wikimedia.org/wiki/File:The_rotary_press_of_newspaper_Hufvudstadsbladet_1927_(Numeroimaton;_JOKAHBL3A_A01-19).tif">1</a>, <a href="https://commons.wikimedia.org/wiki/File:Composing_room_of_newspaper_Hufvudstadsbladet_1927_(Numeroimaton;_JOKAHBL3A_A01-15).tif">2</a>); linotype machines, Anthony Hordern and Sons, c. 1935, by AE Foster, State Library of New South Wales, <a href="https://commons.wikimedia.org/wiki/File:Linotype_machines,_Anthony_Hordern_and_Sons_department_store,_c._1935.jpg">public domain</a>; linotype machine, c. 1903, Archives New Zealand, <a href="https://commons.wikimedia.org/wiki/File:Linotype_Machine.jpg">public domain</a>; metal movable type by Willi Heidelbach, <a href="https://commons.wikimedia.org/wiki/File:Metal_movable_type.jpg">CC BY 2.5</a>. Film: Linotype operators, 1919, Ford Motor Company, <a href="https://commons.wikimedia.org/wiki/File:Linotype_operators.webm">public domain</a>.</p>
+        <div class="foot__line full">
+            <span>Breakouts, a CSS breakout grid</span>
+            <span class="foot__links"><a href="https://github.com/Cantilux/breakouts">GitHub</a> <a href="https://www.npmjs.com/package/breakouts">npm</a> <a href="https://github.com/Cantilux/breakouts/blob/master/README.md">README</a> <a href="https://github.com/Cantilux/breakouts/blob/master/CHANGELOG.md">Changelog</a></span>
+            <span>MIT · 2025 Cantilux</span>
+        </div>
+    </footer>
 </body>
-
 </html>

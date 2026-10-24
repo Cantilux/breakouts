@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tomorrow's paper · a Breakouts demo</title>
+    <meta name="description" content="A short article laid out with Breakouts and nothing else: every child of one .breakouts grid.">
+    <link rel="stylesheet" href="breakouts.css">
+    <style>
+        /* Only what Breakouts leaves to the page: images and captions. */
+        .breakouts { padding-block: var(--gap); }
+        figure img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; filter: grayscale(1); }
+        figcaption { margin-top: 0.5rem; font-size: 0.875rem; color: var(--color-muted); }
+        .lead { font-size: 1.25rem; color: var(--color-muted); }
+        #target { outline: 3px solid var(--color-accent); outline-offset: 3px; }
+    </style>
+</head>
+<body>
+    <article class="breakouts">
+        <h1>Tomorrow's paper</h1>
+        <p class="lead">How a daily newspaper was set and printed in the 1920s and 30s, one machine at a time.</p>
+        <p>Copy reached the composing room in the evening, still warm from the editors' table. There it stopped being words and became metal: every line of the next morning's paper had to be cast before the presses could turn.</p>
+        <figure class="popout">
+            <img src="img/type-case.jpg" width="1600" height="1063" alt="A type case seen from above, its compartments full of metal letters, with a composing stick holding a set line">
+            <figcaption>Before the machines: letters set by hand from a type case, one at a time.</figcaption>
+        </figure>
+        <p>For centuries a compositor picked each letter from a wooden case and set it in a composing stick. A fast hand managed a few thousand characters an hour, far too few for a daily paper of many pages.</p>
+        <figure id="target" class="feature">
+            <img src="img/linotype-room.jpg" width="1600" height="921" alt="Two operators at large typesetting machines, each with a keyboard, a magazine of matrices above and trays of cast lines beside them">
+            <figcaption>The typesetting machines changed that: an operator typed, the machine cast a whole line in one piece.</figcaption>
+        </figure>
+        <p>The line-casting machine let one operator type a line on a keyboard while the machine assembled brass matrices and cast the line as a single slug of hot metal. The slugs went into page forms, and the forms went to the press.</p>
+        <figure class="feature-start">
+            <img src="img/linotype-1903.jpg" width="1600" height="1283" alt="An early typesetting machine with its operator seated at the keyboard, in a room with tall wooden type cabinets">
+            <figcaption>An early line-casting machine at work, around 1903.</figcaption>
+        </figure>
+        <p>By the 1920s the composing room of a large daily was a hall of these machines, each with its operator, its pot of molten metal and its tray of fresh lines.</p>
+        <figure class="full">
+            <img src="img/composing-room.jpg" width="1200" height="1149" alt="A long composing room in 1927, with a row of typesetting machines and their operators under hanging lamps">
+            <figcaption>The composing room of Hufvudstadsbladet, Helsinki, 1927.</figcaption>
+        </figure>
+        <p>Last came the press. A rotary press printed from curved plates cast from the page forms, on a continuous web of paper, and folded the copies as they came off the cylinders.</p>
+        <figure class="full-end">
+            <img src="img/rotary-press.jpg" width="1600" height="1172" alt="A large rotary printing press of several units, with gantries and a ladder, on a tiled floor">
+            <figcaption>The newspaper's new 64-page rotary press, 1927.</figcaption>
+        </figure>
+        <p>Photographs: Finnish Heritage Agency (JOKA, Hufvudstadsbladet), CC BY 4.0; State Library of New South Wales and Archives New Zealand, public domain; Willi Heidelbach, CC BY 2.5. Details on <a href="index.html#credits">the Breakouts page</a>.</p>
+    </article>
+</body>
+</html>
