@@ -1,0 +1,53 @@
+# Publishes breakouts to npm when the `release` branch carries a version that npm does not have
+# yet, then tags it. Only the release train (release-train.yml) moves `release`, after versioning
+# the pending changesets (see README, "Releasing"). Publishing uses npm trusted publishing (OIDC),
+# so no npm token is stored in the repository.
+name: Release
+
+on:
+  push:
+    branches: [release]
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Use an npm CLI with trusted publishing
+        run: npm install --global npm@11
+      - run: npm ci
+      - name: Decide whether to publish
+        id: plan
+        run: |
+          name=$(node -p "require('./package.json').name")
+          version=$(node -p "require('./package.json').version")
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          if npm view "$name@$version" version > /dev/null 2>&1; then
+            echo "publish=false" >> "$GITHUB_OUTPUT"; echo "$name@$version is already on npm."
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"; echo "Publishing $name@$version."
+          fi
+      - if: steps.plan.outputs.publish == 'true'
+        run: npm test && npm run build && git diff --exit-code -- dist docs
+      - if: steps.plan.outputs.publish == 'true'
+        run: npm publish
+      - name: Tag the version
+        run: |
+          tag="v${{ steps.plan.outputs.version }}"
+          if git ls-remote --exit-code --tags origin "$tag" > /dev/null; then
+            echo "$tag already exists."
+          else
+            git tag "$tag" && git push origin "$tag"
+          fi

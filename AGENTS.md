@@ -11,14 +11,28 @@ Demo site: `docs/` (GitHub Pages, cantilux.github.io/breakouts).
 ## Commands
 
 ```bash
-npm run build      # src/_index.scss -> dist/breakouts.css + .min.css, then copies to docs/
-npm test           # compiles every entry point and theme, imports the package like a consumer
+npm run build            # src/_index.scss -> dist/breakouts.css + .min.css, then copies to docs/
+npm test                 # compiles every entry point and theme, imports the package like a consumer
+npm run changeset        # records a pending change (patch/minor/major + one line for the changelog)
+npm run release:version  # turns pending changesets into the new version and CHANGELOG.md entry
 ```
 
 There is no linter. After a change, run `npm test`, then open `docs/index.html` in a browser and look at the examples at narrow and wide widths.
 
-`release:patch|minor|major` logs in to npm if needed, builds, bumps the version, **publishes to
-npm**, then pushes the commit and tag. Never run them unless explicitly asked.
+## Releasing
+
+Releases go through GitHub Actions on a schedule, never from a laptop: nobody runs `npm publish`,
+`npm version` or `npm run release:version` by hand.
+
+- Every user-facing change gets a changeset (`npm run changeset`) committed with it. Pick the bump
+  from the public API: `patch` for fixes, `minor` for new classes, properties or variables,
+  `major` for renames and removals (while in `0.x`: `minor`).
+- `master` is protected by a ruleset: changes land through a pull request once the **CI** check
+  (`Test, build`) is green. CI also fails if `dist/` or `docs/breakouts.css` are not up to date.
+- The **Release train** runs every Thursday around 12:00 Rome time: it versions the pending
+  changesets on `master`, fast-forwards `release`, and the push to `release` publishes to npm
+  (trusted publishing) and deploys the demo site. Urgent fixes go in a pull request into
+  `hotfix` with a `patch` changeset and ship at once. Details in README, "Releasing".
 
 ## Layout
 

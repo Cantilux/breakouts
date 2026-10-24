@@ -1,0 +1,137 @@
+# Release train. Every Thursday around 12:00 Rome time it releases what master has gathered; a
+# push to `hotfix` releases that branch at once. It turns the pending changesets into a version
+# commit, runs the checks, pushes the commit to its branch and fast-forwards `release`, whose push
+# publishes to npm (release.yml) and deploys the docs (pages.yml). A hotfix is then merged back
+# into master; a Thursday release moves `hotfix` to the new release. Pushes use the
+# RELEASE_DEPLOY_KEY deploy key: pushes made with GITHUB_TOKEN would not start release.yml, and the
+# key bypasses the branch rules. See README, "Releasing".
+name: Release train
+
+on:
+  schedule:
+    # 12:05 in Rome is 10:05 UTC in summer time and 11:05 UTC in winter. The plan job lets through
+    # any run between 12:00 and 13:59 Rome time, a late one included; when both get through in
+    # summer, the second finds nothing left to release.
+    - cron: '5 10 * * 4'
+    - cron: '5 11 * * 4'
+  push:
+    branches: [hotfix]
+
+permissions:
+  contents: read
+
+# One train at a time; a running train is never cancelled.
+concurrency:
+  group: release-train
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    name: Plan
+    runs-on: ubuntu-latest
+    outputs:
+      source: ${{ steps.plan.outputs.source }}
+    steps:
+      - id: plan
+        run: |
+          if [ "$GITHUB_EVENT_NAME" != schedule ]; then
+            echo "source=hotfix" >> "$GITHUB_OUTPUT"
+          elif [[ "$(TZ=Europe/Rome date +%H)" =~ ^1[23]$ ]]; then
+            echo "source=master" >> "$GITHUB_OUTPUT"
+          else
+            echo "Not around 12:00 in Rome: the other cron entry runs the train."
+          fi
+
+  train:
+    name: Release ${{ needs.plan.outputs.source }}
+    needs: plan
+    if: needs.plan.outputs.source != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: write
+    env:
+      SOURCE: ${{ needs.plan.outputs.source }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.plan.outputs.source }}
+          fetch-depth: 0
+          ssh-key: ${{ secrets.RELEASE_DEPLOY_KEY }}
+      - name: Check that release is behind the source branch
+        run: |
+          git fetch --no-tags origin release
+          if ! git merge-base --is-ancestor origin/release HEAD; then
+            echo "::error::release has commits that $SOURCE lacks, e.g. a hotfix not merged back into master yet. Merge origin/release into $SOURCE, then run the train again."
+            exit 1
+          fi
+      - name: Look for pending changesets
+        id: pending
+        run: |
+          if find .changeset -maxdepth 1 -name '*.md' ! -name README.md | grep -q .; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Nothing to release: no pending changesets on $SOURCE." | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+      - if: steps.pending.outputs.found == 'true'
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - if: steps.pending.outputs.found == 'true'
+        run: npm ci
+      - name: Version
+        id: version
+        if: steps.pending.outputs.found == 'true'
+        run: |
+          npm run release:version
+          version=$(node -p "require('./package.json').version")
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add --all
+          git commit --message "chore: release $version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Check
+        if: steps.pending.outputs.found == 'true'
+        run: npm test && npm run build && git diff --exit-code -- dist docs && npm pack --dry-run
+      # Plain pushes: a branch that moved meanwhile rejects them and the train stops, to be run
+      # again; release only ever moves forward.
+      - name: Push the version and fast-forward release
+        if: steps.pending.outputs.found == 'true'
+        run: |
+          git push origin "HEAD:refs/heads/$SOURCE"
+          git push origin "HEAD:refs/heads/release"
+          echo "Released $SOURCE as ${{ steps.version.outputs.version }}: release.yml publishes it." | tee -a "$GITHUB_STEP_SUMMARY"
+      # A hotfix goes back into master as a merge commit, so release stays behind master and the
+      # next Thursday train fast-forwards. On a conflict a person resolves it in a pull request.
+      - name: Merge the hotfix back into master
+        if: steps.pending.outputs.found == 'true' && env.SOURCE == 'hotfix'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          released=$(git rev-parse HEAD)
+          git fetch --no-tags origin master
+          git checkout -B back-merge origin/master
+          if git merge --no-ff --message "chore: merge hotfix $VERSION into master" "$released"; then
+            git push origin HEAD:refs/heads/master
+            echo "Hotfix $VERSION merged back into master." | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            git merge --abort
+            branch="back-merge/v$VERSION"
+            git push origin "$released:refs/heads/$branch"
+            url=$(gh pr create --base master --head "$branch" \
+              --title "Merge hotfix $VERSION into master" \
+              --body "The release train could not merge hotfix $VERSION into master: resolve the conflicts here. Until this is merged, the Thursday train refuses to release master.")
+            echo "::warning::Hotfix $VERSION conflicts with master: $url"
+            echo "Hotfix $VERSION waits for a manual merge into master: $url" >> "$GITHUB_STEP_SUMMARY"
+          fi
+      # After a Thursday release, hotfix starts again from what is in production.
+      - name: Move hotfix to the release
+        if: steps.pending.outputs.found == 'true' && env.SOURCE == 'master'
+        run: |
+          if git push origin "HEAD:refs/heads/hotfix"; then
+            echo "hotfix now points at the release." | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::warning::hotfix has commits that are not released: it was not moved. Release or reset it by hand."
+          fi

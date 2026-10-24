@@ -2,23 +2,33 @@
     "name": "breakouts",
     "version": "0.8.1",
     "description": "A focused SCSS/CSS breakout layout toolkit inspired by the Mulligan named-grid pattern.",
+    "homepage": "https://cantilux.github.io/breakouts/",
+    "bugs": "https://github.com/Cantilux/breakouts/issues",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Cantilux/breakouts.git"
+    },
     "main": "dist/breakouts.css",
+    "sass": "src/breakouts.scss",
     "files": [
         "_index.scss",
         "src/",
-        "dist/"
+        "dist/",
+        "CHANGELOG.md"
     ],
     "scripts": {
         "test": "sh test/compile.sh",
         "build": "sass src/_index.scss dist/breakouts.css --style=expanded && sass src/_index.scss dist/breakouts.min.css --style=compressed && cp dist/breakouts.css docs/breakouts.css",
-        "release:patch": "(npm whoami || npm login --auth-type=web) && npm run build && npm version patch --sign-git-tag && npm publish --access public && git push --follow-tags",
-        "release:minor": "(npm whoami || npm login --auth-type=web) && npm run build && npm version minor --sign-git-tag && npm publish --access public && git push --follow-tags",
-        "release:major": "(npm whoami || npm login --auth-type=web) && npm run build && npm version major --sign-git-tag && npm publish --access public && git push --follow-tags"
+        "changeset": "changeset",
+        "release:version": "changeset version"
     },
     "author": "Cantilux",
     "license": "MIT",
     "devDependencies": {
+        "@changesets/cli": "3.0.3",
         "sass": "^1.86.2"
     },
-    "sass": "src/breakouts.scss"
+    "publishConfig": {
+        "access": "public"
+    }
 }
