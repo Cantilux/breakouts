@@ -21,15 +21,18 @@ There is no linter. After a change, run `npm test`, then open `docs/index.html` 
 
 ## Releasing
 
-Releases go through GitHub Actions, never from a laptop: nobody runs `npm publish` or `npm version`.
+Releases go through GitHub Actions on a schedule, never from a laptop: nobody runs `npm publish`,
+`npm version` or `npm run release:version` by hand.
 
-- Every user-facing change gets a changeset (`npm run changeset`) committed with it.
-- `master` is protected: changes land through a pull request once the **CI** check
+- Every user-facing change gets a changeset (`npm run changeset`) committed with it. Pick the bump
+  from the public API: `patch` for fixes, `minor` for new classes, properties or variables,
+  `major` for renames and removals (while in `0.x`: `minor`).
+- `master` is protected by a ruleset: changes land through a pull request once the **CI** check
   (`Test, build`) is green. CI also fails if `dist/` or `docs/breakouts.css` are not up to date.
-- To release, on a `chore/release-x.y.z` branch run `npm run release:version`, then open and
-  merge the PR. The **Release** workflow sees a version npm does not have yet, tests, builds,
-  publishes it with npm trusted publishing (OIDC, with provenance) and tags it `vX.Y.Z`.
-  Only cut a release when explicitly asked.
+- The **Release train** runs every Thursday around 12:00 Rome time: it versions the pending
+  changesets on `master`, fast-forwards `release`, and the push to `release` publishes to npm
+  (trusted publishing) and deploys the demo site. Urgent fixes go in a pull request into
+  `hotfix` with a `patch` changeset and ship at once. Details in README, "Releasing".
 
 ## Layout
 

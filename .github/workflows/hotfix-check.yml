@@ -1,0 +1,31 @@
+# Pull requests into `hotfix` must carry at least one changeset, and only patch ones: a hotfix
+# ships a fix, never new features or breaking changes.
+name: Hotfix check
+
+on:
+  pull_request:
+    branches: [hotfix]
+
+permissions:
+  contents: read
+
+jobs:
+  changesets:
+    name: Patch changesets only
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Check the changesets added by the pull request
+        run: |
+          added=$(git diff --name-only --diff-filter=A "origin/$GITHUB_BASE_REF" HEAD -- '.changeset/*.md')
+          if [ -z "$added" ]; then
+            echo "::error::A hotfix needs a changeset: run npm run changeset and pick patch."
+            exit 1
+          fi
+          if grep -lE "^['\"]?breakouts['\"]?: *(minor|major)" $added; then
+            echo "::error::Hotfix changesets must be patch; minor and major changes wait for the Thursday release."
+            exit 1
+          fi
+          echo "Patch changesets: $added"

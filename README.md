@@ -221,9 +221,16 @@ GitHub Pages demo: [cantilux.github.io/breakouts](https://cantilux.github.io/bre
 
 ## Releasing
 
-Releases are cut from a pull request, never from a laptop.
+Releases leave on a schedule, never from a laptop. Merge pull requests into `master` whenever they are ready, each with its changeset (`npm run changeset`); nobody bumps versions by hand.
 
-1. Each change that users will notice comes with a changeset: `npm run changeset`.
-2. On a `chore/release-x.y.z` branch, run `npm run release:version`. Changesets turns the pending changesets into the new version and the `CHANGELOG.md` entry.
-3. Open the PR and merge it once CI is green.
-4. The **Release** workflow sees a version npm does not have yet, tests and builds it, publishes it with npm trusted publishing (with provenance) and tags it `vX.Y.Z`.
+| Branch | Role |
+| --- | --- |
+| `master` | Work for the next scheduled release |
+| `release` | What is on npm and on the demo site; only the release train (and admins) may push to it, and every push publishes |
+| `hotfix` | Starts from `release`; urgent fixes merged here ship at once |
+
+1. **Every Thursday around 12:00 (Rome time)** the **Release train** workflow takes `master`. With no pending changesets it stops. Otherwise it runs `npm run release:version` (new version, `CHANGELOG.md` entry), the tests, the build and the package check, pushes the `chore: release x.y.z` commit to `master`, fast-forwards `release` to it and moves `hotfix` there too.
+2. **The push to `release`** starts the **Release** workflow: it sees a version npm does not have yet, runs the checks again, publishes with npm trusted publishing (with provenance) and tags `vX.Y.Z`. The same push starts **Docs**, which deploys the demo site from `release`, so it always matches what is on npm.
+3. **Hotfix:** open a pull request into `hotfix` with a `patch` changeset (CI rejects `minor` and `major` there) and merge it. The train releases `hotfix` right away the same way, then merges it back into `master`; if that merge conflicts, it opens a pull request to resolve, and the Thursday train waits for it. Never land the same fix in `master` too: it gets there through the merge back.
+
+The train refuses to release when `release` has commits its source branch lacks, and a branch that moved while it ran makes it stop; it is safe to run again. Its git pushes use the `RELEASE_DEPLOY_KEY` deploy key, the bypass actor of the rulesets on `master`, `hotfix` and `release` (GitHub does not let the workflow token bypass rulesets, and its pushes would not start **Release**). npm never sees the key: publishing uses trusted publishing.

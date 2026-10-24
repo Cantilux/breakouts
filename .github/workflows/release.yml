@@ -1,11 +1,12 @@
-# Publishes breakouts to npm when master carries a version that npm does not have yet, then
-# tags it. Versions are bumped in a release PR with `npm run release:version` (see README).
-# Publishing uses npm trusted publishing (OIDC), so no npm token is stored in the repository.
+# Publishes breakouts to npm when the `release` branch carries a version that npm does not have
+# yet, then tags it. Only the release train (release-train.yml) moves `release`, after versioning
+# the pending changesets (see README, "Releasing"). Publishing uses npm trusted publishing (OIDC),
+# so no npm token is stored in the repository.
 name: Release
 
 on:
   push:
-    branches: [master]
+    branches: [release]
 
 permissions:
   contents: write
