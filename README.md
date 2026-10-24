@@ -396,4 +396,4 @@ Run `npm pack --dry-run` to see exactly what npm would receive.
 
 The named-line grid comes from Ryan Mulligan's article [Layout Breakouts with CSS Grid](https://ryanmulligan.dev/blog/layout-breakouts/) (2022). Breakouts packages it with one-sided variants, nesting and a small toolkit around it.
 
-Released under the [MIT licence](LICENSE), © 2025 Cantilux.
+Released under the [MIT licence](LICENSE), © 2025 Enrico Cantile.
