@@ -2,9 +2,10 @@
 # push to `hotfix` releases that branch at once. It turns the pending changesets into a version
 # commit, runs the checks, pushes the commit to its branch and fast-forwards `release`, whose push
 # publishes to npm (release.yml) and deploys the docs (pages.yml). A hotfix is then merged back
-# into master; a Thursday release moves `hotfix` to the new release. Pushes use the
-# RELEASE_DEPLOY_KEY deploy key: pushes made with GITHUB_TOKEN would not start release.yml, and the
-# key bypasses the branch rules. See README, "Releasing".
+# into master; a Thursday release moves `hotfix` to the new release. A maintainer can also start it
+# by hand (Actions > Release train > Run workflow) to release a branch outside the schedule. Pushes
+# use the RELEASE_DEPLOY_KEY deploy key: pushes made with GITHUB_TOKEN would not start release.yml,
+# and the key bypasses the branch rules. See README, "Releasing".
 name: Release train
 
 on:
@@ -16,6 +17,13 @@ on:
     - cron: '5 11 * * 4'
   push:
     branches: [hotfix]
+  workflow_dispatch:
+    inputs:
+      source:
+        description: Branch to release
+        type: choice
+        options: [master, hotfix]
+        default: master
 
 permissions:
   contents: read
@@ -33,8 +41,12 @@ jobs:
       source: ${{ steps.plan.outputs.source }}
     steps:
       - id: plan
+        env:
+          CHOSEN: ${{ inputs.source }}
         run: |
-          if [ "$GITHUB_EVENT_NAME" != schedule ]; then
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
+            echo "source=$CHOSEN" >> "$GITHUB_OUTPUT"
+          elif [ "$GITHUB_EVENT_NAME" = push ]; then
             echo "source=hotfix" >> "$GITHUB_OUTPUT"
           elif [[ "$(TZ=Europe/Rome date +%H)" =~ ^1[23]$ ]]; then
             echo "source=master" >> "$GITHUB_OUTPUT"

@@ -32,7 +32,10 @@ Releases go through GitHub Actions on a schedule, never from a laptop: nobody ru
 - The **Release train** runs every Thursday around 12:00 Rome time: it versions the pending
   changesets on `master`, fast-forwards `release`, and the push to `release` publishes to npm
   (trusted publishing) and deploys the demo site. Urgent fixes go in a pull request into
-  `hotfix` with a `patch` changeset and ship at once. Details in README, "Releasing".
+  `hotfix` with a `patch` changeset and ship at once. A maintainer can also run the train by hand
+  (Actions > Release train > Run workflow). Details in README, "Releasing".
+- No changeset, no release: the demo site deploys only from `release`, so a change to the README
+  or `docs/` also needs a `patch` changeset, or it never reaches npm or GitHub Pages.
 
 ## Layout
 
