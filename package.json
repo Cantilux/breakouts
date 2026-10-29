@@ -1,6 +1,6 @@
 {
     "name": "breakouts",
-    "version": "0.8.1",
+    "version": "0.8.2",
     "description": "A focused SCSS/CSS breakout layout toolkit inspired by the Mulligan named-grid pattern.",
     "homepage": "https://cantilux.github.io/breakouts/",
     "bugs": "https://github.com/Cantilux/breakouts/issues",
